@@ -25,7 +25,7 @@ public class ProcessingApiTriggerTests
     }
 
     [TestMethod]
-    public void Run_WhenCalled_ReturnsRequestBodyAndRequestContentTypeHeaderInResponse()
+    public void Run_ReturnsResponseWithRequestBodyAndContentType_WhenCalled()
     {
         // Arrange
         const string contentType = "application/json; charset=utf-8";
