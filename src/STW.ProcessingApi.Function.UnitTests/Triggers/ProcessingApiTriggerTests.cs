@@ -1,10 +1,10 @@
-namespace STW.ProcessingApi.UnitTests;
+namespace STW.ProcessingApi.UnitTests.Triggers;
 
 using System.Net;
 using System.Text;
 using Constants;
 using FluentAssertions;
-using Function;
+using Function.Triggers;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,14 +14,14 @@ using TestDoubles;
 [TestClass]
 public class ProcessingApiTriggerTests
 {
-    private Mock<ILogger<ProcessingApiTrigger>> _logger;
+    private Mock<ILogger<ProcessingApiTrigger>> _loggerMock;
     private ProcessingApiTrigger _systemUnderTest;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        _logger = new Mock<ILogger<ProcessingApiTrigger>>();
-        _systemUnderTest = new ProcessingApiTrigger(_logger.Object);
+        _loggerMock = new Mock<ILogger<ProcessingApiTrigger>>();
+        _systemUnderTest = new ProcessingApiTrigger(_loggerMock.Object);
     }
 
     [TestMethod]
@@ -41,6 +41,6 @@ public class ProcessingApiTriggerTests
         result.Headers.Should().ContainKey(HttpHeaders.ContentType).WhoseValue.Should().Contain(contentType);
         result.Body.Should().BeSameAs(requestBody);
 
-        _logger.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."));
+        _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
     }
 }

@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.Function;
+namespace STW.ProcessingApi.Function.Triggers;
 
 using System.Net;
 using Microsoft.Azure.Functions.Worker;
@@ -15,7 +15,7 @@ public class ProcessingApiTrigger
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request)
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "test")] HttpRequestData request)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
