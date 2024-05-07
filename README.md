@@ -48,7 +48,7 @@ If not already installed, you will need:
 1. Open terminal and `cd` into the `src/STW.ProcessingApi.Function` directory
 2. Run `func start`
 
-Following the competion of the steps above, the application should now be running on port `7071`.
+Following the completion of the steps above, the application should now be running on port `7071`.
 
 
 ## Licence
