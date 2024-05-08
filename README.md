@@ -32,7 +32,7 @@ If not already installed, you will need [Docker Desktop](https://www.docker.com/
 2. Run `docker-compose build`
 3. Run `docker-compose up`
 
-Following the completion of the steps above, the application should now be running on the port specified in the console output.
+Following the completion of the steps above, the application should now be running on port `5000`.
 
 ### Running on Local Machine
 
