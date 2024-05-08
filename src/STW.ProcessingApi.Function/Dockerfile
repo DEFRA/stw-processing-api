@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0-preview AS installer-env
 
-COPY . /src/dotnet-function-app
-RUN cd /src/dotnet-function-app && \
+COPY . /src/STW.processingApi.Function
+RUN cd /src/STW.processingApi.Function && \
 mkdir -p /home/site/wwwroot && \
 dotnet publish STW.ProcessingApi.Function/STW.ProcessingApi.Function.csproj --output /home/site/wwwroot
 
