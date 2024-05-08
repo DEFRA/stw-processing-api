@@ -32,7 +32,7 @@ If not already installed, you will need [Docker Desktop](https://www.docker.com/
 2. Run `docker-compose build`
 3. Run `docker-compose up`
 
-Following the completion of the steps above, the application should now be running on port `5000`.
+Following the completion of the steps above, the application should now be running on the port specified in the console output.
 
 ### Running on Local Machine
 
@@ -48,7 +48,7 @@ If not already installed, you will need:
 1. Open terminal and `cd` into the `src/STW.ProcessingApi.Function` directory
 2. Run `func start`
 
-Following the completion of the steps above, the application should now be running on port `7071`.
+Following the completion of the steps above, the application should now be running on the port specified in the console output.
 
 
 ## Licence
