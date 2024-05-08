@@ -2,7 +2,7 @@ namespace STW.ProcessingApi.Function.Triggers;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using HealthCheck;
+using HealthChecks;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;

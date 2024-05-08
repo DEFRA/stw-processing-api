@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.Function.HealthCheck;
+namespace STW.ProcessingApi.Function.HealthChecks;
 
 public class HealthCheckResponse
 {
