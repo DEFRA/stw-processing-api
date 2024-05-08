@@ -14,7 +14,7 @@
         <Rule Id="SA1006" Action="Error"/>          <!-- Preprocessor keywords should not be preceded by space -->
         <Rule Id="SA1007" Action="Error"/>          <!-- Operator keyword should be followed by space -->
         <Rule Id="SA1008" Action="Error"/>          <!-- Opening parenthesis should be spaced correctly -->
-        <Rule Id="SA1009" Action="Error"/>          <!-- Closing parenthesis should be spaced correctly -->
+        <Rule Id="SA1009" Action="None"/>           <!-- Closing parenthesis should be spaced correctly -->
         <Rule Id="SA1010" Action="Error"/>          <!-- Opening square brackets should be spaced correctly -->
         <Rule Id="SA1011" Action="Error"/>          <!-- Closing square brackets should be spaced correctly -->
         <Rule Id="SA1012" Action="Error"/>          <!-- Opening braces should be spaced correctly -->
@@ -133,7 +133,7 @@
         <Rule Id="SA1410" Action="Error"/>          <!-- Remove delegate parenthesis when possible -->
         <Rule Id="SA1411" Action="Error"/>          <!-- Attribute constructor should not use unnecessary parenthesis -->
         <Rule Id="SA1412" Action="None"/>           <!-- Store files as UTF-8 with byte order mark -->
-        <Rule Id="SA1413" Action="Error"/>          <!-- Use trailing comma in multi-line initializers -->
+        <Rule Id="SA1413" Action="None"/>           <!-- Use trailing comma in multi-line initializers -->
     </Rules>
 
     <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers.LayoutRules">
@@ -163,7 +163,7 @@
     <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers.DocumentationRules">
         <Rule Id="SA1600" Action="None"/>           <!-- Elements should be documented -->
         <Rule Id="SA1601" Action="Error"/>          <!-- Partial elements should be documented -->
-        <Rule Id="SA1602" Action="Error"/>          <!-- Enumeration items should be documented -->
+        <Rule Id="SA1602" Action="None"/>           <!-- Enumeration items should be documented -->
         <Rule Id="SA1603" Action="None"/>           <!-- Documentation should contain valid XML -->
         <Rule Id="SA1604" Action="Error"/>          <!-- Element documentation should have summary -->
         <Rule Id="SA1605" Action="Error"/>          <!-- Partial element documentation should have summary -->
