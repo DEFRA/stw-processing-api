@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>STW.ProcessingApi.Function.UnitTests</RootNamespace>
+        <RootNamespace>STW.ProcessingApi.IntegrationTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="6.12.0"/>
-        <PackageReference Include="ILogger.Moq" Version="1.1.10"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.4" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0"/>
-        <PackageReference Include="Moq" Version="4.20.70"/>
         <PackageReference Include="MSTest.TestAdapter" Version="3.3.1"/>
         <PackageReference Include="MSTest.TestFramework" Version="3.3.1"/>
     </ItemGroup>
 
+
     <ItemGroup>
-        <ProjectReference Include="..\STW.ProcessingApi.Function\STW.ProcessingApi.Function.csproj"/>
+        <ProjectReference Include="..\STW.ProcessingApi.Function\STW.ProcessingApi.Function.csproj" />
     </ItemGroup>
 </Project>
