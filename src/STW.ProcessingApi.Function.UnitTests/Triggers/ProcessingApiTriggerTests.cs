@@ -1,14 +1,14 @@
-namespace STW.ProcessingApi.UnitTests.Triggers;
+namespace STW.ProcessingApi.Function.UnitTests.Triggers;
 
 using System.Net;
 using System.Text;
 using Constants;
 using FluentAssertions;
-using Function.Triggers;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using STW.ProcessingApi.Function.Triggers;
 using TestDoubles;
 
 [TestClass]

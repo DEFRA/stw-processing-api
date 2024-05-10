@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.UnitTests.Constants;
+namespace STW.ProcessingApi.Function.UnitTests.Constants;
 
 public static class HttpVerbs
 {

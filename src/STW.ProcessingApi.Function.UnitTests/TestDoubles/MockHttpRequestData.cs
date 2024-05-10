@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.UnitTests.TestDoubles;
+namespace STW.ProcessingApi.Function.UnitTests.TestDoubles;
 
 using System.Net;
 using System.Security.Claims;

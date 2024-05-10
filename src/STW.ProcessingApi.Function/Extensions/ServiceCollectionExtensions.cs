@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.Function.Configuration;
+namespace STW.ProcessingApi.Function.Extensions;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
