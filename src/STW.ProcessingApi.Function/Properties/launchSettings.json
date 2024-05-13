@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "STW.ProcessingApi.Function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7011",
+      "launchBrowser": false
+    }
+  }
+}
