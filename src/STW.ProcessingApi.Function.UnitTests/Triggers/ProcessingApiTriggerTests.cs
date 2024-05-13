@@ -1,3 +1,6 @@
+using STW.ProcessingApi.Function.Validation;
+using STW.ProcessingApi.Function.Validation.Rule;
+
 namespace STW.ProcessingApi.Function.UnitTests.Triggers;
 
 using System.Net;
@@ -15,13 +18,15 @@ using TestDoubles;
 public class ProcessingApiTriggerTests
 {
     private Mock<ILogger<ProcessingApiTrigger>> _loggerMock;
+    private Mock<IValidator> _validatorMock;
     private ProcessingApiTrigger _systemUnderTest;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _loggerMock = new Mock<ILogger<ProcessingApiTrigger>>();
-        _systemUnderTest = new ProcessingApiTrigger(_loggerMock.Object);
+        _validatorMock = new Mock<IValidator>();
+        _systemUnderTest = new ProcessingApiTrigger(_loggerMock.Object, _validatorMock.Object);
     }
 
     [TestMethod]
@@ -29,9 +34,11 @@ public class ProcessingApiTriggerTests
     {
         // Arrange
         const string contentType = "application/json; charset=utf-8";
-        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{}"));
+        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{test}"));
         var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
         httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
+        _validatorMock.Setup(v => v.IsValid(It.IsAny<List<IRule>>(), It.IsAny<List<IAsyncRule>>(), "{test}"))
+            .Returns(true);
 
         // Act
         var result = _systemUnderTest.Run(httpRequestData);
@@ -42,5 +49,24 @@ public class ProcessingApiTriggerTests
         result.Body.Should().BeSameAs(requestBody);
 
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
+        _loggerMock.VerifyLog(x => x.LogInformation("Validation Passed"), Times.Once);
+    }
+
+    [TestMethod]
+    public void Run_LogsValidationFailure_ValidationFails()
+    {
+        // Arrange
+        const string contentType = "application/json; charset=utf-8";
+        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{}"));
+        var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
+        httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
+        _validatorMock.Setup(v => v.IsValid(It.IsAny<List<IRule>>(), It.IsAny<List<IAsyncRule>>(), "{}"))
+            .Returns(false);
+
+        // Act
+        _systemUnderTest.Run(httpRequestData);
+
+        // Assert
+        _loggerMock.VerifyLog(x => x.LogInformation("Validation Failed"), Times.Once);
     }
 }
