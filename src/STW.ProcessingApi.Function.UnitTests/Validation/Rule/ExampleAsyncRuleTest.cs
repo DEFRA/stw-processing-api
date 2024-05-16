@@ -1,6 +1,6 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using STW.ProcessingApi.Function.Validation.Rule;
+using STW.ProcessingApi.Function.Validation.Rules;
 
 namespace STW.ProcessingApi.Function.UnitTests.Validation.Rule;
 
@@ -19,7 +19,7 @@ public class ExampleAsyncRuleTest
     public void Validate_ReturnsFalse_WhenInputNotValid()
     {
         // Act
-        var result = _rule.Validate(null);
+        var result = _rule.ValidateAsync(null);
 
         // Assert
         result.Should().Be(Task.FromResult(false));
@@ -29,7 +29,7 @@ public class ExampleAsyncRuleTest
     public void Validate_ReturnsTrue_WhenInputValid()
     {
         // Act
-        var result = _rule.Validate("test");
+        var result = _rule.ValidateAsync("test");
 
         // Assert
         result.Should().Be(Task.FromResult(true));

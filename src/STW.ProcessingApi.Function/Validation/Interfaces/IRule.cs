@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.Function.Validation.Rule;
+namespace STW.ProcessingApi.Function.Validation.Interfaces;
 
 public interface IRule
 {

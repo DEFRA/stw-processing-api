@@ -1,13 +1,21 @@
-using System.Collections.Immutable;
-using STW.ProcessingApi.Function.Validation.Rule;
+using STW.ProcessingApi.Function.Validation.Interfaces;
 
 namespace STW.ProcessingApi.Function.Validation;
 
-public class Validator : IValidator
+public class Validator : IRuleValidator
 {
-    public bool IsValid(List<IRule> rules, List<IAsyncRule> asyncRules, string input)
+    private readonly List<IRule> _rules;
+    private readonly List<IAsyncRule> _asyncRules;
+
+    public Validator(List<IRule> rules, List<IAsyncRule> asyncRules)
     {
-        return RunRules(rules, input) && RunAsyncRules(asyncRules, input).Result;
+        _rules = rules;
+        _asyncRules = asyncRules;
+    }
+
+    public bool IsValid(string input)
+    {
+        return RunRules(_rules, input) && RunAsyncRules(_asyncRules, input).Result;
     }
 
     private bool RunRules(List<IRule> rules, string input)
@@ -27,7 +35,7 @@ public class Validator : IValidator
     {
         foreach (var asyncRule in asyncRules)
         {
-            if (!await asyncRule.Validate(input))
+            if (!await asyncRule.ValidateAsync(input))
             {
                 return false;
             }

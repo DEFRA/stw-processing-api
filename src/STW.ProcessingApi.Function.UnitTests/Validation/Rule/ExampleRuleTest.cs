@@ -1,6 +1,6 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using STW.ProcessingApi.Function.Validation.Rule;
+using STW.ProcessingApi.Function.Validation.Rules;
 
 namespace STW.ProcessingApi.Function.UnitTests.Validation.Rule;
 
