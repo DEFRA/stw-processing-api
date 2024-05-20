@@ -9,6 +9,7 @@ var host = new HostBuilder()
         {
             serviceCollection.RegisterOptions();
             serviceCollection.AddHealthChecks();
+            serviceCollection.RegisterRuleValidator();
         })
     .Build();
 
