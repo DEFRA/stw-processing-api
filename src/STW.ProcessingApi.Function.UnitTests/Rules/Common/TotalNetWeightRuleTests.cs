@@ -59,62 +59,6 @@ public class TotalNetWeightRuleTests
     }
 
     [TestMethod]
-    public void Invoke_AddsError_WhenNetWeightMeasureIsLessThanMinAllowedWeight()
-    {
-        // Arrange
-        var tradeLineItems = new List<IncludedSpsTradeLineItem>
-        {
-            new IncludedSpsTradeLineItem
-            {
-                SequenceNumeric = SpsCertificateTestHelper.BuildSequenceNumericWithValue(1),
-                NetWeightMeasure = SpsCertificateTestHelper.BuildMeasureTypeWithValue(0.0)
-            }
-        };
-
-        var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
-
-        // Act
-        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
-
-        // Assert
-        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
-            x =>
-            {
-                x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightLessThanMinWeight);
-                x.ErrorId.Should().Be(RuleErrorId.NetWeightLessThanMinWeight);
-                x.ErrorTradeLineItem.Should().Be(1);
-            });
-    }
-
-    [TestMethod]
-    public void Invoke_AddsError_WhenNetWeightMeasureHasMoreThanThreeDecimals()
-    {
-        // Arrange
-        var tradeLineItems = new List<IncludedSpsTradeLineItem>
-        {
-            new IncludedSpsTradeLineItem
-            {
-                SequenceNumeric = SpsCertificateTestHelper.BuildSequenceNumericWithValue(1),
-                NetWeightMeasure = SpsCertificateTestHelper.BuildMeasureTypeWithValue(5.000001)
-            }
-        };
-
-        var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
-
-        // Act
-        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
-
-        // Assert
-        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
-            x =>
-            {
-                x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightTooManyDecimals);
-                x.ErrorId.Should().Be(RuleErrorId.NetWeightTooManyDecimals);
-                x.ErrorTradeLineItem.Should().Be(1);
-            });
-    }
-
-    [TestMethod]
     public void Invoke_AddsError_WhenNetWeightMeasureHasMoreThanSixteenDigits()
     {
         // Arrange

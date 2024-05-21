@@ -27,9 +27,12 @@ public class ValidationService : IValidationService
             rule.Invoke(spsCertificate, validationErrors);
         }
 
-        foreach (var rule in _asyncRules.Where(x => x.ShouldInvoke(spsCertificate)))
+        if (validationErrors.Count == 0)
         {
-            await rule.InvokeAsync(spsCertificate, validationErrors);
+            foreach (var rule in _asyncRules.Where(x => x.ShouldInvoke(spsCertificate)))
+            {
+                await rule.InvokeAsync(spsCertificate, validationErrors);
+            }
         }
 
         validationErrors.ForEach(x => _logger.LogInformation(x.ErrorMessage));
