@@ -136,8 +136,8 @@ public class TransitRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(TestConstants.NewZealandIsoCode),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.UkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.NonUkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument
@@ -173,7 +173,7 @@ public class TransitRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(TestConstants.NewZealandIsoCode),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.UkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument
@@ -214,9 +214,9 @@ public class TransitRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(TestConstants.NewZealandIsoCode),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.UkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.NonUkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument
@@ -257,20 +257,20 @@ public class TransitRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(TestConstants.NewZealandIsoCode),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AlbaniaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AlgeriaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AndorraIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AngolaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.ArgentinaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.ArmeniaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AustraliaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AustriaIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AzerbaijanIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.BahamasIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.BahrainIsoCode, TestConstants.BcpCode),
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.BangladeshIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.UkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AfghanistanIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AlbaniaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AlgeriaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AndorraIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AngolaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.ArgentinaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.ArmeniaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AustraliaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AustriaIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.AzerbaijanIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.BahamasIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.BahrainIsoCode, TestConstants.NonUkBcpCode),
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.BangladeshIsoCode, TestConstants.NonUkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument
@@ -311,7 +311,7 @@ public class TransitRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(string.Empty),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.UkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument

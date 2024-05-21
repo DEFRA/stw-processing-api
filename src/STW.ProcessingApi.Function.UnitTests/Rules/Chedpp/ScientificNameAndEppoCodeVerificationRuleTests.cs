@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Rules.Chedpp;
 
+using System.Net;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using Constants;
@@ -275,7 +276,7 @@ public class ScientificNameAndEppoCodeVerificationRuleTests
 
         _commodityCodeServiceMock
             .Setup(x => x.GetCommodityInfoByEppoCode(It.IsAny<string>(), It.IsAny<string>()))
-            .ReturnsAsync(Result<CommodityInfo>.Failure);
+            .ReturnsAsync(Result<CommodityInfo>.Failure(HttpStatusCode.InternalServerError));
 
         // Act
         await _systemUnderTest.InvokeAsync(spsCertificate, _validationErrors);
@@ -317,7 +318,7 @@ public class ScientificNameAndEppoCodeVerificationRuleTests
 
         _commodityCodeServiceMock
             .Setup(x => x.GetCommodityInfoBySpeciesName(It.IsAny<string>(), It.IsAny<string>()))
-            .ReturnsAsync(Result<CommodityInfo>.Failure);
+            .ReturnsAsync(Result<CommodityInfo>.Failure(HttpStatusCode.InternalServerError));
 
         // Act
         await _systemUnderTest.InvokeAsync(spsCertificate, _validationErrors);

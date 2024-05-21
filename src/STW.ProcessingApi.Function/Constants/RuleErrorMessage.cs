@@ -25,7 +25,7 @@ public static class RuleErrorMessage
     public const string ConformsToEuRequiredForInternalMarket = "You cannot set purpose to \"Internal Market\" for a consignment that does not \"CONFORMS_TO_EU\"";
     public const string NonConformingConsignmentMissingDestinationType = "\"NON_CONFORMING_GOODS_DESTINATION_TYPE\" is missing, enter a purpose for this non-conforming consignment";
     public const string MissingImportSpsCountry = "\"importSpsCountry\" is missing, enter ISO country code and name for the country where this consignment will be transhipped";
-    public const string MissingFinalBip = "\"activityAuthorizedSpsParty\" is missing, enter TRACES code ID and name for a border control post";
+    public const string MissingFinalBcp = "\"activityAuthorizedSpsParty\" is missing, enter TRACES code ID and name for a border control post";
     public const string TransitingCountriesMax = "You cannot have more than {0} countries of transit within \"transitSpsCountry\"";
     public const string DuplicateTransitingCountries = "You have listed the same transit country twice within \"transitSpsCountry\"";
     public const string ThirdCountryMissing = "\"importSpsCountry\" is missing, enter ISO country code for the country of transit";
@@ -61,4 +61,8 @@ public static class RuleErrorMessage
     public const string SpeciesClassNameNotRecognised = "\"{0}\" is not recognised as a commodity class - check it is spelt correctly";
     public const string SpeciesFamilyNameNotRecognised = "\"{0}\" is not recognised as a commodity family - check it is spelt correctly";
     public const string SpeciesNameNotRecognised = "\"{0}\" is not recognised as a commodity species - check it is spelt correctly";
+    public const string ThirdCountryNotFound = "ISO country code for destination is not recognised – check the country code used for \"importSPSCountry\"";
+    public const string TransitingCountryNotFound = "The ISO code \"{0}\" is not recognised - check the country code used for \"transitSpsCountry\"";
+    public const string CountriesClientError = "An error has occurred with countries service";
+    public const string ExitBcpNotFound = "TRACES code for BCP in \"activityAuthorizedSpsParty\" is incorrect – check it is in the right format";
 }

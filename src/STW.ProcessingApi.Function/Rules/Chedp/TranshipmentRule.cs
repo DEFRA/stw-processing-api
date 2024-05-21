@@ -22,18 +22,17 @@ public class TranshipmentRule : IRule
             validationErrors.Add(new ValidationError(RuleErrorMessage.MissingImportSpsCountry, RuleErrorId.MissingImportSpsCountry));
         }
 
-        if (!IsValidFinalBip(spsCertificate.SpsConsignment.TransitSpsCountry))
+        if (!IsValidFinalBcp(spsCertificate.SpsConsignment.TransitSpsCountry))
         {
-            validationErrors.Add(new ValidationError(RuleErrorMessage.MissingFinalBip, RuleErrorId.MissingFinalBip));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.MissingFinalBcp, RuleErrorId.MissingFinalBcp));
         }
     }
 
-    private static bool IsValidFinalBip(IList<SpsCountryType> spsCountryTypes)
+    private static bool IsValidFinalBcp(IList<SpsCountryType> spsCountryTypes)
     {
         return spsCountryTypes
             .SelectMany(x => x.SubordinateSpsCountrySubDivision)
             .SelectMany(x => x.ActivityAuthorizedSpsParty)
-            .Where(x => x.Id is not null)
-            .Any(x => !string.IsNullOrEmpty(x.Id?.Value));
+            .Any(x => x.Id is not null);
     }
 }

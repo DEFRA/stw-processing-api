@@ -1,6 +1,7 @@
 namespace STW.ProcessingApi.Function.Services.Interfaces;
 
-using STW.ProcessingApi.Function.Models;
+using Models;
+using Models.Bcp;
 
 public interface IBcpService
 {

@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Rules.Chedp;
 
+using System.Net;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using Constants;
@@ -126,7 +127,7 @@ public class ApprovedEstablishmentVerificationRuleTests
 
         _approvedEstablishmentServiceMock
             .Setup(x => x.Search(It.IsAny<ApprovedEstablishmentSearchQuery>()))
-            .ReturnsAsync(Result<PageImpl<ApprovedEstablishment>>.Failure);
+            .ReturnsAsync(Result<PageImpl<ApprovedEstablishment>>.Failure(HttpStatusCode.InternalServerError));
 
         // Act
         await _systemUnderTest.InvokeAsync(spsCertificate, _validationErrors);

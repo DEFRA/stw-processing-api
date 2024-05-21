@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Rules.Chedpp;
 
+using System.Net;
 using Constants;
 using FluentAssertions;
 using Function.Rules.Chedpp;
@@ -181,7 +182,7 @@ public class FinishedOrPropagatedVerificationRuleTests
 
         _commodityCodeServiceMock
             .Setup(x => x.GetCommodityConfigurations(It.IsAny<List<string>>()))
-            .ReturnsAsync(Result<IList<CommodityConfiguration>>.Failure);
+            .ReturnsAsync(Result<IList<CommodityConfiguration>>.Failure(HttpStatusCode.InternalServerError));
 
         // Act
         await _systemUnderTest.InvokeAsync(spsCertificate, _validationErrors);
