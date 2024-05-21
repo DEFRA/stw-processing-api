@@ -1,4 +1,3 @@
-using Azure.Core.Amqp;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,44 +23,42 @@ public class ProcessingApiTriggerTests
     }
 
     [TestMethod]
-    public void Run_ReturnsResponseWithRequestBodyAndContentType_WhenCalled()
+    public async Task Run_ReturnsResponseWithRequestBodyAndContentType_WhenCalled()
     {
         // Arrange
-        var messageBody = BinaryData.FromString("Test message body");
-        var messageMock = new Mock<AmqpAnnotatedMessage>();
-        var x = ServiceBusReceivedMessage.FromAmqpMessage(messageMock.Object, BinaryData.FromString(string.Empty));
-        messageMock.Setup(m => m.Body).Returns(messageBody);
+        const string messageString = "Test message body";
+        var message = ServiceBusModelFactory.ServiceBusReceivedMessage(BinaryData.FromString(messageString));
 
-        _validatorMock.Setup(v => v.IsValidAsync("Test message body"))
-            .Returns(Task.FromResult(true));
+        _validatorMock
+            .Setup(v => v.IsValidAsync(It.IsAny<string>()))
+            .ReturnsAsync(true);
 
         // Act
-        var result = _systemUnderTest.Run(messageMock.Object);
+        await _systemUnderTest.Run(message);
 
         // Assert
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogInformation("Validation Passed"), Times.Once);
+        _validatorMock.Verify(x => x.IsValidAsync(messageString), Times.Once);
     }
 
     [TestMethod]
     public async Task Run_LogsValidationFailure_ValidationFails()
     {
         // Arrange
-        var messageBody = BinaryData.FromString(string.Empty);
-        var messageMock = new Mock<ServiceBusReceivedMessage>(
-            "messageId",
-            TimeSpan.FromMinutes(5),
-            DateTime.UtcNow,
-            messageBody);
-        messageMock.SetupGet(m => m.Body).Returns(messageBody);
-        _validatorMock.Setup(v => v.IsValidAsync("Test message body"))
-            .Returns(Task.FromResult<bool>(false));
+        const string messageString = "Test message body";
+        var message = ServiceBusModelFactory.ServiceBusReceivedMessage(BinaryData.FromString(messageString));
+
+        _validatorMock
+            .Setup(v => v.IsValidAsync(It.IsAny<string>()))
+            .ReturnsAsync(false);
 
         // Act
-        await _systemUnderTest.Run(messageMock.Object);
+        await _systemUnderTest.Run(message);
 
         // Assert
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogInformation("Validation Failed"), Times.Once);
+        _validatorMock.Verify(x => x.IsValidAsync(messageString), Times.Once);
     }
 }

@@ -22,7 +22,7 @@ public class ProcessingApiTrigger
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
-        var messageBody = Convert.ToBase64String(message.Body);
+        var messageBody = message.Body.ToString();
 
         var isValid = await _validator.IsValidAsync(messageBody);
 
