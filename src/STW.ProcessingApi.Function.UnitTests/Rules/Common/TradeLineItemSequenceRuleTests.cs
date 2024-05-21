@@ -39,8 +39,10 @@ public class TradeLineItemSequenceRuleTests
     }
 
     [TestMethod]
-    [DataRow(ChedType.Chedpp)]
     [DataRow(ChedType.Chedp)]
+    [DataRow(ChedType.Chedpp)]
+    [DataRow(ChedType.Chedd)]
+    [DataRow(ChedType.Cheda)]
     public void ShouldInvoke_ReturnsTrue_WhenChedTypeIsChedppOrChedp(string chedType)
     {
         // Arrange

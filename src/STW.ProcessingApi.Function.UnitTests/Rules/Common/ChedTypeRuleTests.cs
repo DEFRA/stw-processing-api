@@ -38,6 +38,8 @@ public class ChedTypeRuleTests
     [DataRow(ChedType.Chedp)]
     [DataRow(ChedType.Chedd)]
     [DataRow(ChedType.Chedpp)]
+    [DataRow(ChedType.Chedd)]
+    [DataRow(ChedType.Cheda)]
     public void Invoke_DoesNotAddError_WhenChedTypeIsPresentAndValid(string chedType)
     {
         // Arrange

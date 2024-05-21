@@ -22,6 +22,8 @@ public class QuantityTypeRuleTests
 
     [TestMethod]
     [DataRow(ChedType.Chedp)]
+    [DataRow(ChedType.Cheda)]
+    [DataRow(ChedType.Chedd)]
     [DataRow(TestConstants.Invalid)]
     public void ShouldInvoke_ReturnsFalse_WhenChedTypeNotChedpp(string chedType)
     {

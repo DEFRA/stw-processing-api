@@ -8,12 +8,12 @@ public class GoodsCertifiedAs
     public const string PharmaceuticalUse = "PHARMACEUTICAL_USE";
     public const string TechnicalUse = "TECHNICAL_USE";
 
-    public static List<string> Values() => new List<string>
-    {
+    public static readonly IReadOnlyList<string> Values =
+    [
         AnimalFeedingStuff,
         HumanConsumption,
         Other,
         PharmaceuticalUse,
         TechnicalUse
-    };
+    ];
 }

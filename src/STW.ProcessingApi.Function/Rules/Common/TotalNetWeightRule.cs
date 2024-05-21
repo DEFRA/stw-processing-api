@@ -9,13 +9,12 @@ using Models;
 public class TotalNetWeightRule : IRule
 {
     private const int MaxPrecision = 16;
-    private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
 
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
 
-        return chedType is not null && _chedTypes.Contains(chedType);
+        return chedType is not null && ChedType.Values.Contains(chedType);
     }
 
     public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)

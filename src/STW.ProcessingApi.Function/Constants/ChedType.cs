@@ -7,7 +7,7 @@ public static class ChedType
     public const string Chedd = "CHEDD";
     public const string Chedpp = "CHEDPP";
 
-    public static readonly List<string> Values =
+    public static readonly IReadOnlyList<string> Values =
     [
         Cheda,
         Chedp,

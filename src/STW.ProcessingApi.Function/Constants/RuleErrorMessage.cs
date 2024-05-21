@@ -51,4 +51,14 @@ public static class RuleErrorMessage
     public const string InvalidBcpCode = "Invalid BCP with code {0} for CHED type {1}";
     public const string BcpSuspended = "BCP with code {0} for CHED type {1} is suspended";
     public const string BcpServiceError = "Unable to check BCP validity: {0}";
+    public const string CommodityCodeClientError = "An error has occurred with commodity code service";
+    public const string InvalidScientificName = "The scientific name \"{0}\" and commodity code \"{1}\" do not match - check the scientific name is spelt correctly";
+    public const string InvalidEppoCode = "The EPPO code \"{0}\" and commodity code \"{1}\" do not match - check the EPPO code is spelt correctly";
+    public const string MissingFinishedOrPropagated = "Trade line item {0} is missing an intended for final users or propagating value.";
+    public const string FinishedOrPropagatedNotRequired = "Commodity code {0} does not need finished or propagating information";
+    public const string CommodityCategoryDataNotFound = "Commodity category data not found for commodity id: {0}";
+    public const string SpeciesTypeNameNotRecognised = "\"{0}\" is not recognised as a commodity type - check it is spelt correctly";
+    public const string SpeciesClassNameNotRecognised = "\"{0}\" is not recognised as a commodity class - check it is spelt correctly";
+    public const string SpeciesFamilyNameNotRecognised = "\"{0}\" is not recognised as a commodity family - check it is spelt correctly";
+    public const string SpeciesNameNotRecognised = "\"{0}\" is not recognised as a commodity species - check it is spelt correctly";
 }

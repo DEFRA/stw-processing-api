@@ -10,7 +10,6 @@ public static class TestConstants
     public const string ShipPort = "Felixstowe";
     public const string BcpCode = "GBFXT1PP";
     public const string NewZealand = "New Zealand";
-    public const string SystemIdCn = "CN";
     public const string GreatBritainIsoCode = "GB";
     public const string NewZealandIsoCode = "NZ";
     public const string AfghanistanIsoCode = "AF";
@@ -30,6 +29,9 @@ public static class TestConstants
     public const string ScotlandRegionCode = "GB-SCO";
     public const string WalesRegionCode = "GB-WLS";
     public const string ScientificName = "Scientific Name";
+    public const string SpeciesTypeName = "Species Type Name";
+    public const string SpeciesClassName = "Species Class Name";
+    public const string SpeciesFamilyName = "Species Family Name";
     public const string ClassCode = "Class Code";
     public const string StemsKey = "STM";
     public const string BulbsKey = "BLB";
@@ -46,4 +48,6 @@ public static class TestConstants
     public const string Slaughterhouses = "Slaughterhouses";
     public const string SlaughterhousesCode = "SH";
     public const string HttpClientBaseAddress = "https://example.com";
+    public const string CommodityId = "12345678";
+    public const string EppoCode = "MABSD";
 }

@@ -33,5 +33,5 @@ public class ScientificNameAndEppoCodeRule : IRule
 
     private static bool HasEppoCode(IncludedSpsTradeLineItem tradeLineItem)
         => tradeLineItem.ApplicableSpsClassification.Any(
-            x => x.SystemId?.Value == CommodityComplementKey.Eppo && !string.IsNullOrEmpty(x.ClassCode?.Value));
+            x => x.SystemId?.Value == SystemId.Eppo && !string.IsNullOrEmpty(x.ClassCode?.Value));
 }

@@ -22,6 +22,8 @@ public class ApprovedEstablishmentsOfOriginRuleTests
 
     [TestMethod]
     [DataRow(ChedType.Chedpp)]
+    [DataRow(ChedType.Cheda)]
+    [DataRow(ChedType.Chedd)]
     [DataRow(TestConstants.Invalid)]
     public void ShouldInvoke_ReturnsFalse_WhenChedTypeNotChedp(string chedType)
     {

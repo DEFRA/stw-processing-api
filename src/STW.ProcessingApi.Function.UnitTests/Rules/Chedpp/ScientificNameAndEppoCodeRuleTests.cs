@@ -22,6 +22,8 @@ public class ScientificNameAndEppoCodeRuleTests
 
     [TestMethod]
     [DataRow(ChedType.Chedp)]
+    [DataRow(ChedType.Cheda)]
+    [DataRow(ChedType.Chedd)]
     [DataRow(TestConstants.Invalid)]
     public void ShouldInvoke_ReturnsFalse_WhenChedTypeNotChedpp(string chedType)
     {
@@ -125,7 +127,7 @@ public class ScientificNameAndEppoCodeRuleTests
                                     {
                                         SystemId = new IdType
                                         {
-                                            Value = CommodityComplementKey.Eppo
+                                            Value = SystemId.Eppo
                                         },
                                         ClassCode = new CodeType
                                         {
@@ -180,7 +182,7 @@ public class ScientificNameAndEppoCodeRuleTests
                                     {
                                         SystemId = new IdType
                                         {
-                                            Value = CommodityComplementKey.Eppo
+                                            Value = SystemId.Eppo
                                         },
                                         ClassCode = new CodeType
                                         {
@@ -270,7 +272,7 @@ public class ScientificNameAndEppoCodeRuleTests
                                     {
                                         SystemId = new IdType
                                         {
-                                            Value = CommodityComplementKey.Eppo
+                                            Value = SystemId.Eppo
                                         },
                                         ClassCode = new CodeType
                                         {

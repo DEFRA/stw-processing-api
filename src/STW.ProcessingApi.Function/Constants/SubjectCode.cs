@@ -2,7 +2,6 @@ namespace STW.ProcessingApi.Function.Constants;
 
 public static class SubjectCode
 {
-    public const string TotalGrossWeight = "total_gross_weight";
     public const string ConformsToEu = "CONFORMS_TO_EU";
     public const string Purpose = "PURPOSE";
     public const string NonConformingGoodsDestinationType = "NON_CONFORMING_GOODS_DESTINATION_TYPE";
@@ -14,4 +13,5 @@ public static class SubjectCode
     public const string Variety = "variety";
     public const string Class = "class";
     public const string ChedType = "CHED_TYPE";
+    public const string FinishedOrPropagated = "finished_or_propagated";
 }

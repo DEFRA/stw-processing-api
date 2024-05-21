@@ -20,4 +20,14 @@ public static class SpsCertificateHelper
     {
         return GetSpsNoteTypeBySubjectCode(spsNoteTypes, SubjectCode.ChedType)?.Content.FirstOrDefault()?.Value;
     }
+
+    public static ApplicableSpsClassification? GetApplicableSpsClassificationBySystemId(IList<ApplicableSpsClassification> applicableSpsClassifications, string systemId)
+    {
+        return applicableSpsClassifications.FirstOrDefault(x => x.SystemId?.Value == systemId);
+    }
+
+    public static ApplicableSpsClassification? GetApplicableSpsClassificationBySystemName(IList<ApplicableSpsClassification> applicableSpsClassifications, string systemName)
+    {
+        return applicableSpsClassifications.FirstOrDefault(x => x.SystemName.Any(z => z.Value == systemName));
+    }
 }

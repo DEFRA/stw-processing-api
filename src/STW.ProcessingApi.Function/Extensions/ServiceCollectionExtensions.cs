@@ -15,6 +15,7 @@ public static class ServiceCollectionExtensions
     {
         serviceCollection.AddOptions<HealthCheckOptions>()
             .Configure<IConfiguration>((o, c) => c.GetSection(HealthCheckOptions.Section).Bind(o));
+
         serviceCollection.AddOptions<ApiConfigOptions>()
             .Configure<IConfiguration>((o, c) => c.GetSection(ApiConfigOptions.Section).Bind(o));
     }
@@ -34,12 +35,22 @@ public static class ServiceCollectionExtensions
                 client.BaseAddress = new Uri(options.ApprovedEstablishmentBaseUrl);
                 client.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
+
         serviceCollection.AddHttpClient<IBcpService, BcpService>(
             (serviceProvider, httpClient) =>
             {
                 var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
                 httpClient.BaseAddress = new Uri(options.BcpServiceBaseUrl);
                 httpClient.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
+
+        serviceCollection.AddHttpClient<ICommodityCodeService, CommodityCodeService>(
+            (serviceProvider, client) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+
+                client.BaseAddress = new Uri(options.CommodityCodeBaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
     }
 
