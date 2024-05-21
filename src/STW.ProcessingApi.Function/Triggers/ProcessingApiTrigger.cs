@@ -1,6 +1,5 @@
-using System.Net;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using STW.ProcessingApi.Function.Validation.Interfaces;
 
@@ -18,25 +17,15 @@ public class ProcessingApiTrigger
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "test")] HttpRequestData request)
+    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString", IsSessionsEnabled = true)]
+        ServiceBusReceivedMessage message)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
-        using var reader = new StreamReader(request.Body);
-        var requestBody = reader.ReadToEndAsync().Result;
-        _logger.LogInformation(_validator.IsValid(requestBody)
-                ? "Validation Passed"
-                : "Validation Failed");
+        var messageBody = Convert.ToBase64String(message.Body);
 
-        var response = request.CreateResponse(HttpStatusCode.OK);
+        var isValid = await _validator.IsValidAsync(messageBody);
 
-        if (request.Headers.TryGetValues("Content-Type", out var contentTypes))
-        {
-            response.Headers.Add("Content-Type", contentTypes);
-        }
-
-        response.Body = request.Body;
-
-        return response;
+        _logger.LogInformation("Validation {result}", isValid ? "Passed" : "Failed");
     }
 }

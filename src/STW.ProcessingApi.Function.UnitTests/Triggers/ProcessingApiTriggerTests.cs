@@ -1,13 +1,9 @@
-using System.Net;
-using System.Text;
-using FluentAssertions;
-using Microsoft.Azure.Functions.Worker;
+using Azure.Core.Amqp;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using STW.ProcessingApi.Function.Triggers;
-using STW.ProcessingApi.Function.UnitTests.Constants;
-using STW.ProcessingApi.Function.UnitTests.TestDoubles;
 using STW.ProcessingApi.Function.Validation.Interfaces;
 
 namespace STW.ProcessingApi.Function.UnitTests.Triggers;
@@ -31,21 +27,18 @@ public class ProcessingApiTriggerTests
     public void Run_ReturnsResponseWithRequestBodyAndContentType_WhenCalled()
     {
         // Arrange
-        const string contentType = "application/json; charset=utf-8";
-        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{test}"));
-        var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
-        httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
-        _validatorMock.Setup(v => v.IsValid("{test}"))
-            .Returns(true);
+        var messageBody = BinaryData.FromString("Test message body");
+        var messageMock = new Mock<AmqpAnnotatedMessage>();
+        var x = ServiceBusReceivedMessage.FromAmqpMessage(messageMock.Object, BinaryData.FromString(string.Empty));
+        messageMock.Setup(m => m.Body).Returns(messageBody);
+
+        _validatorMock.Setup(v => v.IsValidAsync("Test message body"))
+            .Returns(Task.FromResult(true));
 
         // Act
-        var result = _systemUnderTest.Run(httpRequestData).Result;
+        var result = _systemUnderTest.Run(messageMock.Object);
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.OK);
-        result.Headers.Should().ContainKey(HttpHeaders.ContentType).WhoseValue.Should().Contain(contentType);
-        result.Body.Should().BeSameAs(requestBody);
-
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogInformation("Validation Passed"), Times.Once);
     }
@@ -54,17 +47,21 @@ public class ProcessingApiTriggerTests
     public async Task Run_LogsValidationFailure_ValidationFails()
     {
         // Arrange
-        const string contentType = "application/json; charset=utf-8";
-        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{}"));
-        var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
-        httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
-        _validatorMock.Setup(v => v.IsValid("{}"))
-            .Returns(false);
+        var messageBody = BinaryData.FromString(string.Empty);
+        var messageMock = new Mock<ServiceBusReceivedMessage>(
+            "messageId",
+            TimeSpan.FromMinutes(5),
+            DateTime.UtcNow,
+            messageBody);
+        messageMock.SetupGet(m => m.Body).Returns(messageBody);
+        _validatorMock.Setup(v => v.IsValidAsync("Test message body"))
+            .Returns(Task.FromResult<bool>(false));
 
         // Act
-        await _systemUnderTest.Run(httpRequestData);
+        await _systemUnderTest.Run(messageMock.Object);
 
         // Assert
+        _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogInformation("Validation Failed"), Times.Once);
     }
 }

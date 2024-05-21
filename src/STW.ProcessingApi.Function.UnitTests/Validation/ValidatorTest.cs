@@ -34,10 +34,10 @@ public class ValidatorTest
             .Returns(Task.FromResult(false));
 
         // Act
-        var result = _validator.IsValid("test");
+        var result = _validator.IsValidAsync("test");
 
         // Assert
-        result.Should().Be(false);
+        result.Should().Be(Task.FromResult(false));
     }
 
     [TestMethod]
@@ -49,9 +49,9 @@ public class ValidatorTest
             .Returns(Task.FromResult(true));
 
         // Act
-        var result = _validator.IsValid("test");
+        var result = _validator.IsValidAsync("test");
 
         // Assert
-        result.Should().Be(true);
+        result.Should().Be(Task.FromResult(true));
     }
 }
