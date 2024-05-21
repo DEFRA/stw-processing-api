@@ -1,31 +1,30 @@
+namespace STW.ProcessingApi.Function.Triggers;
+
+using System.Text.Json;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
-using STW.ProcessingApi.Function.Validation.Interfaces;
-
-namespace STW.ProcessingApi.Function.Triggers;
+using Models;
+using Services.Interfaces;
 
 public class ProcessingApiTrigger
 {
     private readonly ILogger _logger;
-    private readonly IRuleValidator _validator;
+    private readonly IValidationService _validationService;
 
-    public ProcessingApiTrigger(ILogger<ProcessingApiTrigger> logger, IRuleValidator validator)
+    public ProcessingApiTrigger(ILogger<ProcessingApiTrigger> logger, IValidationService validationService)
     {
         _logger = logger;
-        _validator = validator;
+        _validationService = validationService;
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
-        ServiceBusReceivedMessage message)
+    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")] ServiceBusReceivedMessage message)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
-        var messageBody = message.Body.ToString();
+        var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(message.Body);
 
-        var isValid = await _validator.IsValidAsync(messageBody);
-
-        _logger.LogInformation("Validation {result}", isValid ? "Passed" : "Failed");
+        await _validationService.InvokeRulesAsync(spsCertificate!);
     }
 }

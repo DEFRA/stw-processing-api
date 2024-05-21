@@ -1,34 +1,38 @@
-using STW.ProcessingApi.Function.Validation;
-using STW.ProcessingApi.Function.Validation.Interfaces;
-using STW.ProcessingApi.Function.Validation.Rules;
-
 namespace STW.ProcessingApi.Function.Extensions;
 
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Options;
+using Rules.Interfaces;
+using Services;
+using Services.Interfaces;
 
 public static class ServiceCollectionExtensions
 {
     public static void RegisterOptions(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddOptions<HealthCheckOptions>()
-            .Configure<IConfiguration>((s, c) => c.GetSection(HealthCheckOptions.Section).Bind(s));
+            .Configure<IConfiguration>((o, c) => c.GetSection(HealthCheckOptions.Section).Bind(o));
     }
 
-    public static void RegisterRuleValidator(this IServiceCollection serviceCollection)
+    public static void RegisterServices(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IRuleValidator, Validator>(x =>
+        serviceCollection.AddScoped<IValidationService, ValidationService>();
+    }
+
+    public static void RegisterRules(this IServiceCollection serviceCollection)
+    {
+        var assemblyTypes = Assembly.GetExecutingAssembly().GetTypes();
+
+        foreach (var type in assemblyTypes.Where(x => typeof(IRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
         {
-            var rules = new List<IRule>
-            {
-                new ExampleRule()
-            };
-            var asyncRules = new List<IAsyncRule>
-            {
-                new ExampleAsyncRule()
-            };
-            return new Validator(rules, asyncRules);
-        });
+            serviceCollection.AddScoped(typeof(IRule), type);
+        }
+
+        foreach (var type in assemblyTypes.Where(x => typeof(IAsyncRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        {
+            serviceCollection.AddScoped(typeof(IAsyncRule), type);
+        }
     }
 }
