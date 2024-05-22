@@ -17,7 +17,7 @@ public class ProcessingApiTrigger
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString", IsSessionsEnabled = true)]
+    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
         ServiceBusReceivedMessage message)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
