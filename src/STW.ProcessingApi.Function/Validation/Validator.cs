@@ -13,14 +13,15 @@ public class Validator : IRuleValidator
         _asyncRules = asyncRules;
     }
 
-    public bool IsValid(string input)
+    public async Task<bool> IsValidAsync(string input)
     {
-        return RunRules(_rules, input) && RunAsyncRules(_asyncRules, input).Result;
+        var asyncRuleResult = await RunAsyncRules(input);
+        return RunRules(input) && asyncRuleResult;
     }
 
-    private bool RunRules(List<IRule> rules, string input)
+    private bool RunRules(string input)
     {
-        foreach (var rule in rules)
+        foreach (var rule in _rules)
         {
             if (!rule.Validate(input))
             {
@@ -31,9 +32,9 @@ public class Validator : IRuleValidator
         return true;
     }
 
-    private async Task<bool> RunAsyncRules(List<IAsyncRule> asyncRules, string input)
+    private async Task<bool> RunAsyncRules(string input)
     {
-        foreach (var asyncRule in asyncRules)
+        foreach (var asyncRule in _asyncRules)
         {
             if (!await asyncRule.ValidateAsync(input))
             {

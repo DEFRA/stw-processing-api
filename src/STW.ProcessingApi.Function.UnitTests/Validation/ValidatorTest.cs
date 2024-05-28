@@ -26,32 +26,32 @@ public class ValidatorTest
     }
 
     [TestMethod]
-    public void IsValid_ReturnsFalse_WhenRulesReturnFalse()
+    public async Task IsValid_ReturnsFalse_WhenRulesReturnFalse()
     {
         // Arrange
         _ruleMock.Setup(r => r.Validate("test")).Returns(false);
         _asyncRuleMock.Setup(r => r.ValidateAsync("test"))
-            .Returns(Task.FromResult(false));
+            .ReturnsAsync(false);
 
         // Act
-        var result = _validator.IsValid("test");
+        var result = await _validator.IsValidAsync("test");
 
         // Assert
-        result.Should().Be(false);
+        result.Should().BeFalse();
     }
 
     [TestMethod]
-    public void IsValid_ReturnsTrue_WhenRulesReturnTrue()
+    public async Task IsValid_ReturnsTrue_WhenRulesReturnTrue()
     {
         // Arrange
         _ruleMock.Setup(r => r.Validate("test")).Returns(true);
         _asyncRuleMock.Setup(r => r.ValidateAsync("test"))
-            .Returns(Task.FromResult(true));
+            .ReturnsAsync(true);
 
         // Act
-        var result = _validator.IsValid("test");
+        var result = await _validator.IsValidAsync("test");
 
         // Assert
-        result.Should().Be(true);
+        result.Should().BeTrue();
     }
 }
