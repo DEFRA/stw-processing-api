@@ -1,0 +1,182 @@
+{
+  "spsConsignment": {
+    "consigneeSpsParty": {
+      "id": {
+        "value": ""
+      },
+      "name": {
+        "value": ""
+      }
+    },
+    "consignorSpsParty": {
+      "id": {
+        "value": ""
+      },
+      "name": {
+        "value": ""
+      }
+    },
+    "deliverySpsParty": {
+      "id": {
+        "value": ""
+      },
+      "name": {
+        "value": ""
+      }
+    },
+    "mainCarriageSpsTransportMovement": [
+      {
+        "id": {
+          "schemeAgencyID": "GB",
+          "schemeID": "ship_imo_number_before_bcp",
+          "value": "035N"
+        },
+        "modeCode": {
+          "value": "1"
+        }
+      }
+    ],
+    "examinationSpsEvent": {
+      "occurrenceSpsLocation": {
+        "name": [
+          {
+            "value": ""
+          }
+        ]
+      }
+    },
+    "exportSpsCountry": {
+      "id": {
+        "value": ""
+      },
+      "name": [
+        {
+          "value": ""
+        }
+      ]
+    },
+    "importSpsCountry": {
+      "id": {
+        "value": ""
+      },
+      "name": [
+        {
+          "value": ""
+        }
+      ]
+    },
+    "includedSpsConsignmentItem": [
+      {
+        "includedSpsTradeLineItem": [
+          {
+            "applicableSpsClassification": [
+            ],
+            "description": [
+            ],
+            "originSpsCountry": [
+              {
+                "id": {
+                  "value": ""
+                },
+                "name": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ],
+            "physicalSpsPackage": [
+              {
+                "itemQuantity": {
+                  "value": 2.0
+                },
+                "levelCode": {
+                  "value": "4"
+                },
+                "typeCode": {
+                  "value": "BG"
+                }
+              }
+            ],
+            "scientificName": [
+              {
+                "value": "Aegle"
+              }
+            ],
+            "sequenceNumeric": {
+              "value": 0
+            }
+          }
+        ]
+      }
+    ],
+    "unloadingBaseportSpsLocation": {
+      "id": {
+        "schemeID": "un_locode",
+        "value": "GBLHR1P"
+      },
+      "name": [
+        {
+          "value": "GB"
+        }
+      ]
+    }
+  },
+  "spsExchangedDocument": {
+    "id": {
+      "value": "NZL2020/PPCS2/121580"
+    },
+    "issueDateTime": {
+      "dateTime": {
+        "value": "2020-10-11T21:20:46Z"
+      }
+    },
+    "name": [
+      {
+        "value": ""
+      }
+    ],
+    "signatorySpsAuthentication": [
+      {
+        "actualDateTime": {
+          "dateTime": {
+            "value": "2020-10-21T14:30:00Z"
+          }
+        },
+        "includedSpsClause": [
+          {
+            "content": [
+              {
+                "value": "INTERNAL_MARKET"
+              }
+            ],
+            "id": {
+              "value": "PURPOSE"
+            }
+          },
+          {
+            "content": [
+              {
+                "value": "HUMAN_CONSUMPTION"
+              }
+            ],
+            "id": {
+              "value": "GOODS_CERTIFIED_AS"
+            }
+          }
+        ],
+        "providerSpsParty": {
+          "name": {
+            "value": ""
+          }
+        }
+      }
+    ],
+    "statusCode": {
+      "value": "47"
+    },
+    "typeCode": {
+      "value": "636"
+    }
+  }
+}

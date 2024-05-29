@@ -1,5 +1,4 @@
 using STW.ProcessingApi.Function.Validation;
-using STW.ProcessingApi.Function.Validation.Interfaces;
 using STW.ProcessingApi.Function.Validation.Rules;
 
 namespace STW.ProcessingApi.Function.Extensions;

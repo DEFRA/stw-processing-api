@@ -16,4 +16,10 @@
     <ItemGroup>
         <ProjectReference Include="..\STW.ProcessingApi.Function\STW.ProcessingApi.Function.csproj"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <None Update="TestData\**\*">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 </Project>

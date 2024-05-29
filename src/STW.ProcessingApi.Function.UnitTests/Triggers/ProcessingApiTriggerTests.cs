@@ -5,10 +5,11 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using STW.ProcessingApi.Function.Models;
 using STW.ProcessingApi.Function.Triggers;
 using STW.ProcessingApi.Function.UnitTests.Constants;
 using STW.ProcessingApi.Function.UnitTests.TestDoubles;
-using STW.ProcessingApi.Function.Validation.Interfaces;
+using STW.ProcessingApi.Function.Validation;
 
 namespace STW.ProcessingApi.Function.UnitTests.Triggers;
 
@@ -32,11 +33,11 @@ public class ProcessingApiTriggerTests
     {
         // Arrange
         const string contentType = "application/json; charset=utf-8";
-        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{test}"));
+        var requestBody = File.OpenRead("TestData/minimalSpsCertificate.json");
         var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
         httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
-        _validatorMock.Setup(v => v.IsValid("{test}"))
-            .Returns(true);
+        _validatorMock.Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
+            .ReturnsAsync([]);
 
         // Act
         var result = _systemUnderTest.Run(httpRequestData).Result;
@@ -55,11 +56,11 @@ public class ProcessingApiTriggerTests
     {
         // Arrange
         const string contentType = "application/json; charset=utf-8";
-        var requestBody = new MemoryStream(Encoding.Default.GetBytes("{}"));
+        var requestBody = File.OpenRead("TestData/minimalSpsCertificate.json");
         var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
         httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
-        _validatorMock.Setup(v => v.IsValid("{}"))
-            .Returns(false);
+        _validatorMock.Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
+            .ReturnsAsync([new ValidationError("Error message")]);
 
         // Act
         await _systemUnderTest.Run(httpRequestData);

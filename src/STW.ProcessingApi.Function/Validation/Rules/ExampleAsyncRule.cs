@@ -1,11 +1,11 @@
-using STW.ProcessingApi.Function.Validation.Interfaces;
+using STW.ProcessingApi.Function.Models;
 
 namespace STW.ProcessingApi.Function.Validation.Rules;
 
 public class ExampleAsyncRule : IAsyncRule
 {
-    public async Task<bool> ValidateAsync(string input)
+    public async Task<List<ValidationError>> ValidateAsync(SpsCertificate spsCertificate)
     {
-        return await Task.FromResult(!string.IsNullOrEmpty(input));
+        return await Task.FromResult(new List<ValidationError>());
     }
 }

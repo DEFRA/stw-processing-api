@@ -1,8 +1,9 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using STW.ProcessingApi.Function.Models;
 using STW.ProcessingApi.Function.Validation;
-using STW.ProcessingApi.Function.Validation.Interfaces;
+using STW.ProcessingApi.Function.Validation.Rules;
 
 namespace STW.ProcessingApi.Function.UnitTests.Validation;
 
@@ -26,32 +27,32 @@ public class ValidatorTest
     }
 
     [TestMethod]
-    public void IsValid_ReturnsFalse_WhenRulesReturnFalse()
+    public async Task IsValid_ReturnsFalse_WhenRulesReturnFalse()
     {
         // Arrange
-        _ruleMock.Setup(r => r.Validate("test")).Returns(false);
-        _asyncRuleMock.Setup(r => r.ValidateAsync("test"))
-            .Returns(Task.FromResult(false));
+        var spsCertificate = new SpsCertificate();
+        _ruleMock.Setup(r => r.Validate(spsCertificate)).Returns([]);
+        _asyncRuleMock.Setup(r => r.ValidateAsync(spsCertificate)).ReturnsAsync([]);
 
         // Act
-        var result = _validator.IsValid("test");
+        var result = await _validator.IsValid(spsCertificate);
 
         // Assert
-        result.Should().Be(false);
+        result.Should().BeEmpty();
     }
 
     [TestMethod]
-    public void IsValid_ReturnsTrue_WhenRulesReturnTrue()
+    public async Task IsValid_ReturnsTrue_WhenRulesReturnTrue()
     {
         // Arrange
-        _ruleMock.Setup(r => r.Validate("test")).Returns(true);
-        _asyncRuleMock.Setup(r => r.ValidateAsync("test"))
-            .Returns(Task.FromResult(true));
+        var spsCertificate = new SpsCertificate();
+        _ruleMock.Setup(r => r.Validate(spsCertificate)).Returns([new ValidationError("Message")]);
+        _asyncRuleMock.Setup(r => r.ValidateAsync(spsCertificate)).ReturnsAsync([new ValidationError("Async message")]);
 
         // Act
-        var result = _validator.IsValid("test");
+        var result = await _validator.IsValid(spsCertificate);
 
         // Assert
-        result.Should().Be(true);
+        result.Should().Equal(new ValidationError("Message"), new ValidationError("Async message"));
     }
 }
