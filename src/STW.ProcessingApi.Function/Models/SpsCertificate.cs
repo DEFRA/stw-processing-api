@@ -181,7 +181,7 @@ namespace STW.ProcessingApi.Function.Models
     public partial class SpsPartyType
     {
         [Newtonsoft.Json.JsonProperty("definedSpsContact", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<DefinedSpsContact> DefinedSpsContact { get; set; }
+        public System.Collections.Generic.IList<DefinedSpsContact> DefinedSpsContact { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IDType Id { get; set; }
@@ -200,7 +200,7 @@ namespace STW.ProcessingApi.Function.Models
         public SpecifiedSpsPerson SpecifiedSpsPerson { get; set; }
 
         [Newtonsoft.Json.JsonProperty("typeCode", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CodeType> TypeCode { get; set; }
+        public System.Collections.Generic.IList<CodeType> TypeCode { get; set; }
 
 
 
@@ -224,7 +224,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Name { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Name { get; set; } = new System.Collections.Generic.List<TextType>();
 
 
 
@@ -268,7 +268,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Name { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Name { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("hierarchicalLevelCode", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -278,13 +278,13 @@ namespace STW.ProcessingApi.Function.Models
         public FunctionTypeCode FunctionTypeCode { get; set; }
 
         [Newtonsoft.Json.JsonProperty("subordinateSpsCountrySubDivision", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsCountrySubDivisionType> SubordinateSpsCountrySubDivision { get; set; }
+        public System.Collections.Generic.IList<SpsCountrySubDivisionType> SubordinateSpsCountrySubDivision { get; set; }
 
         [Newtonsoft.Json.JsonProperty("superordinateSpsCountrySubDivision", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsCountrySubDivisionType> SuperordinateSpsCountrySubDivision { get; set; }
+        public System.Collections.Generic.IList<SpsCountrySubDivisionType> SuperordinateSpsCountrySubDivision { get; set; }
 
         [Newtonsoft.Json.JsonProperty("activityAuthorizedSpsParty", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsPartyType> ActivityAuthorizedSpsParty { get; set; }
+        public System.Collections.Generic.IList<SpsPartyType> ActivityAuthorizedSpsParty { get; set; }
 
 
 
@@ -309,10 +309,10 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Name { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Name { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("subordinateSpsCountrySubDivision", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsCountrySubDivisionType> SubordinateSpsCountrySubDivision { get; set; }
+        public System.Collections.Generic.IList<SpsCountrySubDivisionType> SubordinateSpsCountrySubDivision { get; set; }
 
 
 
@@ -333,10 +333,10 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("content", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Content { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Content { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("contentCode", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<CodeType> ContentCode { get; set; }
+        public System.Collections.Generic.IList<CodeType> ContentCode { get; set; }
 
         [Newtonsoft.Json.JsonProperty("subject", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public TextType Subject { get; set; }
@@ -488,7 +488,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("includedSpsClause", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<IncludedSpsClause> IncludedSpsClause { get; set; } = new System.Collections.ObjectModel.Collection<IncludedSpsClause>();
+        public System.Collections.Generic.IList<IncludedSpsClause> IncludedSpsClause { get; set; } = new System.Collections.Generic.List<IncludedSpsClause>();
 
         [Newtonsoft.Json.JsonProperty("issueSpsLocation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public SpsLocationType IssueSpsLocation { get; set; }
@@ -553,14 +553,14 @@ namespace STW.ProcessingApi.Function.Models
     public partial class SpsTransportEquipmentType
     {
         [Newtonsoft.Json.JsonProperty("affixedSpsSeal", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AffixedSpsSeal> AffixedSpsSeal { get; set; }
+        public System.Collections.Generic.IList<AffixedSpsSeal> AffixedSpsSeal { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public IDType Id { get; set; } = new IDType();
 
         [Newtonsoft.Json.JsonProperty("settingSpsTemperature", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SettingSpsTemperature> SettingSpsTemperature { get; set; }
+        public System.Collections.Generic.IList<SettingSpsTemperature> SettingSpsTemperature { get; set; }
 
 
 
@@ -647,7 +647,7 @@ namespace STW.ProcessingApi.Function.Models
     public partial class SpsReferencedDocumentType
     {
         [Newtonsoft.Json.JsonProperty("attachmentBinaryObject", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AttachmentBinaryObject> AttachmentBinaryObject { get; set; }
+        public System.Collections.Generic.IList<AttachmentBinaryObject> AttachmentBinaryObject { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -909,7 +909,7 @@ namespace STW.ProcessingApi.Function.Models
     public partial class SpecifiedSpsPerson
     {
         [Newtonsoft.Json.JsonProperty("attainedSpsQualification", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AttainedSpsQualification> AttainedSpsQualification { get; set; }
+        public System.Collections.Generic.IList<AttainedSpsQualification> AttainedSpsQualification { get; set; }
 
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -2078,7 +2078,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("content", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Content { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Content { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IDType Id { get; set; }
@@ -3724,7 +3724,7 @@ namespace STW.ProcessingApi.Function.Models
         public string Uri { get; set; }
 
         [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<string> Value { get; set; }
+        public System.Collections.Generic.IList<string> Value { get; set; }
 
 
 
@@ -3844,34 +3844,34 @@ namespace STW.ProcessingApi.Function.Models
 
         [Newtonsoft.Json.JsonProperty("includedSpsConsignmentItem", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<IncludedSpsConsignmentItem> IncludedSpsConsignmentItem { get; set; } = new System.Collections.ObjectModel.Collection<IncludedSpsConsignmentItem>();
+        public System.Collections.Generic.IList<IncludedSpsConsignmentItem> IncludedSpsConsignmentItem { get; set; } = new System.Collections.Generic.List<IncludedSpsConsignmentItem>();
 
         [Newtonsoft.Json.JsonProperty("loadingBaseportSpsLocation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public SpsLocationType LoadingBaseportSpsLocation { get; set; }
 
         [Newtonsoft.Json.JsonProperty("mainCarriageSpsTransportMovement", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<MainCarriageSpsTransportMovement> MainCarriageSpsTransportMovement { get; set; }
+        public System.Collections.Generic.IList<MainCarriageSpsTransportMovement> MainCarriageSpsTransportMovement { get; set; }
 
         [Newtonsoft.Json.JsonProperty("reExportSpsCountry", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsCountryType> ReExportSpsCountry { get; set; }
+        public System.Collections.Generic.IList<SpsCountryType> ReExportSpsCountry { get; set; }
 
         [Newtonsoft.Json.JsonProperty("shipStoresIndicator", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IndicatorType ShipStoresIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("storageSpsEvent", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsEventType> StorageSpsEvent { get; set; }
+        public System.Collections.Generic.IList<SpsEventType> StorageSpsEvent { get; set; }
 
         [Newtonsoft.Json.JsonProperty("transitSpsCountry", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsCountryType> TransitSpsCountry { get; set; }
+        public System.Collections.Generic.IList<SpsCountryType> TransitSpsCountry { get; set; }
 
         [Newtonsoft.Json.JsonProperty("transitSpsLocation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsLocationType> TransitSpsLocation { get; set; }
+        public System.Collections.Generic.IList<SpsLocationType> TransitSpsLocation { get; set; }
 
         [Newtonsoft.Json.JsonProperty("unloadingBaseportSpsLocation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public SpsLocationType UnloadingBaseportSpsLocation { get; set; }
 
         [Newtonsoft.Json.JsonProperty("utilizedSpsTransportEquipment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsTransportEquipmentType> UtilizedSpsTransportEquipment { get; set; }
+        public System.Collections.Generic.IList<SpsTransportEquipmentType> UtilizedSpsTransportEquipment { get; set; }
 
 
 
@@ -3893,14 +3893,14 @@ namespace STW.ProcessingApi.Function.Models
         public IndicatorType CopyIndicator { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TextType> Description { get; set; }
+        public System.Collections.Generic.IList<TextType> Description { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public IDType Id { get; set; } = new IDType();
 
         [Newtonsoft.Json.JsonProperty("includedSpsNote", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsNoteType> IncludedSpsNote { get; set; }
+        public System.Collections.Generic.IList<SpsNoteType> IncludedSpsNote { get; set; }
 
         [Newtonsoft.Json.JsonProperty("issueDateTime", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -3912,18 +3912,18 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Name { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Name { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("recipientSpsParty", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsPartyType> RecipientSpsParty { get; set; }
+        public System.Collections.Generic.IList<SpsPartyType> RecipientSpsParty { get; set; }
 
         [Newtonsoft.Json.JsonProperty("referenceSpsReferencedDocument", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsReferencedDocumentType> ReferenceSpsReferencedDocument { get; set; }
+        public System.Collections.Generic.IList<SpsReferencedDocumentType> ReferenceSpsReferencedDocument { get; set; }
 
         [Newtonsoft.Json.JsonProperty("signatorySpsAuthentication", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<SpsAuthenticationType> SignatorySpsAuthentication { get; set; } = new System.Collections.ObjectModel.Collection<SpsAuthenticationType>();
+        public System.Collections.Generic.IList<SpsAuthenticationType> SignatorySpsAuthentication { get; set; } = new System.Collections.Generic.List<SpsAuthenticationType>();
 
         [Newtonsoft.Json.JsonProperty("statusCode", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -6381,7 +6381,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Name { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Name { get; set; } = new System.Collections.Generic.List<TextType>();
 
 
 
@@ -9663,10 +9663,10 @@ namespace STW.ProcessingApi.Function.Models
     {
         [Newtonsoft.Json.JsonProperty("includedSpsTradeLineItem", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<IncludedSpsTradeLineItem> IncludedSpsTradeLineItem { get; set; } = new System.Collections.ObjectModel.Collection<IncludedSpsTradeLineItem>();
+        public System.Collections.Generic.IList<IncludedSpsTradeLineItem> IncludedSpsTradeLineItem { get; set; } = new System.Collections.Generic.List<IncludedSpsTradeLineItem>();
 
         [Newtonsoft.Json.JsonProperty("natureIdentificationSpsCargo", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<NatureIdentificationSpsCargo> NatureIdentificationSpsCargo { get; set; }
+        public System.Collections.Generic.IList<NatureIdentificationSpsCargo> NatureIdentificationSpsCargo { get; set; }
 
 
 
@@ -9746,29 +9746,29 @@ namespace STW.ProcessingApi.Function.Models
     public partial class IncludedSpsTradeLineItem
     {
         [Newtonsoft.Json.JsonProperty("additionalInformationSpsNote", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsNoteType> AdditionalInformationSpsNote { get; set; }
+        public System.Collections.Generic.IList<SpsNoteType> AdditionalInformationSpsNote { get; set; }
 
         [Newtonsoft.Json.JsonProperty("applicableSpsClassification", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<ApplicableSpsClassification> ApplicableSpsClassification { get; set; }
+        public System.Collections.Generic.IList<ApplicableSpsClassification> ApplicableSpsClassification { get; set; }
 
         [Newtonsoft.Json.JsonProperty("appliedSpsProcess", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<AppliedSpsProcess> AppliedSpsProcess { get; set; }
+        public System.Collections.Generic.IList<AppliedSpsProcess> AppliedSpsProcess { get; set; }
 
         [Newtonsoft.Json.JsonProperty("assertedSpsAuthentication", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsAuthenticationType> AssertedSpsAuthentication { get; set; }
+        public System.Collections.Generic.IList<SpsAuthenticationType> AssertedSpsAuthentication { get; set; }
 
         [Newtonsoft.Json.JsonProperty("associatedSpsTransportEquipment", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsTransportEquipmentType> AssociatedSpsTransportEquipment { get; set; }
+        public System.Collections.Generic.IList<SpsTransportEquipmentType> AssociatedSpsTransportEquipment { get; set; }
 
         [Newtonsoft.Json.JsonProperty("commonName", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TextType> CommonName { get; set; }
+        public System.Collections.Generic.IList<TextType> CommonName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<TextType> Description { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Description { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("expiryDateTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<DateTimeType> ExpiryDateTime { get; set; }
+        public System.Collections.Generic.IList<DateTimeType> ExpiryDateTime { get; set; }
 
         [Newtonsoft.Json.JsonProperty("grossVolumeMeasure", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public MeasureType GrossVolumeMeasure { get; set; }
@@ -9777,7 +9777,7 @@ namespace STW.ProcessingApi.Function.Models
         public MeasureType GrossWeightMeasure { get; set; }
 
         [Newtonsoft.Json.JsonProperty("intendedUse", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TextType> IntendedUse { get; set; }
+        public System.Collections.Generic.IList<TextType> IntendedUse { get; set; }
 
         [Newtonsoft.Json.JsonProperty("netVolumeMeasure", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public MeasureType NetVolumeMeasure { get; set; }
@@ -9786,22 +9786,22 @@ namespace STW.ProcessingApi.Function.Models
         public MeasureType NetWeightMeasure { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originSpsCountry", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsCountryType> OriginSpsCountry { get; set; }
+        public System.Collections.Generic.IList<SpsCountryType> OriginSpsCountry { get; set; }
 
         [Newtonsoft.Json.JsonProperty("originSpsLocation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsLocationType> OriginSpsLocation { get; set; }
+        public System.Collections.Generic.IList<SpsLocationType> OriginSpsLocation { get; set; }
 
         [Newtonsoft.Json.JsonProperty("physicalSpsPackage", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<PhysicalSpsPackage> PhysicalSpsPackage { get; set; }
+        public System.Collections.Generic.IList<PhysicalSpsPackage> PhysicalSpsPackage { get; set; }
 
         [Newtonsoft.Json.JsonProperty("productionBatchID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<IDType> ProductionBatchID { get; set; }
+        public System.Collections.Generic.IList<IDType> ProductionBatchID { get; set; }
 
         [Newtonsoft.Json.JsonProperty("referenceSpsReferencedDocument", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SpsReferencedDocumentType> ReferenceSpsReferencedDocument { get; set; }
+        public System.Collections.Generic.IList<SpsReferencedDocumentType> ReferenceSpsReferencedDocument { get; set; }
 
         [Newtonsoft.Json.JsonProperty("scientificName", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<TextType> ScientificName { get; set; }
+        public System.Collections.Generic.IList<TextType> ScientificName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sequenceNumeric", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -9902,7 +9902,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("className", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> ClassName { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> ClassName { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("systemID", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public IDType SystemID { get; set; }
@@ -9910,7 +9910,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("systemName", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> SystemName { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> SystemName { get; set; } = new System.Collections.Generic.List<TextType>();
 
 
 
@@ -9929,7 +9929,7 @@ namespace STW.ProcessingApi.Function.Models
     public partial class AppliedSpsProcess
     {
         [Newtonsoft.Json.JsonProperty("applicableSpsProcessCharacteristic", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<ApplicableSpsProcessCharacteristic> ApplicableSpsProcessCharacteristic { get; set; }
+        public System.Collections.Generic.IList<ApplicableSpsProcessCharacteristic> ApplicableSpsProcessCharacteristic { get; set; }
 
         [Newtonsoft.Json.JsonProperty("completionSpsPeriod", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public CompletionSpsPeriod CompletionSpsPeriod { get; set; }
@@ -9975,7 +9975,7 @@ namespace STW.ProcessingApi.Function.Models
         public MeasureType NominalGrossWeightMeasure { get; set; }
 
         [Newtonsoft.Json.JsonProperty("physicalSpsShippingMarks", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<PhysicalSpsShippingMarks> PhysicalSpsShippingMarks { get; set; }
+        public System.Collections.Generic.IList<PhysicalSpsShippingMarks> PhysicalSpsShippingMarks { get; set; }
 
         [Newtonsoft.Json.JsonProperty("typeCode", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -10068,7 +10068,7 @@ namespace STW.ProcessingApi.Function.Models
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         [System.ComponentModel.DataAnnotations.MinLength(1)]
-        public System.Collections.Generic.ICollection<TextType> Description { get; set; } = new System.Collections.ObjectModel.Collection<TextType>();
+        public System.Collections.Generic.IList<TextType> Description { get; set; } = new System.Collections.Generic.List<TextType>();
 
         [Newtonsoft.Json.JsonProperty("maximumValueMeasure", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public MeasureType MaximumValueMeasure { get; set; }
