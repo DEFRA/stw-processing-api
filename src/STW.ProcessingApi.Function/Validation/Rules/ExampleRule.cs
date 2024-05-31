@@ -2,16 +2,14 @@ using STW.ProcessingApi.Function.Models;
 
 namespace STW.ProcessingApi.Function.Validation.Rules;
 
-public class ExampleRule : IRule
+public class ExampleRule : Rule
 {
     private const string NoScientificName = "Trade line item is missing a scientific name";
     private const string NoEppoCode = "Trade line item is missing an EPPO code";
     private const int ErrorId = 4;
 
-    public List<ValidationError> Validate(SpsCertificate spsCertificate)
+    public override List<ValidationError> Validate(SpsCertificate spsCertificate)
     {
-        var errors = new List<ValidationError>();
-
         var tradeLineItems = spsCertificate.SpsConsignment.IncludedSpsConsignmentItem.First().IncludedSpsTradeLineItem;
         foreach (var tradeLineItem in tradeLineItems)
         {
@@ -19,12 +17,12 @@ public class ExampleRule : IRule
 
             if (!HasScientificName(tradeLineItem))
             {
-                errors.Add(new ValidationError(NoScientificName, ErrorId, sequenceNumeric));
+                Errors.Add(new ValidationError(NoScientificName, ErrorId, sequenceNumeric));
             }
 
             if (!HasEppoCode(tradeLineItem))
             {
-                errors.Add(new ValidationError(NoEppoCode, ErrorId, sequenceNumeric));
+                Errors.Add(new ValidationError(NoEppoCode, ErrorId, sequenceNumeric));
             }
 
             tradeLineItem.ScientificName.Add(
@@ -34,7 +32,7 @@ public class ExampleRule : IRule
                 });
         }
 
-        return errors;
+        return Errors;
     }
 
     private bool HasScientificName(IncludedSpsTradeLineItem tradeLineItem) // This check is already done in the schema

@@ -113,7 +113,7 @@
     "unloadingBaseportSpsLocation": {
       "id": {
         "schemeID": "un_locode",
-        "value": "GBLHR1P"
+        "value": "BCPCODE"
       },
       "name": [
         {
@@ -134,6 +134,18 @@
     "name": [
       {
         "value": ""
+      }
+    ],
+    "includedSpsNote": [
+      {
+        "subjectCode": {
+          "value": "CHED_TYPE"
+        },
+        "content": [
+          {
+            "value": "CHEDP"
+          }
+        ]
       }
     ],
     "signatorySpsAuthentication": [

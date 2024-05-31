@@ -1,11 +1,11 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using STW.ProcessingApi.Function.Options;
+using STW.ProcessingApi.Function.Services;
 using STW.ProcessingApi.Function.Validation;
 using STW.ProcessingApi.Function.Validation.Rules;
 
 namespace STW.ProcessingApi.Function.Extensions;
-
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Options;
 
 public static class ServiceCollectionExtensions
 {
@@ -17,17 +17,20 @@ public static class ServiceCollectionExtensions
 
     public static void RegisterRuleValidator(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IRuleValidator, Validator>(x =>
-        {
-            var rules = new List<IRule>
+        serviceCollection.AddScoped<Rule, ExampleRule>();
+
+        serviceCollection.AddScoped<AsyncRule, ExampleAsyncRule>();
+        serviceCollection.AddScoped<AsyncRule, BcpValidRule>();
+
+        serviceCollection.AddScoped<IRuleValidator, Validator>();
+    }
+
+    public static void RegisterHttpClients(this IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddHttpClient<IBcpService, BcpService>(
+            httpClient =>
             {
-                new ExampleRule()
-            };
-            var asyncRules = new List<IAsyncRule>
-            {
-                new ExampleAsyncRule()
-            };
-            return new Validator(rules, asyncRules);
-        });
+                httpClient.BaseAddress = new Uri("http://localhost:5295");
+            });
     }
 }

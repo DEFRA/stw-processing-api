@@ -29,23 +29,20 @@ public class ProcessingApiTriggerTests
     }
 
     [TestMethod]
-    public void Run_ReturnsResponseWithRequestBodyAndContentType_WhenCalled()
+    public async Task Run_ReturnsOkResponse_WhenNoValidationErrors()
     {
         // Arrange
-        const string contentType = "application/json; charset=utf-8";
         var requestBody = File.OpenRead("TestData/minimalSpsCertificate.json");
         var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
-        httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
         _validatorMock.Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
             .ReturnsAsync([]);
 
         // Act
-        var result = _systemUnderTest.Run(httpRequestData).Result;
+        var result = await _systemUnderTest.Run(httpRequestData);
 
         // Assert
         result.StatusCode.Should().Be(HttpStatusCode.OK);
-        result.Headers.Should().ContainKey(HttpHeaders.ContentType).WhoseValue.Should().Contain(contentType);
-        result.Body.Should().BeSameAs(requestBody);
+        result.Body.Should().HaveLength(0);
 
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogInformation("Validation Passed"), Times.Once);
@@ -55,17 +52,20 @@ public class ProcessingApiTriggerTests
     public async Task Run_LogsValidationFailure_ValidationFails()
     {
         // Arrange
-        const string contentType = "application/json; charset=utf-8";
         var requestBody = File.OpenRead("TestData/minimalSpsCertificate.json");
         var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
-        httpRequestData.Headers.Add(HttpHeaders.ContentType, contentType);
         _validatorMock.Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
-            .ReturnsAsync([new ValidationError("Error message")]);
+            .ReturnsAsync([new ValidationError("Error message 1"), new ValidationError("Error message 2")]);
 
         // Act
-        await _systemUnderTest.Run(httpRequestData);
+        var result = await _systemUnderTest.Run(httpRequestData);
 
         // Assert
-        _loggerMock.VerifyLog(x => x.LogInformation("Validation Failed"), Times.Once);
+        result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        result.Body.Position = 0;
+        var body = await new StreamReader(result.Body).ReadToEndAsync();
+        body.Should().Be("Error message 1, Error message 2");
+
+        _loggerMock.VerifyLog(x => x.LogWarning("Validation Failed"), Times.Once);
     }
 }

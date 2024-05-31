@@ -14,11 +14,16 @@ public class ValidationError
         Message = message;
     }
 
-    public string Message { get; private init; }
+    public string Message { get; }
 
-    public int Id { get; private init; }
+    public int Id { get; }
 
-    public int? AffectedTradeLineItem { get; private init; }
+    public int? AffectedTradeLineItem { get; }
+
+    public override string ToString()
+    {
+        return $"{Message}";
+    }
 
     public override bool Equals(object? obj)
     {
@@ -32,7 +37,7 @@ public class ValidationError
             return true;
         }
 
-        if (obj.GetType() != this.GetType())
+        if (obj.GetType() != GetType())
         {
             return false;
         }
@@ -45,7 +50,7 @@ public class ValidationError
         return HashCode.Combine(Message, Id, AffectedTradeLineItem);
     }
 
-    protected bool Equals(ValidationError other)
+    private bool Equals(ValidationError other)
     {
         return Message == other.Message && Id == other.Id && AffectedTradeLineItem == other.AffectedTradeLineItem;
     }

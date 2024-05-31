@@ -25,7 +25,7 @@ public class ProcessingApiTrigger
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
         using var reader = new StreamReader(request.Body);
-        var requestBody = reader.ReadToEnd();
+        var requestBody = await reader.ReadToEndAsync();
 
         try
         {
@@ -36,28 +36,24 @@ public class ProcessingApiTrigger
                 return request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            List<ValidationError> errors = await _validator.IsValid(spsCertificate);
+            var errors = await _validator.IsValid(spsCertificate);
 
-            _logger.LogInformation(errors.Count == 0
-                ? "Validation Passed"
-                : "Validation Failed");
-
-            var response = request.CreateResponse(HttpStatusCode.OK);
-
-            if (request.Headers.TryGetValues("Content-Type", out var contentTypes))
+            if (errors.Count == 0)
             {
-                response.Headers.Add("Content-Type", contentTypes);
+                _logger.LogInformation("Validation passed");
+                return request.CreateResponse(HttpStatusCode.OK);
             }
 
-            response.Body = request.Body;
-
+            _logger.LogWarning("Validation failed");
+            var response = request.CreateResponse(HttpStatusCode.BadRequest);
+            await response.WriteStringAsync(string.Join(", ", errors.Select(error => error.ToString())));
             return response;
         }
         catch (JsonException exception)
         {
             _logger.LogError(exception.Message);
             var response = request.CreateResponse(HttpStatusCode.BadRequest);
-            response.WriteString(exception.Message);
+            await response.WriteStringAsync(exception.Message);
             return response;
         }
     }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using STW.ProcessingApi.Function.Models;
 using STW.ProcessingApi.Function.Validation.Rules;
 
-namespace STW.ProcessingApi.Function.UnitTests.Validation.Rule;
+namespace STW.ProcessingApi.Function.UnitTests.Validation.Rules;
 
 [TestClass]
 public class ExampleRuleTest
@@ -18,7 +18,7 @@ public class ExampleRuleTest
     }
 
     [TestMethod]
-    public void Validate_ReturnsFalse_WhenInputNotValid()
+    public void Validate_ReturnsErrors_WhenInputInvalid()
     {
         // Arrange
         var spsCertificateString = File.ReadAllText("TestData/minimalSpsCertificate.json");
@@ -32,7 +32,7 @@ public class ExampleRuleTest
     }
 
     [TestMethod]
-    public void Validate_ReturnsError_WhenInputValid()
+    public void Validate_ReturnsNoErrors_WhenInputValid()
     {
         // Arrange
         var spsCertificateString = File.ReadAllText("TestData/minimalSpsCertificate.json");

@@ -20,6 +20,18 @@ The table below outlines the environment variables required for running the appl
 | AzureWebJobsStorage      | Connection string for an Azure Storage account that the Functions runtime uses for normal operations |
 | FUNCTIONS_WORKER_RUNTIME | Language or language stack of the worker runtime to load in the function app                         |
 
+The environment variables can be set by creating `local.settings.json` in `src/STW.ProcessingApi.Function/`:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true"
+  }
+}
+```
+
 ### Running via Docker
 
 #### Prerequisites

@@ -10,19 +10,19 @@ namespace STW.ProcessingApi.Function.UnitTests.Validation;
 [TestClass]
 public class ValidatorTest
 {
-    private Mock<IRule> _ruleMock;
-    private Mock<IAsyncRule> _asyncRuleMock;
-    private List<IRule> _rulesMocksList;
-    private List<IAsyncRule> _asyncRuleMocksList;
+    private Mock<Rule> _ruleMock;
+    private Mock<AsyncRule> _asyncRuleMock;
+    private List<Rule> _rulesMocksList;
+    private List<AsyncRule> _asyncRuleMocksList;
     private Validator _validator;
 
     [TestInitialize]
     public void TestInitialize()
     {
-        _ruleMock = new Mock<IRule>();
-        _asyncRuleMock = new Mock<IAsyncRule>();
-        _rulesMocksList = new List<IRule> { _ruleMock.Object };
-        _asyncRuleMocksList = new List<IAsyncRule> { _asyncRuleMock.Object };
+        _ruleMock = new Mock<Rule>();
+        _asyncRuleMock = new Mock<AsyncRule>();
+        _rulesMocksList = new List<Rule> { _ruleMock.Object };
+        _asyncRuleMocksList = new List<AsyncRule> { _asyncRuleMock.Object };
         _validator = new Validator(_rulesMocksList, _asyncRuleMocksList);
     }
 
@@ -32,7 +32,7 @@ public class ValidatorTest
         // Arrange
         var spsCertificate = new SpsCertificate();
         _ruleMock.Setup(r => r.Validate(spsCertificate)).Returns([]);
-        _asyncRuleMock.Setup(r => r.ValidateAsync(spsCertificate)).ReturnsAsync([]);
+        _asyncRuleMock.Setup(r => r.Validate(spsCertificate)).ReturnsAsync([]);
 
         // Act
         var result = await _validator.IsValid(spsCertificate);
@@ -47,7 +47,7 @@ public class ValidatorTest
         // Arrange
         var spsCertificate = new SpsCertificate();
         _ruleMock.Setup(r => r.Validate(spsCertificate)).Returns([new ValidationError("Message")]);
-        _asyncRuleMock.Setup(r => r.ValidateAsync(spsCertificate)).ReturnsAsync([new ValidationError("Async message")]);
+        _asyncRuleMock.Setup(r => r.Validate(spsCertificate)).ReturnsAsync([new ValidationError("Async message")]);
 
         // Act
         var result = await _validator.IsValid(spsCertificate);

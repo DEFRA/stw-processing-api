@@ -1,13 +1,13 @@
-namespace STW.ProcessingApi.Function.Triggers;
-
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using HealthChecks;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
-using Options;
+using STW.ProcessingApi.Function.HealthChecks;
+using STW.ProcessingApi.Function.Options;
+
+namespace STW.ProcessingApi.Function.Triggers;
 
 [ExcludeFromCodeCoverage]
 public class HealthCheckTrigger

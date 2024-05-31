@@ -2,9 +2,9 @@ using STW.ProcessingApi.Function.Models;
 
 namespace STW.ProcessingApi.Function.Validation.Rules;
 
-public class ExampleAsyncRule : IAsyncRule
+public class ExampleAsyncRule : AsyncRule
 {
-    public async Task<List<ValidationError>> ValidateAsync(SpsCertificate spsCertificate)
+    public override async Task<List<ValidationError>> Validate(SpsCertificate spsCertificate)
     {
         return await Task.FromResult(new List<ValidationError>());
     }

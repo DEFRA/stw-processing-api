@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using STW.ProcessingApi.Function.Models;
 using STW.ProcessingApi.Function.Validation.Rules;
 
-namespace STW.ProcessingApi.Function.UnitTests.Validation.Rule;
+namespace STW.ProcessingApi.Function.UnitTests.Validation.Rules;
 
 [TestClass]
 public class ExampleAsyncRuleTest
@@ -17,10 +17,10 @@ public class ExampleAsyncRuleTest
     }
 
     [TestMethod]
-    public async Task ValidateAsync_ReturnsEmptyList()
+    public async Task Validate_ReturnsEmptyList()
     {
         // Act
-        var result = await _rule.ValidateAsync(new SpsCertificate());
+        var result = await _rule.Validate(new SpsCertificate());
 
         // Assert
         result.Should().BeEmpty();
