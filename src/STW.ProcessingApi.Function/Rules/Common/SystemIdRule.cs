@@ -17,7 +17,7 @@ public class SystemIdRule : IRule
         return chedType is not null && _chedTypes.Contains(chedType);
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var match = spsCertificate.SpsConsignment.IncludedSpsConsignmentItem
             .First()
@@ -26,7 +26,7 @@ public class SystemIdRule : IRule
 
         if (match is not null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.SystemIdMissing, RuleErrorId.SystemIdMissing, match.SequenceNumeric.Value));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.SystemIdMissing, RuleErrorId.SystemIdMissing, match.SequenceNumeric.Value));
         }
     }
 

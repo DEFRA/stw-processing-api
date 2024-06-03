@@ -18,14 +18,14 @@ public class TransitRule : IRule
         return chedType == ChedType.Chedp && purpose == Purpose.DirectTransit;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
-        ValidateExitBcp(spsCertificate.SpsConsignment.TransitSpsCountry, errorEvents);
-        ValidateThirdCountry(spsCertificate.SpsConsignment.ImportSpsCountry, errorEvents);
-        ValidateTransitingCountries(spsCertificate.SpsConsignment.TransitSpsCountry, errorEvents);
+        ValidateExitBcp(spsCertificate.SpsConsignment.TransitSpsCountry, validationErrors);
+        ValidateThirdCountry(spsCertificate.SpsConsignment.ImportSpsCountry, validationErrors);
+        ValidateTransitingCountries(spsCertificate.SpsConsignment.TransitSpsCountry, validationErrors);
     }
 
-    private static void ValidateExitBcp(IList<SpsCountryType> spsCountryTypes, IList<ErrorEvent> errorEvents)
+    private static void ValidateExitBcp(IList<SpsCountryType> spsCountryTypes, IList<ValidationError> validationErrors)
     {
         var exitBcp = spsCountryTypes
             .Where(x => x.Id.Value == UnitedKingdomIsoCode)
@@ -35,19 +35,19 @@ public class TransitRule : IRule
 
         if (exitBcp?.Id?.Value is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.MissingExitBcp));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.MissingExitBcp, RuleErrorId.MissingExitBcp));
         }
     }
 
-    private static void ValidateThirdCountry(SpsCountryType spsCountryType, IList<ErrorEvent> errorEvents)
+    private static void ValidateThirdCountry(SpsCountryType spsCountryType, IList<ValidationError> validationErrors)
     {
         if (string.IsNullOrEmpty(spsCountryType.Id.Value))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ThirdCountryMissing));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ThirdCountryMissing, RuleErrorId.ThirdCountryMissing));
         }
     }
 
-    private static void ValidateTransitingCountries(IList<SpsCountryType> spsCountryTypes, IList<ErrorEvent> errorEvents)
+    private static void ValidateTransitingCountries(IList<SpsCountryType> spsCountryTypes, IList<ValidationError> validationErrors)
     {
         var transitingCountries = spsCountryTypes
             .Select(x => x.Id.Value)
@@ -56,12 +56,12 @@ public class TransitRule : IRule
 
         if (transitingCountries.Count > MaxCountriesAllowed)
         {
-            errorEvents.Add(new ErrorEvent(string.Format(RuleErrorMessage.TransitingCountriesMax, MaxCountriesAllowed)));
+            validationErrors.Add(new ValidationError(string.Format(RuleErrorMessage.TransitingCountriesMax, MaxCountriesAllowed), RuleErrorId.TransitingCountriesMax));
         }
 
         if (transitingCountries.Distinct().Count() < transitingCountries.Count)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.DuplicateTransitingCountries));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.DuplicateTransitingCountries, RuleErrorId.DuplicateTransitingCountries));
         }
     }
 }

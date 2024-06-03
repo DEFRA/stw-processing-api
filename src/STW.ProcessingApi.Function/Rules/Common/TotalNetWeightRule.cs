@@ -20,7 +20,7 @@ public class TotalNetWeightRule : IRule
         return chedType is not null && _chedTypes.Contains(chedType);
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         spsCertificate.SpsConsignment.IncludedSpsConsignmentItem
             .First()
@@ -28,30 +28,30 @@ public class TotalNetWeightRule : IRule
             .Where(x => x.NetWeightMeasure is not null)
             .SelectMany(x => ValidateNetWeight(x.SequenceNumeric.Value, x.NetWeightMeasure!.Value))
             .ToList()
-            .ForEach(errorEvents.Add);
+            .ForEach(validationErrors.Add);
     }
 
-    private static List<ErrorEvent> ValidateNetWeight(int sequenceNumeric, double netWeight)
+    private static List<ValidationError> ValidateNetWeight(int sequenceNumeric, double netWeight)
     {
-        var errorEvents = new List<ErrorEvent>();
+        var validationErrors = new List<ValidationError>();
 
         if (netWeight < MinWeight)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NetWeightLessThanMinWeight, RuleErrorId.NetWeightLessThanMinWeight, sequenceNumeric));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NetWeightLessThanMinWeight, RuleErrorId.NetWeightLessThanMinWeight, sequenceNumeric));
         }
 
         var netWeightDecimal = (decimal)netWeight;
 
         if (netWeightDecimal.RemoveTrailingZeros().Scale > MaxScale)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NetWeightTooManyDecimals, RuleErrorId.NetWeightTooManyDecimals, sequenceNumeric));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NetWeightTooManyDecimals, RuleErrorId.NetWeightTooManyDecimals, sequenceNumeric));
         }
 
         if (netWeightDecimal.Precision() > MaxPrecision)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NetWeightTooManyDigits, RuleErrorId.NetWeightTooManyDigits, sequenceNumeric));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NetWeightTooManyDigits, RuleErrorId.NetWeightTooManyDigits, sequenceNumeric));
         }
 
-        return errorEvents;
+        return validationErrors;
     }
 }

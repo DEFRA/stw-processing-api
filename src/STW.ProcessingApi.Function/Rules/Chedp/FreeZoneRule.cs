@@ -16,18 +16,18 @@ public class FreeZoneRule : IRule
         return chedType == ChedType.Chedp && purpose == Purpose.NonConformingGoods && destinationType == DestinationType.FreeZone;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var spsNoteTypes = spsCertificate.SpsExchangedDocument.IncludedSpsNote;
 
         if (PurposeHelper.ConsignmentConformsToEu(spsNoteTypes))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NonConformingGoodsCannotConformToEu));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NonConformingGoodsCannotConformToEu, RuleErrorId.NonConformingGoodsCannotConformToEu));
         }
 
         if (PurposeHelper.GetNonConformingGoodsDestinationRegisteredNumber(spsNoteTypes) is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.RegisteredNumberMissingFreeZoneNumber));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.RegisteredNumberMissingFreeZoneNumber, RuleErrorId.RegisteredNumberMissingFreeZoneNumber));
         }
     }
 }

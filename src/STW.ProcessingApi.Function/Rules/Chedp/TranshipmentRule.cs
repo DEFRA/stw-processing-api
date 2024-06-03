@@ -15,16 +15,16 @@ public class TranshipmentRule : IRule
         return chedType == ChedType.Chedp && purpose == Purpose.Transhipment;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         if (string.IsNullOrEmpty(spsCertificate.SpsConsignment.ImportSpsCountry.Id.Value))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.MissingImportSpsCountry));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.MissingImportSpsCountry, RuleErrorId.MissingImportSpsCountry));
         }
 
         if (!IsValidFinalBip(spsCertificate.SpsConsignment.TransitSpsCountry))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.MissingFinalBip));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.MissingFinalBip, RuleErrorId.MissingFinalBip));
         }
     }
 

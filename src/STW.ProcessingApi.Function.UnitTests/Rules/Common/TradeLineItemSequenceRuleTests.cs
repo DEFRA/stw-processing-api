@@ -11,13 +11,13 @@ using TestHelpers;
 public class TradeLineItemSequenceRuleTests
 {
     private TradeLineItemSequenceRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new TradeLineItemSequenceRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -77,10 +77,10 @@ public class TradeLineItemSequenceRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(2).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(2).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(RuleErrorMessage.SequenceNumericOrder);
@@ -114,10 +114,10 @@ public class TradeLineItemSequenceRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(RuleErrorMessage.SequenceNumericOrder);
@@ -153,9 +153,9 @@ public class TradeLineItemSequenceRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 }

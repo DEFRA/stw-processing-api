@@ -20,18 +20,18 @@ public class ValidationService : IValidationService
 
     public async Task InvokeRulesAsync(SpsCertificate spsCertificate)
     {
-        var errorEvents = new List<ErrorEvent>();
+        var validationErrors = new List<ValidationError>();
 
         foreach (var rule in _rules.Where(x => x.ShouldInvoke(spsCertificate)))
         {
-            rule.Invoke(spsCertificate, errorEvents);
+            rule.Invoke(spsCertificate, validationErrors);
         }
 
         foreach (var rule in _asyncRules.Where(x => x.ShouldInvoke(spsCertificate)))
         {
-            await rule.InvokeAsync(spsCertificate, errorEvents);
+            await rule.InvokeAsync(spsCertificate, validationErrors);
         }
 
-        errorEvents.ForEach(x => _logger.LogInformation(x.ErrorMessage));
+        validationErrors.ForEach(x => _logger.LogInformation(x.ErrorMessage));
     }
 }

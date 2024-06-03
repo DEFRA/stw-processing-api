@@ -7,13 +7,6 @@ using Models;
 
 public class QuantityTypeRule : IRule
 {
-    public bool ShouldInvoke(SpsCertificate spsCertificate)
-    {
-        var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
-
-        return chedType == ChedType.Chedpp;
-    }
-
     private static readonly Dictionary<string, string> _quantityTypes = new Dictionary<string, string>
     {
         { "STM", "Stems" },
@@ -25,17 +18,24 @@ public class QuantityTypeRule : IRule
         { "PCS", "Pieces" }
     };
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public bool ShouldInvoke(SpsCertificate spsCertificate)
+    {
+        var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
+
+        return chedType == ChedType.Chedpp;
+    }
+
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         spsCertificate.SpsConsignment
             .IncludedSpsConsignmentItem
             .First()
             .IncludedSpsTradeLineItem
             .ToList()
-            .ForEach(x => ValidateQuantityType(x, errorEvents));
+            .ForEach(x => ValidateQuantityType(x, validationErrors));
     }
 
-    private static void ValidateQuantityType(IncludedSpsTradeLineItem tradeLineItem, IList<ErrorEvent> errorEvents)
+    private static void ValidateQuantityType(IncludedSpsTradeLineItem tradeLineItem, IList<ValidationError> validationErrors)
     {
         var sequenceNumericNumber = tradeLineItem.SequenceNumeric.Value;
 
@@ -44,21 +44,21 @@ public class QuantityTypeRule : IRule
 
         if (spsNoteType is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.MissingQuantityType, RuleErrorId.MissingQuantityType, sequenceNumericNumber));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.MissingQuantityType, RuleErrorId.MissingQuantityType, sequenceNumericNumber));
 
             return;
         }
 
         if (!IsValidQuantityType(spsNoteType))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.InvalidQuantityType, RuleErrorId.InvalidQuantityType, sequenceNumericNumber));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.InvalidQuantityType, RuleErrorId.InvalidQuantityType, sequenceNumericNumber));
 
             return;
         }
 
         if (GetQuantity(spsNoteType) <= 0)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.QuantityMustBeOneOrMore, RuleErrorId.QuantityMustBeOneOrMore, sequenceNumericNumber));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.QuantityMustBeOneOrMore, RuleErrorId.QuantityMustBeOneOrMore, sequenceNumericNumber));
         }
     }
 

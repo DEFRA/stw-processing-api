@@ -16,22 +16,22 @@ public class ConformsToRegulatoryRequirementsRule : IRule
         return chedType == ChedType.Chedp;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var spsNoteType = SpsCertificateHelper.GetSpsNoteTypeBySubjectCode(spsCertificate.SpsExchangedDocument.IncludedSpsNote, SubjectCode.ConformsToEu);
 
-        ValidateSpsNoteType(spsNoteType, errorEvents);
+        ValidateSpsNoteType(spsNoteType, validationErrors);
     }
 
-    private void ValidateSpsNoteType(SpsNoteType? spsNoteType, IList<ErrorEvent> errorEvents)
+    private void ValidateSpsNoteType(SpsNoteType? spsNoteType, IList<ValidationError> validationErrors)
     {
         if (spsNoteType is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ConformsToEuNoteNotFound));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ConformsToEuNoteNotFound, RuleErrorId.ConformsToEuNoteNotFound));
         }
         else if (!_allowedValues.Contains(spsNoteType.Content[0].Value))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ConformsToEuNoteInvalidValue));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ConformsToEuNoteInvalidValue, RuleErrorId.ConformsToEuNoteInvalidValue));
         }
     }
 }

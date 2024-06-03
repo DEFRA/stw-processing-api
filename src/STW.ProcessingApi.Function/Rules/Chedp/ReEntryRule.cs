@@ -15,11 +15,11 @@ public class ReEntryRule : IRule
         return chedType == ChedType.Chedp && purpose == Purpose.ReEntry;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         if (!PurposeHelper.ConsignmentConformsToEu(spsCertificate.SpsExchangedDocument.IncludedSpsNote))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry, RuleErrorId.ConformsToEuMustBeTrueForReEntry));
         }
     }
 }

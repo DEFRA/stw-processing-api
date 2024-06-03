@@ -11,17 +11,17 @@ public class ChedTypeRule : IRule
 
     public bool ShouldInvoke(SpsCertificate spsCertificate) => true;
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
 
         if (chedType is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ChedTypeMissing));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ChedTypeMissing, RuleErrorId.ChedTypeMissing));
         }
         else if (!_validChedTypes.Contains(chedType))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ChedTypeInvalid));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ChedTypeInvalid, RuleErrorId.ChedTypeInvalid));
         }
     }
 }

@@ -37,8 +37,8 @@ public class ValidationServiceTests
         await _systemUnderTest.InvokeRulesAsync(spsCertificate);
 
         // Assert
-        _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ErrorEvent>>()), Times.Once);
-        _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ErrorEvent>>()), Times.Once);
+        _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
+        _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
     }
 
     [TestMethod]
@@ -54,8 +54,8 @@ public class ValidationServiceTests
         await _systemUnderTest.InvokeRulesAsync(spsCertificate);
 
         // Assert
-        _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ErrorEvent>>()), Times.Never);
-        _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ErrorEvent>>()), Times.Never);
+        _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Never);
+        _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Never);
     }
 
     [TestMethod]
@@ -70,11 +70,11 @@ public class ValidationServiceTests
         const string asyncRuleErrorMessage = "Error message from async rule";
         const string ruleErrorMessage = "Error message from rule";
 
-        _ruleMock.Setup(x => x.Invoke(It.IsAny<SpsCertificate>(), It.IsAny<IList<ErrorEvent>>()))
-            .Callback<SpsCertificate, IList<ErrorEvent>>((_, errorEvents) => errorEvents.Add(new ErrorEvent(ruleErrorMessage)));
+        _ruleMock.Setup(x => x.Invoke(It.IsAny<SpsCertificate>(), It.IsAny<IList<ValidationError>>()))
+            .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(ruleErrorMessage)));
 
-        _asyncRuleMock.Setup(x => x.InvokeAsync(It.IsAny<SpsCertificate>(), It.IsAny<IList<ErrorEvent>>()))
-            .Callback<SpsCertificate, IList<ErrorEvent>>((_, errorEvents) => errorEvents.Add(new ErrorEvent(asyncRuleErrorMessage)));
+        _asyncRuleMock.Setup(x => x.InvokeAsync(It.IsAny<SpsCertificate>(), It.IsAny<IList<ValidationError>>()))
+            .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(asyncRuleErrorMessage)));
 
         // Act
         await _systemUnderTest.InvokeRulesAsync(spsCertificate);

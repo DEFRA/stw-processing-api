@@ -11,13 +11,13 @@ using TestHelpers;
 public class FreeZoneRuleTests
 {
     private FreeZoneRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new FreeZoneRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -145,10 +145,10 @@ public class FreeZoneRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -181,11 +181,15 @@ public class FreeZoneRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingGoodsCannotConformToEu));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingGoodsCannotConformToEu);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingGoodsCannotConformToEu);
+            });
     }
 
     [TestMethod]
@@ -215,10 +219,14 @@ public class FreeZoneRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.RegisteredNumberMissingFreeZoneNumber));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.RegisteredNumberMissingFreeZoneNumber);
+                x.ErrorId.Should().Be(RuleErrorId.RegisteredNumberMissingFreeZoneNumber);
+            });
     }
 }

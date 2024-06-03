@@ -13,7 +13,7 @@ public static class RuleErrorMessage
     public const string ApprovedEstablishmentMissingCountryName = "Approved establishment of origin is missing a country name";
     public const string ApprovedEstablishmentMissingApprovalNumber = "Approved establishment of origin is missing an approval number";
     public const string ApprovedEstablishmentMissingOperatorName = "Approved establishment of origin is missing an operator name";
-    public const string ApprovedEstablishmentMissingSectionValue = "Approved establishment of origin is missing a section";
+    public const string ApprovedEstablishmentMissingSection = "Approved establishment of origin is missing a section";
     public const string ApprovedEstablishmentIncorrectRoleCode = "Approved establishment of origin roleCode must be \"ZZZ\"";
     public const string ConformsToEuNoteNotFound = "CONFORMS_TO_EU Note Not Found";
     public const string ConformsToEuNoteInvalidValue = "CONFORMS_TO_EU must either be \"TRUE\" or \"FALSE\" – check the value is spelt correctly";

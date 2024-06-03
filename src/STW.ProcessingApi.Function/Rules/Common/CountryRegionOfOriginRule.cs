@@ -16,7 +16,7 @@ public class CountryRegionOfOriginRule : IRule
         return chedType is not null && _chedTypes.Contains(chedType);
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var tradeLineItems = spsCertificate.SpsConsignment
             .IncludedSpsConsignmentItem
@@ -24,43 +24,45 @@ public class CountryRegionOfOriginRule : IRule
             .IncludedSpsTradeLineItem
             .ToList();
 
-        ValidateTradeLineItems(tradeLineItems, errorEvents);
+        ValidateTradeLineItems(tradeLineItems, validationErrors);
     }
 
-    private static void ValidateTradeLineItems(IList<IncludedSpsTradeLineItem> tradeLineItems, IList<ErrorEvent> errorEvents)
+    private static void ValidateTradeLineItems(IList<IncludedSpsTradeLineItem> tradeLineItems, IList<ValidationError> validationErrors)
     {
         HashSet<string> countries = [];
         HashSet<string> regions = [];
 
         tradeLineItems
-            .Where(x => IsCountryOfOriginPresent(x, errorEvents))
+            .Where(x => IsCountryOfOriginPresent(x, validationErrors))
             .ToList()
-            .ForEach(x => ValidateCountryAndRegion(x.OriginSpsCountry, countries, regions, errorEvents));
+            .ForEach(x => ValidateCountryAndRegion(x.OriginSpsCountry, countries, regions, validationErrors));
     }
 
-    private static void ValidateCountryAndRegion(IList<SpsCountryType> spsCountryTypes, HashSet<string> countries, HashSet<string> regions, IList<ErrorEvent> errorEvents)
+    private static void ValidateCountryAndRegion(IList<SpsCountryType> spsCountryTypes, HashSet<string> countries, HashSet<string> regions, IList<ValidationError> validationErrors)
     {
         spsCountryTypes
-            .Select(x => CheckCountryCodes(x, countries, errorEvents))
-            .Where(x => HasValidRegionEntry(x, errorEvents))
+            .Select(x => CheckCountryCodes(x, countries, validationErrors))
+            .Where(x => HasValidRegionEntry(x, validationErrors))
             .Where(x => x.SubordinateSpsCountrySubDivision.First().Name.Count > 0)
             .ToList()
-            .ForEach(x => ValidateRegion(x, regions, errorEvents));
+            .ForEach(x => ValidateRegion(x, regions, validationErrors));
     }
 
-    private static SpsCountryType CheckCountryCodes(SpsCountryType spsCountryType, HashSet<string> countries, IList<ErrorEvent> errorEvents)
+    private static SpsCountryType CheckCountryCodes(SpsCountryType spsCountryType, HashSet<string> countries, IList<ValidationError> validationErrors)
     {
         countries.Add(spsCountryType.Id.Value);
 
         if (countries.Count > 1)
         {
-            errorEvents.Add(new ErrorEvent(string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, string.Join(", ", countries))));
+            validationErrors.Add(new ValidationError(
+                string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, string.Join(", ", countries)),
+                RuleErrorId.MoreThanOneCountryOfOrigin));
         }
 
         return spsCountryType;
     }
 
-    private static void ValidateRegion(SpsCountryType spsCountryType, HashSet<string> regions, IList<ErrorEvent> errorEvents)
+    private static void ValidateRegion(SpsCountryType spsCountryType, HashSet<string> regions, IList<ValidationError> validationErrors)
     {
         var regionName = spsCountryType.SubordinateSpsCountrySubDivision[0].Name[0].Value;
 
@@ -68,16 +70,20 @@ public class CountryRegionOfOriginRule : IRule
 
         if (regions.Count > 1)
         {
-            errorEvents.Add(new ErrorEvent(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, string.Join(", ", regions))));
+            validationErrors.Add(new ValidationError(
+                string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, string.Join(", ", regions)),
+                RuleErrorId.MoreThanOneRegionOfOriginInConsignment));
         }
 
         if (!regionName.StartsWith($"{spsCountryType.Id.Value}-"))
         {
-            errorEvents.Add(new ErrorEvent(string.Format(RuleErrorMessage.InvalidRegionOfOrigin, regionName)));
+            validationErrors.Add(new ValidationError(
+                string.Format(RuleErrorMessage.InvalidRegionOfOrigin, regionName),
+                RuleErrorId.InvalidRegionOfOrigin));
         }
     }
 
-    private static bool HasValidRegionEntry(SpsCountryType spsCountryType, IList<ErrorEvent> errorEvents)
+    private static bool HasValidRegionEntry(SpsCountryType spsCountryType, IList<ValidationError> validationErrors)
     {
         var subDivisionCount = spsCountryType.SubordinateSpsCountrySubDivision.Count;
 
@@ -93,20 +99,23 @@ public class CountryRegionOfOriginRule : IRule
                 .Select(x => x.Value)
                 .ToHashSet();
 
-            errorEvents.Add(new ErrorEvent(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInTradeLineItem, string.Join(", ", set))));
+            validationErrors.Add(
+                new ValidationError(
+                    string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInTradeLineItem, string.Join(", ", set)),
+                    RuleErrorId.MoreThanOneRegionOfOriginInTradeLineItem));
         }
 
         return false;
     }
 
-    private static bool IsCountryOfOriginPresent(IncludedSpsTradeLineItem tradeLineItem, IList<ErrorEvent> errorEvents)
+    private static bool IsCountryOfOriginPresent(IncludedSpsTradeLineItem tradeLineItem, IList<ValidationError> validationErrors)
     {
         if (tradeLineItem.OriginSpsCountry.Count > 0)
         {
             return true;
         }
 
-        errorEvents.Add(new ErrorEvent(RuleErrorMessage.CountryOfOriginMissing));
+        validationErrors.Add(new ValidationError(RuleErrorMessage.CountryOfOriginMissing, RuleErrorId.CountryOfOriginMissing));
 
         return false;
     }

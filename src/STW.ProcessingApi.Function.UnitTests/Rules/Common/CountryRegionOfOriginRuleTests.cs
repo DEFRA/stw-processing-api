@@ -11,13 +11,13 @@ using TestHelpers;
 public class CountryRegionOfOriginRuleTests
 {
     private CountryRegionOfOriginRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new CountryRegionOfOriginRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -70,11 +70,15 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.CountryOfOriginMissing));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.CountryOfOriginMissing);
+                x.ErrorId.Should().Be(RuleErrorId.CountryOfOriginMissing);
+            });
     }
 
     [TestMethod]
@@ -102,11 +106,15 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, "AF, AL")));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, "AF, AL"));
+                x.ErrorId.Should().Be(RuleErrorId.MoreThanOneCountryOfOrigin);
+            });
     }
 
     [TestMethod]
@@ -130,11 +138,15 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInTradeLineItem, "GB-SCO, GB-WLS")));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInTradeLineItem, "GB-SCO, GB-WLS"));
+                x.ErrorId.Should().Be(RuleErrorId.MoreThanOneRegionOfOriginInTradeLineItem);
+            });
     }
 
     [TestMethod]
@@ -162,11 +174,15 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, "GB-SCO, GB-WLS")));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, "GB-SCO, GB-WLS"));
+                x.ErrorId.Should().Be(RuleErrorId.MoreThanOneRegionOfOriginInConsignment);
+            });
     }
 
     [TestMethod]
@@ -187,11 +203,15 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.InvalidRegionOfOrigin, TestConstants.Invalid)));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.InvalidRegionOfOrigin, TestConstants.Invalid));
+                x.ErrorId.Should().Be(RuleErrorId.InvalidRegionOfOrigin);
+            });
     }
 
     [TestMethod]
@@ -219,10 +239,10 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -250,9 +270,9 @@ public class CountryRegionOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 }

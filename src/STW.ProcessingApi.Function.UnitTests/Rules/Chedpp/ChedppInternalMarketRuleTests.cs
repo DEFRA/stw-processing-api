@@ -11,13 +11,13 @@ using TestHelpers;
 public class ChedppInternalMarketRuleTests
 {
     private ChedppInternalMarketRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new ChedppInternalMarketRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -84,11 +84,15 @@ public class ChedppInternalMarketRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.PurposeMustBeInternalMarket));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.PurposeMustBeInternalMarket);
+                x.ErrorId.Should().Be(RuleErrorId.PurposeMustBeInternalMarket);
+            });
     }
 
     [TestMethod]
@@ -113,9 +117,9 @@ public class ChedppInternalMarketRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 }

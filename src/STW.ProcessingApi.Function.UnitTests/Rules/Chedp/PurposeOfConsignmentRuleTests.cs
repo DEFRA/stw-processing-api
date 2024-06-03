@@ -11,13 +11,13 @@ using TestHelpers;
 public class PurposeOfConsignmentRuleTests
 {
     private PurposeOfConsignmentRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new PurposeOfConsignmentRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -70,10 +70,10 @@ public class PurposeOfConsignmentRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithIncludedSpsNotes(includedSpsNotes);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -89,10 +89,10 @@ public class PurposeOfConsignmentRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithIncludedSpsNotes(includedSpsNotes);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -107,10 +107,14 @@ public class PurposeOfConsignmentRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithIncludedSpsNotes(includedSpsNotes);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingConsignmentMissingDestinationType));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingConsignmentMissingDestinationType);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingConsignmentMissingDestinationType);
+            });
     }
 }

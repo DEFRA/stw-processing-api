@@ -16,23 +16,23 @@ public class ShipRule : IRule
         return chedType == ChedType.Chedp && purpose == Purpose.NonConformingGoods && destinationType == DestinationType.Ship;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var spsNoteTypes = spsCertificate.SpsExchangedDocument.IncludedSpsNote;
 
         if (PurposeHelper.ConsignmentConformsToEu(spsNoteTypes))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NonConformingGoodsCannotConformToEu));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NonConformingGoodsCannotConformToEu, RuleErrorId.NonConformingGoodsCannotConformToEu));
         }
 
         if (PurposeHelper.GetNonConformingGoodsDestinationShipName(spsNoteTypes) is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NonConformingGoodsShipNameMissing));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NonConformingGoodsShipNameMissing, RuleErrorId.NonConformingGoodsShipNameMissing));
         }
 
         if (PurposeHelper.GetNonConformingGoodsDestinationShipPort(spsNoteTypes) is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NonConformingGoodsShipPortMissing));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NonConformingGoodsShipPortMissing, RuleErrorId.NonConformingGoodsShipPortMissing));
         }
     }
 }

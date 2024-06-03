@@ -11,13 +11,13 @@ using TestHelpers;
 public class TransitRuleTests
 {
     private TransitRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new TransitRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -156,10 +156,10 @@ public class TransitRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -192,11 +192,15 @@ public class TransitRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.MissingExitBcp));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingExitBcp);
+                x.ErrorId.Should().Be(RuleErrorId.MissingExitBcp);
+            });
     }
 
     [TestMethod]
@@ -231,11 +235,15 @@ public class TransitRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.DuplicateTransitingCountries));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.DuplicateTransitingCountries);
+                x.ErrorId.Should().Be(RuleErrorId.DuplicateTransitingCountries);
+            });
     }
 
     [TestMethod]
@@ -281,10 +289,55 @@ public class TransitRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.TransitingCountriesMax, 12)));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.TransitingCountriesMax, 12));
+                x.ErrorId.Should().Be(RuleErrorId.TransitingCountriesMax);
+            });
+    }
+
+    [TestMethod]
+    public void Invoke_AddsError_WhenPurposeIsDirectTransitAndThirdCountryIdValueIsMissing()
+    {
+        // Arrange
+        var spsCertificate = new SpsCertificate
+        {
+            SpsConsignment = new SpsConsignment
+            {
+                ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(null),
+                TransitSpsCountry = new List<SpsCountryType>
+                {
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode)
+                }
+            },
+            SpsExchangedDocument = new SpsExchangedDocument
+            {
+                SignatorySpsAuthentication = new List<SpsAuthenticationType>
+                {
+                    new SpsAuthenticationType
+                    {
+                        IncludedSpsClause = new List<IncludedSpsClause>
+                        {
+                            SpsCertificateTestHelper.BuildIncludedSpsClauseWithIdAndContent(SubjectCode.Purpose, Purpose.DirectTransit)
+                        }
+                    }
+                },
+            }
+        };
+
+        // Act
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
+
+        // Assert
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ThirdCountryMissing);
+                x.ErrorId.Should().Be(RuleErrorId.ThirdCountryMissing);
+            });
     }
 }

@@ -11,13 +11,13 @@ using TestHelpers;
 public class ReEntryRuleTests
 {
     private ReEntryRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new ReEntryRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -119,10 +119,10 @@ public class ReEntryRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -151,11 +151,15 @@ public class ReEntryRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuMustBeTrueForReEntry);
+            });
     }
 
     [TestMethod]
@@ -180,10 +184,14 @@ public class ReEntryRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuMustBeTrueForReEntry);
+            });
     }
 }

@@ -14,7 +14,7 @@ public class ScientificNameAndEppoCodeRule : IRule
         return chedType == ChedType.Chedpp;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         spsCertificate.SpsConsignment
             .IncludedSpsConsignmentItem
@@ -23,9 +23,9 @@ public class ScientificNameAndEppoCodeRule : IRule
             .Where(x => !HasScientificName(x))
             .Where(x => !HasEppoCode(x))
             .Select(x => x.SequenceNumeric.Value)
-            .Select(x => new ErrorEvent(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, x), RuleErrorId.ScientificNameOrEppoCodeMissing, x))
+            .Select(x => new ValidationError(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, x), RuleErrorId.ScientificNameOrEppoCodeMissing, x))
             .ToList()
-            .ForEach(errorEvents.Add);
+            .ForEach(validationErrors.Add);
     }
 
     private static bool HasScientificName(IncludedSpsTradeLineItem tradeLineItem)

@@ -11,13 +11,13 @@ using TestHelpers;
 public class ScientificNameAndEppoCodeRuleTests
 {
     private ScientificNameAndEppoCodeRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new ScientificNameAndEppoCodeRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -93,10 +93,10 @@ public class ScientificNameAndEppoCodeRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -141,10 +141,10 @@ public class ScientificNameAndEppoCodeRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -196,10 +196,10 @@ public class ScientificNameAndEppoCodeRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -230,10 +230,10 @@ public class ScientificNameAndEppoCodeRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, 1));
@@ -286,10 +286,10 @@ public class ScientificNameAndEppoCodeRuleTests
         };
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, 1));

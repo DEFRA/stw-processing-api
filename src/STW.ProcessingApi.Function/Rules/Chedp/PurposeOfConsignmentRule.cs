@@ -14,14 +14,14 @@ public class PurposeOfConsignmentRule : IRule
         return chedType == ChedType.Chedp;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var conformsToEu = PurposeHelper.ConsignmentConformsToEu(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
         var destinationType = PurposeHelper.GetNonConformingGoodsDestinationType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
 
         if (!conformsToEu && destinationType is null)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.NonConformingConsignmentMissingDestinationType));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.NonConformingConsignmentMissingDestinationType, RuleErrorId.NonConformingConsignmentMissingDestinationType));
         }
     }
 }

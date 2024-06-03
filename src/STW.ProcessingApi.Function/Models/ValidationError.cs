@@ -1,6 +1,6 @@
 namespace STW.ProcessingApi.Function.Models;
 
-public class ErrorEvent
+public class ValidationError
 {
     public string ErrorMessage { get; private init; }
 
@@ -8,14 +8,20 @@ public class ErrorEvent
 
     public int? ErrorTradeLineItem { get; private init; }
 
-    public ErrorEvent(string errorMessage, int errorId, int? errorTradeLineItem)
+    public ValidationError(string errorMessage, int errorId, int? errorTradeLineItem)
     {
         ErrorMessage = errorMessage;
         ErrorId = errorId;
         ErrorTradeLineItem = errorTradeLineItem;
     }
 
-    public ErrorEvent(string errorMessage)
+    public ValidationError(string errorMessage, int errorId)
+    {
+        ErrorMessage = errorMessage;
+        ErrorId = errorId;
+    }
+
+    public ValidationError(string errorMessage)
     {
         ErrorMessage = errorMessage;
     }

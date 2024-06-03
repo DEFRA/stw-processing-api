@@ -11,13 +11,13 @@ using TestHelpers;
 public class ApprovedEstablishmentsOfOriginRuleTests
 {
     private ApprovedEstablishmentsOfOriginRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new ApprovedEstablishmentsOfOriginRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -86,10 +86,10 @@ public class ApprovedEstablishmentsOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -120,17 +120,45 @@ public class ApprovedEstablishmentsOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(7).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryCode),
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryName),
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingApprovalNumber),
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingOperatorName),
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingSectionValue),
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityName),
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityCode));
+        _validationErrors.Should().HaveCount(7).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryCode);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingCountryCode);
+            },
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryName);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingCountryName);
+            },
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingApprovalNumber);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingApprovalNumber);
+            },
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingOperatorName);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingOperatorName);
+            },
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingSection);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingSection);
+            },
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityName);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingActivityName);
+            },
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityCode);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingActivityCode);
+            });
     }
 
     [TestMethod]
@@ -161,10 +189,14 @@ public class ApprovedEstablishmentsOfOriginRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
-            x => x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentIncorrectRoleCode));
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentIncorrectRoleCode);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentIncorrectRoleCode);
+            });
     }
 }

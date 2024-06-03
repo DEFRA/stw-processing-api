@@ -16,18 +16,18 @@ public class ChedpInternalMarketRule : IRule
         return chedType == ChedType.Chedp && purpose == Purpose.InternalMarket && goodsCertifiedAs is not null;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var goodsCertifiedAs = PurposeHelper.GetGoodsCertifiedAs(spsCertificate.SpsExchangedDocument.SignatorySpsAuthentication);
 
         if (GoodsCertifiedAs.Values().All(x => goodsCertifiedAs != x))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.GoodsCertifiedAsValueIsInvalid));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.GoodsCertifiedAsValueIsInvalid, RuleErrorId.GoodsCertifiedAsValueIsInvalid));
         }
 
         if (!PurposeHelper.ConsignmentConformsToEu(spsCertificate.SpsExchangedDocument.IncludedSpsNote))
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.ConformsToEuRequiredForInternalMarket));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.ConformsToEuRequiredForInternalMarket, RuleErrorId.ConformsToEuRequiredForInternalMarket));
         }
     }
 }

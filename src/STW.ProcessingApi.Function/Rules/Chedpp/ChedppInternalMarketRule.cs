@@ -14,13 +14,13 @@ public class ChedppInternalMarketRule : IRule
         return chedType == ChedType.Chedpp;
     }
 
-    public void Invoke(SpsCertificate spsCertificate, IList<ErrorEvent> errorEvents)
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
         var purpose = PurposeHelper.GetPurpose(spsCertificate.SpsExchangedDocument.SignatorySpsAuthentication);
 
         if (purpose != Purpose.InternalMarket)
         {
-            errorEvents.Add(new ErrorEvent(RuleErrorMessage.PurposeMustBeInternalMarket));
+            validationErrors.Add(new ValidationError(RuleErrorMessage.PurposeMustBeInternalMarket, RuleErrorId.PurposeMustBeInternalMarket));
         }
     }
 }

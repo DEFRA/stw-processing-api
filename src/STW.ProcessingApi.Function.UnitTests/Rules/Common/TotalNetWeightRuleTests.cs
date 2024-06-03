@@ -11,13 +11,13 @@ using TestHelpers;
 public class TotalNetWeightRuleTests
 {
     private TotalNetWeightRule _systemUnderTest;
-    private List<ErrorEvent> _errorEvents;
+    private List<ValidationError> _validationErrors;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _systemUnderTest = new TotalNetWeightRule();
-        _errorEvents = new List<ErrorEvent>();
+        _validationErrors = new List<ValidationError>();
     }
 
     [TestMethod]
@@ -74,10 +74,10 @@ public class TotalNetWeightRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightLessThanMinWeight);
@@ -102,10 +102,10 @@ public class TotalNetWeightRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightTooManyDecimals);
@@ -130,10 +130,10 @@ public class TotalNetWeightRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().HaveCount(1).And.SatisfyRespectively(
+        _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
                 x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightTooManyDigits);
@@ -158,9 +158,9 @@ public class TotalNetWeightRuleTests
         var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithTradeLineItems(tradeLineItems);
 
         // Act
-        _systemUnderTest.Invoke(spsCertificate, _errorEvents);
+        _systemUnderTest.Invoke(spsCertificate, _validationErrors);
 
         // Assert
-        _errorEvents.Should().BeEmpty();
+        _validationErrors.Should().BeEmpty();
     }
 }
