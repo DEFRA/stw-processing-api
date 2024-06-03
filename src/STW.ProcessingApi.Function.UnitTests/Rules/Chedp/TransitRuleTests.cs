@@ -301,14 +301,14 @@ public class TransitRuleTests
     }
 
     [TestMethod]
-    public void Invoke_AddsError_WhenPurposeIsDirectTransitAndThirdCountryIdValueIsMissing()
+    public void Invoke_AddsError_WhenPurposeIsDirectTransitAndThirdCountryIdValueIsAnEmptyString()
     {
         // Arrange
         var spsCertificate = new SpsCertificate
         {
             SpsConsignment = new SpsConsignment
             {
-                ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(null),
+                ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(string.Empty),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
                     SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode)

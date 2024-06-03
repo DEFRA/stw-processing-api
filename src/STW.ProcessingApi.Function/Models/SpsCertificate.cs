@@ -3,6 +3,7 @@ namespace STW.ProcessingApi.Function.Models;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
+#pragma warning disable SA1649
 #pragma warning disable SA1601
 #pragma warning disable SA1402
 

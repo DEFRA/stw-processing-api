@@ -243,7 +243,7 @@ public class ScientificNameAndEppoCodeRuleTests
     }
 
     [TestMethod]
-    [DataRow(null)]
+    [DataRow(default)]
     [DataRow("")]
     public void Invoke_AddsError_WhenEppoCodeClassCodeIs(string classCodeValue)
     {
