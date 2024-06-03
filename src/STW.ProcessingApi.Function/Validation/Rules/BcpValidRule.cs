@@ -31,13 +31,13 @@ public class BcpValidRule : AsyncRule
         return Errors;
     }
 
-    private string GetChedType(SpsCertificate spsCertificate)
+    private static string GetChedType(SpsCertificate spsCertificate)
     {
         return spsCertificate.SpsExchangedDocument.IncludedSpsNote.ToList()
             .Find(note => note.SubjectCode.Value == "CHED_TYPE")!.Content.First().Value!;
     }
 
-    private string GetBcpCode(SpsCertificate spsCertificate)
+    private static string GetBcpCode(SpsCertificate spsCertificate)
     {
         return spsCertificate.SpsConsignment.UnloadingBaseportSpsLocation.Id.Value;
     }
