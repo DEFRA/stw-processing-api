@@ -1,6 +1,6 @@
-using STW.ProcessingApi.Function.Models;
-
 namespace STW.ProcessingApi.Function.Validation.Rules;
+
+using Models;
 
 public abstract class AsyncRule
 {

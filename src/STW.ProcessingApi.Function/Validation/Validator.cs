@@ -1,7 +1,7 @@
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Validation.Rules;
-
 namespace STW.ProcessingApi.Function.Validation;
+
+using Models;
+using Rules;
 
 public class Validator : IRuleValidator
 {

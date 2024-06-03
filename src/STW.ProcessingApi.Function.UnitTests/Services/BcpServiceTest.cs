@@ -1,12 +1,12 @@
+namespace STW.ProcessingApi.Function.UnitTests.Services;
+
 using System.Net;
 using FluentAssertions;
+using Function.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using Moq;
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Services;
-using STW.ProcessingApi.Function.UnitTests.TestExtensions;
-
-namespace STW.ProcessingApi.Function.UnitTests.Services;
+using TestExtensions;
 
 [TestClass]
 public class BcpServiceTest

@@ -1,7 +1,7 @@
-using System.Net.Http.Json;
-using STW.ProcessingApi.Function.Models;
-
 namespace STW.ProcessingApi.Function.Services;
+
+using System.Net.Http.Json;
+using Models;
 
 public class BcpService : IBcpService
 {

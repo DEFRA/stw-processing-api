@@ -1,10 +1,10 @@
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Validation.Rules;
-
 namespace STW.ProcessingApi.Function.UnitTests.Validation.Rules;
+
+using FluentAssertions;
+using Function.Validation.Rules;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
+using Newtonsoft.Json;
 
 [TestClass]
 public class ExampleRuleTest

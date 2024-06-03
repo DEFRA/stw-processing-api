@@ -1,10 +1,10 @@
+namespace STW.ProcessingApi.Function.UnitTests.TestExtensions;
+
 using System.Net;
 using System.Text.Json;
 using Moq;
 using Moq.Language.Flow;
 using Moq.Protected;
-
-namespace STW.ProcessingApi.Function.UnitTests.TestExtensions;
 
 public static class MoqExtensions
 {

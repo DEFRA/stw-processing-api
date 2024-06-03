@@ -1,6 +1,6 @@
-using STW.ProcessingApi.Function.Models;
-
 namespace STW.ProcessingApi.Function.Validation;
+
+using Models;
 
 public interface IRuleValidator
 {

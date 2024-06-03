@@ -1,12 +1,12 @@
+namespace STW.ProcessingApi.Function.UnitTests.Validation.Rules;
+
 using FluentAssertions;
+using Function.Services;
+using Function.Validation.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using Moq;
 using Newtonsoft.Json;
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Services;
-using STW.ProcessingApi.Function.Validation.Rules;
-
-namespace STW.ProcessingApi.Function.UnitTests.Validation.Rules;
 
 [TestClass]
 public class BcpValidRuleTest

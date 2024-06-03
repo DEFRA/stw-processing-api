@@ -1,11 +1,11 @@
+namespace STW.ProcessingApi.Function.Triggers;
+
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using Models;
 using Newtonsoft.Json;
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Validation;
-
-namespace STW.ProcessingApi.Function.Triggers;
+using Validation;
 
 public class ProcessingApiTrigger
 {

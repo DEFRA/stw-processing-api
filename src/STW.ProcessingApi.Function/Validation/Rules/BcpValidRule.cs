@@ -1,7 +1,7 @@
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Services;
-
 namespace STW.ProcessingApi.Function.Validation.Rules;
+
+using Models;
+using Services;
 
 public class BcpValidRule : AsyncRule
 {

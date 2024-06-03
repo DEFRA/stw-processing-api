@@ -1,12 +1,12 @@
+namespace STW.ProcessingApi.Function.UnitTests.Triggers;
+
 using Azure.Messaging.ServiceBus;
+using Function.Triggers;
+using Function.Validation;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using Moq;
-using STW.ProcessingApi.Function.Models;
-using STW.ProcessingApi.Function.Triggers;
-using STW.ProcessingApi.Function.Validation;
-
-namespace STW.ProcessingApi.Function.UnitTests.Triggers;
 
 [TestClass]
 public class ProcessingApiTriggerTests

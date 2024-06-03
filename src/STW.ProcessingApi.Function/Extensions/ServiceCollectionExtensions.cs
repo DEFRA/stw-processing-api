@@ -1,11 +1,11 @@
+namespace STW.ProcessingApi.Function.Extensions;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using STW.ProcessingApi.Function.Options;
-using STW.ProcessingApi.Function.Services;
-using STW.ProcessingApi.Function.Validation;
-using STW.ProcessingApi.Function.Validation.Rules;
-
-namespace STW.ProcessingApi.Function.Extensions;
+using Options;
+using Services;
+using Validation;
+using Validation.Rules;
 
 public static class ServiceCollectionExtensions
 {
