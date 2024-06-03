@@ -1,14 +1,9 @@
-using System.Net;
-using System.Text;
-using FluentAssertions;
-using Microsoft.Azure.Functions.Worker;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using STW.ProcessingApi.Function.Models;
 using STW.ProcessingApi.Function.Triggers;
-using STW.ProcessingApi.Function.UnitTests.Constants;
-using STW.ProcessingApi.Function.UnitTests.TestDoubles;
 using STW.ProcessingApi.Function.Validation;
 
 namespace STW.ProcessingApi.Function.UnitTests.Triggers;
@@ -29,43 +24,39 @@ public class ProcessingApiTriggerTests
     }
 
     [TestMethod]
-    public async Task Run_ReturnsOkResponse_WhenNoValidationErrors()
+    public async Task Run_LogsNoErrors_WhenNoValidationErrors()
     {
         // Arrange
-        var requestBody = File.OpenRead("TestData/minimalSpsCertificate.json");
-        var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
-        _validatorMock.Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
+        var messageStream = File.OpenRead("TestData/minimalSpsCertificate.json");
+        var message = ServiceBusModelFactory.ServiceBusReceivedMessage(await BinaryData.FromStreamAsync(messageStream));
+        _validatorMock
+            .Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
             .ReturnsAsync([]);
 
         // Act
-        var result = await _systemUnderTest.Run(httpRequestData);
+        await _systemUnderTest.Run(message);
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.OK);
-        result.Body.Should().HaveLength(0);
-
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogInformation("Validation Passed"), Times.Once);
     }
 
     [TestMethod]
-    public async Task Run_LogsValidationFailure_ValidationFails()
+    public async Task Run_LogsValidationFailure_WhenValidationErrors()
     {
         // Arrange
-        var requestBody = File.OpenRead("TestData/minimalSpsCertificate.json");
-        var httpRequestData = new MockHttpRequestData(Mock.Of<FunctionContext>(), requestBody, HttpVerbs.Post);
-        _validatorMock.Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
+        var messageStream = File.OpenRead("TestData/minimalSpsCertificate.json");
+        var message = ServiceBusModelFactory.ServiceBusReceivedMessage(BinaryData.FromStream(messageStream));
+        _validatorMock
+            .Setup(v => v.IsValid(It.IsAny<SpsCertificate>()))
             .ReturnsAsync([new ValidationError("Error message 1"), new ValidationError("Error message 2")]);
 
         // Act
-        var result = await _systemUnderTest.Run(httpRequestData);
+        await _systemUnderTest.Run(message);
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        result.Body.Position = 0;
-        var body = await new StreamReader(result.Body).ReadToEndAsync();
-        body.Should().Be("Error message 1, Error message 2");
-
+        _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
         _loggerMock.VerifyLog(x => x.LogWarning("Validation Failed"), Times.Once);
+        _loggerMock.VerifyLog(x => x.LogWarning("Error message 1, Error message 2"), Times.Once);
     }
 }

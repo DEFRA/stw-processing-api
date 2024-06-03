@@ -1,6 +1,5 @@
-using System.Net;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using STW.ProcessingApi.Function.Models;
@@ -20,20 +19,21 @@ public class ProcessingApiTrigger
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request)
+    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
+        ServiceBusReceivedMessage message)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
-        using var reader = new StreamReader(request.Body);
-        var requestBody = await reader.ReadToEndAsync();
+        var messageBody = message.Body.ToString();
 
         try
         {
-            var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(requestBody);
+            var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(messageBody);
 
             if (spsCertificate == null)
             {
-                return request.CreateResponse(HttpStatusCode.BadRequest);
+                _logger.LogWarning("SPSCertificate is null");
+                return;
             }
 
             var errors = await _validator.IsValid(spsCertificate);
@@ -41,20 +41,14 @@ public class ProcessingApiTrigger
             if (errors.Count == 0)
             {
                 _logger.LogInformation("Validation passed");
-                return request.CreateResponse(HttpStatusCode.OK);
             }
 
             _logger.LogWarning("Validation failed");
-            var response = request.CreateResponse(HttpStatusCode.BadRequest);
-            await response.WriteStringAsync(string.Join(", ", errors.Select(error => error.ToString())));
-            return response;
+            _logger.LogWarning(string.Join(", ", errors.Select(error => error.ToString())));
         }
         catch (JsonException exception)
         {
             _logger.LogError(exception.Message);
-            var response = request.CreateResponse(HttpStatusCode.BadRequest);
-            await response.WriteStringAsync(exception.Message);
-            return response;
         }
     }
 }
