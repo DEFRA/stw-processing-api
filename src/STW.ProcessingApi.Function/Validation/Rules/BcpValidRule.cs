@@ -17,15 +17,22 @@ public class BcpValidRule : AsyncRule
         var chedType = GetChedType(spsCertificate);
         var bcpCode = GetBcpCode(spsCertificate);
 
-        var bcps = await _bcpService.GetBcpsWithCodeAndType(bcpCode, chedType);
+        try
+        {
+            var bcps = await _bcpService.GetBcpsWithCodeAndType(bcpCode, chedType);
 
-        if (bcps.Count == 0)
-        {
-            Errors.Add(new ValidationError($"Invalid BCP with code {bcpCode} for CHED type {chedType}"));
+            if (bcps.Count == 0)
+            {
+                Errors.Add(new ValidationError($"Invalid BCP with code {bcpCode} for CHED type {chedType}"));
+            }
+            else if (bcps[0].Suspended)
+            {
+                Errors.Add(new ValidationError($"BCP with code {bcpCode} for CHED type {chedType} is suspended"));
+            }
         }
-        else if (bcps[0].Suspended)
+        catch (HttpRequestException exception)
         {
-            Errors.Add(new ValidationError($"BCP with code {bcpCode} for CHED type {chedType} is suspended"));
+            Errors.Add(new ValidationError($"Unable to check BCP validity: {exception.Message}"));
         }
 
         return Errors;
