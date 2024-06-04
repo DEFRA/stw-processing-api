@@ -9,13 +9,13 @@ using System.Text.Json.Serialization;
 
 public class AddressTypeCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -27,13 +27,13 @@ public class AddressTypeCodeType
 
 public class GovernmentActionCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -78,16 +78,16 @@ public class SpsCountrySubDivisionType
 
 public class DocumentCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
     [JsonPropertyName("listURI")]
     public string? ListURI { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -114,13 +114,13 @@ public class ItemQuantity
     [JsonPropertyName("unitCode")]
     public string? UnitCode { get; set; }
 
-    [JsonPropertyName("unitCodeListAgencyId")]
+    [JsonPropertyName("unitCodeListAgencyID")]
     public string? UnitCodeListAgencyId { get; set; }
 
     [JsonPropertyName("unitCodeListAgencyName")]
     public string? UnitCodeListAgencyName { get; set; }
 
-    [JsonPropertyName("unitCodeListId")]
+    [JsonPropertyName("unitCodeListID")]
     public string? UnitCodeListId { get; set; }
 
     [JsonPropertyName("value")]
@@ -165,13 +165,13 @@ public class PhysicalSpsPackage
 
 public class CargoTypeClassificationCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -207,13 +207,13 @@ public class SpsEventType
 
 public class ProcessTypeCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -273,7 +273,7 @@ public class ApplicableSpsClassification
     [JsonPropertyName("className")]
     public IList<TextType> ClassName { get; set; } = new List<TextType>();
 
-    [JsonPropertyName("systemId")]
+    [JsonPropertyName("systemID")]
     public IdType? SystemId { get; set; }
 
     [JsonPropertyName("systemName")]
@@ -321,13 +321,13 @@ public class SpsReferencedDocumentType
 
 public class PackageTypeCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -339,13 +339,13 @@ public class PackageTypeCodeType
 
 public class ModeCode
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -357,7 +357,7 @@ public class ModeCode
 
 public class IdType
 {
-    [JsonPropertyName("schemeAgencyId")]
+    [JsonPropertyName("schemeAgencyID")]
     public string? SchemeAgencyId { get; set; }
 
     [JsonPropertyName("schemeAgencyName")]
@@ -366,7 +366,7 @@ public class IdType
     [JsonPropertyName("schemeDataURI")]
     public string? SchemeDataURI { get; set; }
 
-    [JsonPropertyName("schemeId")]
+    [JsonPropertyName("schemeID")]
     public string? SchemeId { get; set; }
 
     [JsonPropertyName("schemeName")]
@@ -375,7 +375,7 @@ public class IdType
     [JsonPropertyName("schemeURI")]
     public string? SchemeURI { get; set; }
 
-    [JsonPropertyName("schemeVersionId")]
+    [JsonPropertyName("schemeVersionID")]
     public string? SchemeVersionId { get; set; }
 
     [JsonPropertyName("value")]
@@ -384,16 +384,16 @@ public class IdType
 
 public class CodeType
 {
-    [JsonPropertyName("languageId")]
+    [JsonPropertyName("languageID")]
     public string? LanguageId { get; set; }
 
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
     [JsonPropertyName("listAgencyName")]
     public string? ListAgencyName { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
     [JsonPropertyName("listName")]
@@ -405,7 +405,7 @@ public class CodeType
     [JsonPropertyName("listURI")]
     public string? ListURI { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -426,13 +426,13 @@ public class IndicatorType
 
 public class FunctionTypeCode
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -1658,13 +1658,13 @@ public enum RoleCodeValue
 
 public class RoleCode
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -1676,16 +1676,16 @@ public class RoleCode
 
 public class StatusCode
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
     [JsonPropertyName("listURI")]
     public string? ListURI { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -1733,7 +1733,7 @@ public class AffixedSpsSeal
     [JsonPropertyName("issuingSpsParty")]
     public SpsPartyType? IssuingSpsParty { get; set; }
 
-    [JsonPropertyName("maximumId")]
+    [JsonPropertyName("maximumID")]
     public IdType? MaximumId { get; set; }
 }
 
@@ -1757,19 +1757,19 @@ public class IncludedSpsConsignmentItem
 
 public class SpecifiedSpsAddress
 {
-    [JsonPropertyName("cityId")]
+    [JsonPropertyName("cityID")]
     public IdType? CityId { get; set; }
 
     [JsonPropertyName("cityName")]
     public TextType? CityName { get; set; }
 
-    [JsonPropertyName("countryId")]
+    [JsonPropertyName("countryID")]
     public IdType? CountryId { get; set; }
 
     [JsonPropertyName("countryName")]
     public TextType? CountryName { get; set; }
 
-    [JsonPropertyName("countrySubDivisionId")]
+    [JsonPropertyName("countrySubDivisionID")]
     public IdType? CountrySubDivisionId { get; set; }
 
     [JsonPropertyName("countrySubDivisionName")]
@@ -3500,13 +3500,13 @@ public enum RelationshipTypeCodeValue
 
 public class RelationshipTypeCode
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -4064,13 +4064,13 @@ public enum MeasuredAttributeCodeTypeValue
 
 public class MeasuredAttributeCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -4085,7 +4085,7 @@ public class MeasureType
     [JsonPropertyName("unitCode")]
     public string? UnitCode { get; set; }
 
-    [JsonPropertyName("unitCodeListVersionId")]
+    [JsonPropertyName("unitCodeListVersionID")]
     public string? UnitCodeListVersionId { get; set; }
 
     [JsonPropertyName("value")]
@@ -4094,13 +4094,13 @@ public class MeasureType
 
 public class TemperatureTypeCodeType
 {
-    [JsonPropertyName("listAgencyId")]
+    [JsonPropertyName("listAgencyID")]
     public string? ListAgencyId { get; set; }
 
-    [JsonPropertyName("listId")]
+    [JsonPropertyName("listID")]
     public string? ListId { get; set; }
 
-    [JsonPropertyName("listVersionId")]
+    [JsonPropertyName("listVersionID")]
     public string? ListVersionId { get; set; }
 
     [JsonPropertyName("name")]
@@ -4274,7 +4274,7 @@ public class IncludedSpsTradeLineItem
     [JsonPropertyName("physicalSpsPackage")]
     public IList<PhysicalSpsPackage> PhysicalSpsPackage { get; set; } = new List<PhysicalSpsPackage>();
 
-    [JsonPropertyName("productionBatchId")]
+    [JsonPropertyName("productionBatchID")]
     public IList<IdType> ProductionBatchId { get; set; } = new List<IdType>();
 
     [JsonPropertyName("referenceSpsReferencedDocument")]
@@ -4289,10 +4289,10 @@ public class IncludedSpsTradeLineItem
 
 public class TextType
 {
-    [JsonPropertyName("languageId")]
+    [JsonPropertyName("languageID")]
     public string? LanguageId { get; set; }
 
-    [JsonPropertyName("languageLocaleId")]
+    [JsonPropertyName("languageLocaleID")]
     public string? LanguageLocaleId { get; set; }
 
     [JsonPropertyName("value")]

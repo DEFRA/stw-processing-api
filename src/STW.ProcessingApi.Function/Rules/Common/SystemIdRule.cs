@@ -8,7 +8,7 @@ using Models;
 public class SystemIdRule : IRule
 {
     private const string CnSystemId = "CN";
-    private readonly List<string> _chedTypes = [ChedType.Chedpp, ChedType.Chedp];
+    private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
 
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {

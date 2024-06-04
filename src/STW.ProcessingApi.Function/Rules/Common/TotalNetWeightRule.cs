@@ -11,7 +11,7 @@ public class TotalNetWeightRule : IRule
     private const double MinWeight = 0.001;
     private const int MaxScale = 3;
     private const int MaxPrecision = 16;
-    private readonly List<string> _chedTypes = [ChedType.Chedpp, ChedType.Chedp];
+    private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
 
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {

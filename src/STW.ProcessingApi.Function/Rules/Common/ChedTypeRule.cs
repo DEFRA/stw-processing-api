@@ -7,7 +7,7 @@ using Models;
 
 public class ChedTypeRule : IRule
 {
-    private readonly List<string> _validChedTypes = [ChedType.Chedp, ChedType.Chedpp];
+    private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
 
     public bool ShouldInvoke(SpsCertificate spsCertificate) => true;
 
@@ -19,7 +19,7 @@ public class ChedTypeRule : IRule
         {
             validationErrors.Add(new ValidationError(RuleErrorMessage.ChedTypeMissing, RuleErrorId.ChedTypeMissing));
         }
-        else if (!_validChedTypes.Contains(chedType))
+        else if (!_chedTypes.Contains(chedType))
         {
             validationErrors.Add(new ValidationError(RuleErrorMessage.ChedTypeInvalid, RuleErrorId.ChedTypeInvalid));
         }
