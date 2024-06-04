@@ -5,17 +5,17 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Models;
 using Newtonsoft.Json;
-using Validation;
+using Services;
 
 public class ProcessingApiTrigger
 {
     private readonly ILogger _logger;
-    private readonly IRuleValidator _validator;
+    private readonly IValidationService _validationService;
 
-    public ProcessingApiTrigger(ILogger<ProcessingApiTrigger> logger, IRuleValidator validator)
+    public ProcessingApiTrigger(ILogger<ProcessingApiTrigger> logger, IValidationService validationService)
     {
         _logger = logger;
-        _validator = validator;
+        _validationService = validationService;
     }
 
     [Function(nameof(ProcessingApiTrigger))]
@@ -36,7 +36,7 @@ public class ProcessingApiTrigger
                 return;
             }
 
-            var errors = await _validator.IsValid(spsCertificate);
+            var errors = await _validationService.InvokeRulesAsync(spsCertificate);
 
             if (errors.Count == 0)
             {

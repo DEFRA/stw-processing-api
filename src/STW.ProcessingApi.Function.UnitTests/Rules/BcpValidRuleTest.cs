@@ -1,8 +1,8 @@
-namespace STW.ProcessingApi.Function.UnitTests.Validation.Rules;
+namespace STW.ProcessingApi.Function.UnitTests.Rules;
 
 using FluentAssertions;
+using Function.Rules;
 using Function.Services;
-using Function.Validation.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Moq;
@@ -43,6 +43,7 @@ public class BcpValidRuleTest
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
         var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var errors = new List<ValidationError>();
 
         _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync(
         [
@@ -50,10 +51,10 @@ public class BcpValidRuleTest
         ]);
 
         // Act
-        var result = await _rule.Validate(spsCertificate!);
+        await _rule.Invoke(spsCertificate!, errors);
 
         // Assert
-        result.Should().BeEmpty();
+        errors.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -62,14 +63,15 @@ public class BcpValidRuleTest
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
         var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var errors = new List<ValidationError>();
 
         _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync([]);
 
         // Act
-        var result = await _rule.Validate(spsCertificate!);
+        await _rule.Invoke(spsCertificate!, errors);
 
         // Assert
-        result.Should().Equal(new ValidationError("Invalid BCP with code BCPCODE for CHED type CHEDP"));
+        errors.Should().Equal(new ValidationError("Invalid BCP with code BCPCODE for CHED type CHEDP"));
     }
 
     [TestMethod]
@@ -78,6 +80,7 @@ public class BcpValidRuleTest
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
         var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var errors = new List<ValidationError>();
 
         _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync(
         [
@@ -85,9 +88,9 @@ public class BcpValidRuleTest
         ]);
 
         // Act
-        var result = await _rule.Validate(spsCertificate!);
+        await _rule.Invoke(spsCertificate!, errors);
 
         // Assert
-        result.Should().Equal(new ValidationError("BCP with code BCPCODE for CHED type CHEDP is suspended"));
+        errors.Should().Equal(new ValidationError("BCP with code BCPCODE for CHED type CHEDP is suspended"));
     }
 }

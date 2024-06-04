@@ -1,14 +1,20 @@
-namespace STW.ProcessingApi.Function.Validation.Rules;
+namespace STW.ProcessingApi.Function.Rules;
 
+using Interfaces;
 using Models;
 
-public class ExampleRule : Rule
+public class ExampleRule : IRule
 {
     private const string NoScientificName = "Trade line item is missing a scientific name";
     private const string NoEppoCode = "Trade line item is missing an EPPO code";
     private const int ErrorId = 4;
 
-    public override List<ValidationError> Validate(SpsCertificate spsCertificate)
+    public bool ShouldInvoke(SpsCertificate spsCertificate)
+    {
+        return true;
+    }
+
+    public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> errors)
     {
         var tradeLineItems = spsCertificate.SpsConsignment.IncludedSpsConsignmentItem.First().IncludedSpsTradeLineItem;
         foreach (var tradeLineItem in tradeLineItems)
@@ -17,12 +23,12 @@ public class ExampleRule : Rule
 
             if (!HasScientificName(tradeLineItem))
             {
-                Errors.Add(new ValidationError(NoScientificName, ErrorId, sequenceNumeric));
+                errors.Add(new ValidationError(NoScientificName, ErrorId, sequenceNumeric));
             }
 
             if (!HasEppoCode(tradeLineItem))
             {
-                Errors.Add(new ValidationError(NoEppoCode, ErrorId, sequenceNumeric));
+                errors.Add(new ValidationError(NoEppoCode, ErrorId, sequenceNumeric));
             }
 
             tradeLineItem.ScientificName.Add(
@@ -31,8 +37,6 @@ public class ExampleRule : Rule
                     Value = "Test",
                 });
         }
-
-        return Errors;
     }
 
     private bool HasScientificName(IncludedSpsTradeLineItem tradeLineItem) // This check is already done in the schema

@@ -1,11 +1,13 @@
 namespace STW.ProcessingApi.Function.Extensions;
 
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Options;
+using Rules;
+using Rules.Interfaces;
 using Services;
-using Validation;
-using Validation.Rules;
 
 public static class ServiceCollectionExtensions
 {
@@ -15,22 +17,31 @@ public static class ServiceCollectionExtensions
             .Configure<IConfiguration>((s, c) => c.GetSection(HealthCheckOptions.Section).Bind(s));
     }
 
-    public static void RegisterRuleValidator(this IServiceCollection serviceCollection)
+    public static void RegisterServices(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<Rule, ExampleRule>();
+        serviceCollection.AddScoped<IValidationService, ValidationService>();
+    }
 
-        serviceCollection.AddScoped<AsyncRule, ExampleAsyncRule>();
-        serviceCollection.AddScoped<AsyncRule, BcpValidRule>();
+    public static void RegisterRules(this IServiceCollection serviceCollection)
+    {
+        var assemblyTypes = Assembly.GetExecutingAssembly().GetTypes();
 
-        serviceCollection.AddScoped<IRuleValidator, Validator>();
+        foreach (var type in assemblyTypes.Where(
+                     x => typeof(IRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        {
+            serviceCollection.AddScoped(typeof(IRule), type);
+        }
+
+        foreach (var type in assemblyTypes.Where(
+                     x => typeof(IAsyncRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        {
+            serviceCollection.AddScoped(typeof(IAsyncRule), type);
+        }
     }
 
     public static void RegisterHttpClients(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddHttpClient<IBcpService, BcpService>(
-            httpClient =>
-            {
-                httpClient.BaseAddress = new Uri("http://localhost:5295");
-            });
+            httpClient => { httpClient.BaseAddress = new Uri("http://localhost:5295"); });
     }
 }

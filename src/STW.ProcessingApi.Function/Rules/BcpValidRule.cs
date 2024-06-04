@@ -1,9 +1,10 @@
-namespace STW.ProcessingApi.Function.Validation.Rules;
+namespace STW.ProcessingApi.Function.Rules;
 
+using Interfaces;
 using Models;
 using Services;
 
-public class BcpValidRule : AsyncRule
+public class BcpValidRule : IAsyncRule
 {
     private readonly IBcpService _bcpService;
 
@@ -12,7 +13,12 @@ public class BcpValidRule : AsyncRule
         _bcpService = bcpService;
     }
 
-    public override async Task<List<ValidationError>> Validate(SpsCertificate spsCertificate)
+    public bool ShouldInvoke(SpsCertificate spsCertificate)
+    {
+        return true;
+    }
+
+    public async Task Invoke(SpsCertificate spsCertificate, IList<ValidationError> errors)
     {
         var chedType = GetChedType(spsCertificate);
         var bcpCode = GetBcpCode(spsCertificate);
@@ -23,19 +29,17 @@ public class BcpValidRule : AsyncRule
 
             if (bcps.Count == 0)
             {
-                Errors.Add(new ValidationError($"Invalid BCP with code {bcpCode} for CHED type {chedType}"));
+                errors.Add(new ValidationError($"Invalid BCP with code {bcpCode} for CHED type {chedType}"));
             }
             else if (bcps[0].Suspended)
             {
-                Errors.Add(new ValidationError($"BCP with code {bcpCode} for CHED type {chedType} is suspended"));
+                errors.Add(new ValidationError($"BCP with code {bcpCode} for CHED type {chedType} is suspended"));
             }
         }
         catch (HttpRequestException exception)
         {
-            Errors.Add(new ValidationError($"Unable to check BCP validity: {exception.Message}"));
+            errors.Add(new ValidationError($"Unable to check BCP validity: {exception.Message}"));
         }
-
-        return Errors;
     }
 
     private static string GetChedType(SpsCertificate spsCertificate)
