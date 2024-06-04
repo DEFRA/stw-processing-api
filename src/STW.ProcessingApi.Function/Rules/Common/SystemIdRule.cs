@@ -22,7 +22,7 @@ public class SystemIdRule : IRule
         var match = spsCertificate.SpsConsignment.IncludedSpsConsignmentItem
             .First()
             .IncludedSpsTradeLineItem
-            .FirstOrDefault(x => !x.ApplicableSpsClassification.All(HasValidSystemId));
+            .FirstOrDefault(x => !x.ApplicableSpsClassification.Any(HasValidSystemId));
 
         if (match is not null)
         {
