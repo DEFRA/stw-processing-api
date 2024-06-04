@@ -29,8 +29,8 @@ public class CountryRegionOfOriginRule : IRule
 
     private static void ValidateTradeLineItems(IList<IncludedSpsTradeLineItem> tradeLineItems, IList<ValidationError> validationErrors)
     {
-        HashSet<string> countries = [];
-        HashSet<string> regions = [];
+        HashSet<string> countries = new HashSet<string>();
+        HashSet<string> regions = new HashSet<string>();
 
         tradeLineItems
             .Where(x => IsCountryOfOriginPresent(x, validationErrors))

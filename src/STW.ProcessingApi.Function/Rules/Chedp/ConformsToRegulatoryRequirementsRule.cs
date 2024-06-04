@@ -7,7 +7,7 @@ using Models;
 
 public class ConformsToRegulatoryRequirementsRule : IRule
 {
-    private readonly List<string> _allowedValues = ["TRUE", "FALSE"];
+    private readonly string[] _allowedValues = new string[] { "TRUE", "FALSE" };
 
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {
