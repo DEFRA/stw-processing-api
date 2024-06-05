@@ -29,7 +29,8 @@ The environment variables can be set by creating `local.settings.json` in `src/S
     "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "ServiceBusConnectionString": "<service-bus-connection-string>",
-    "ServiceBusQueueName": "<queue-name>"
+    "ServiceBusQueueName": "<queue-name>",
+    "ApiConfig:BcpServiceBaseUrl": "http://localhost:5295"
   }
 }
 ```

@@ -3,6 +3,7 @@ namespace STW.ProcessingApi.Function.Extensions;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Options;
 using Rules.Interfaces;
 using Services;
@@ -14,6 +15,8 @@ public static class ServiceCollectionExtensions
     {
         serviceCollection.AddOptions<HealthCheckOptions>()
             .Configure<IConfiguration>((o, c) => c.GetSection(HealthCheckOptions.Section).Bind(o));
+        serviceCollection.AddOptions<ApiConfigOptions>()
+            .Configure<IConfiguration>((o, c) => c.GetSection(ApiConfigOptions.Section).Bind(o));
     }
 
     public static void RegisterServices(this IServiceCollection serviceCollection)
@@ -25,12 +28,14 @@ public static class ServiceCollectionExtensions
     {
         var assemblyTypes = Assembly.GetExecutingAssembly().GetTypes();
 
-        foreach (var type in assemblyTypes.Where(x => typeof(IRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        foreach (var type in assemblyTypes.Where(
+                     x => typeof(IRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
         {
             serviceCollection.AddScoped(typeof(IRule), type);
         }
 
-        foreach (var type in assemblyTypes.Where(x => typeof(IAsyncRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        foreach (var type in assemblyTypes.Where(
+                     x => typeof(IAsyncRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
         {
             serviceCollection.AddScoped(typeof(IAsyncRule), type);
         }
@@ -39,6 +44,10 @@ public static class ServiceCollectionExtensions
     public static void RegisterHttpClients(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddHttpClient<IBcpService, BcpService>(
-            httpClient => { httpClient.BaseAddress = new Uri("http://localhost:5295"); });
+            (serviceProvider, httpClient) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+                httpClient.BaseAddress = new Uri(options.BcpServiceBaseUrl);
+            });
     }
 }

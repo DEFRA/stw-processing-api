@@ -1,7 +1,7 @@
-namespace STW.ProcessingApi.Function.UnitTests.Rules;
+namespace STW.ProcessingApi.Function.UnitTests.Rules.Common;
 
 using FluentAssertions;
-using Function.Rules;
+using Function.Rules.Common;
 using Function.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;

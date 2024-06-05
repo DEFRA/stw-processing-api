@@ -1,6 +1,7 @@
-namespace STW.ProcessingApi.Function.Rules;
+namespace STW.ProcessingApi.Function.Rules.Common;
 
 using Constants;
+using Helpers;
 using Interfaces;
 using Models;
 using Services;
@@ -21,7 +22,8 @@ public class BcpValidRule : IAsyncRule
 
     public async Task InvokeAsync(SpsCertificate spsCertificate, IList<ValidationError> errors)
     {
-        var chedType = GetChedType(spsCertificate);
+        var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote) ??
+                       string.Empty;
         var bcpCode = GetBcpCode(spsCertificate);
 
         try
@@ -52,14 +54,8 @@ public class BcpValidRule : IAsyncRule
         }
     }
 
-    private static string GetChedType(SpsCertificate spsCertificate)
-    {
-        return spsCertificate.SpsExchangedDocument.IncludedSpsNote.ToList()
-            .Find(note => note.SubjectCode!.Value == "CHED_TYPE")!.Content.First().Value;
-    }
-
     private static string GetBcpCode(SpsCertificate spsCertificate)
     {
-        return spsCertificate.SpsConsignment.UnloadingBaseportSpsLocation!.Id!.Value;
+        return spsCertificate.SpsConsignment.UnloadingBaseportSpsLocation?.Id?.Value ?? string.Empty;
     }
 }
