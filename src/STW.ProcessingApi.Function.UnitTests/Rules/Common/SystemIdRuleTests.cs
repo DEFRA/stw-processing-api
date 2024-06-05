@@ -83,9 +83,9 @@ public class SystemIdRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.SystemIdMissing);
-                x.Id.Should().Be(RuleErrorId.SystemIdMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.SystemIdMissing);
+                x.ErrorId.Should().Be(RuleErrorId.SystemIdMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -117,9 +117,9 @@ public class SystemIdRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.SystemIdMissing);
-                x.Id.Should().Be(RuleErrorId.SystemIdMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.SystemIdMissing);
+                x.ErrorId.Should().Be(RuleErrorId.SystemIdMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -151,9 +151,9 @@ public class SystemIdRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.SystemIdMissing);
-                x.Id.Should().Be(RuleErrorId.SystemIdMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.SystemIdMissing);
+                x.ErrorId.Should().Be(RuleErrorId.SystemIdMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 

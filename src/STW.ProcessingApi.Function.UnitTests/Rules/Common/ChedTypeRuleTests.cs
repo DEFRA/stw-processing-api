@@ -71,8 +71,8 @@ public class ChedTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ChedTypeInvalid);
-                x.Id.Should().Be(RuleErrorId.ChedTypeInvalid);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ChedTypeInvalid);
+                x.ErrorId.Should().Be(RuleErrorId.ChedTypeInvalid);
             });
     }
 
@@ -92,8 +92,8 @@ public class ChedTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ChedTypeMissing);
-                x.Id.Should().Be(RuleErrorId.ChedTypeMissing);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ChedTypeMissing);
+                x.ErrorId.Should().Be(RuleErrorId.ChedTypeMissing);
             });
     }
 }

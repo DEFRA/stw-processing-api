@@ -90,8 +90,8 @@ public class ChedppInternalMarketRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.PurposeMustBeInternalMarket);
-                x.Id.Should().Be(RuleErrorId.PurposeMustBeInternalMarket);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.PurposeMustBeInternalMarket);
+                x.ErrorId.Should().Be(RuleErrorId.PurposeMustBeInternalMarket);
             });
     }
 

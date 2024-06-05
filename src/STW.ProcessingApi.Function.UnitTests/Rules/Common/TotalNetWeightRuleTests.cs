@@ -80,9 +80,9 @@ public class TotalNetWeightRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NetWeightLessThanMinWeight);
-                x.Id.Should().Be(RuleErrorId.NetWeightLessThanMinWeight);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightLessThanMinWeight);
+                x.ErrorId.Should().Be(RuleErrorId.NetWeightLessThanMinWeight);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -108,9 +108,9 @@ public class TotalNetWeightRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NetWeightTooManyDecimals);
-                x.Id.Should().Be(RuleErrorId.NetWeightTooManyDecimals);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightTooManyDecimals);
+                x.ErrorId.Should().Be(RuleErrorId.NetWeightTooManyDecimals);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -136,9 +136,9 @@ public class TotalNetWeightRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NetWeightTooManyDigits);
-                x.Id.Should().Be(RuleErrorId.NetWeightTooManyDigits);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NetWeightTooManyDigits);
+                x.ErrorId.Should().Be(RuleErrorId.NetWeightTooManyDigits);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 

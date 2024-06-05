@@ -113,8 +113,8 @@ public class PurposeOfConsignmentRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NonConformingConsignmentMissingDestinationType);
-                x.Id.Should().Be(RuleErrorId.NonConformingConsignmentMissingDestinationType);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingConsignmentMissingDestinationType);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingConsignmentMissingDestinationType);
             });
     }
 }

@@ -94,8 +94,8 @@ public class ConformsToRegulatoryRequirementsRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ConformsToEuNoteNotFound);
-                x.Id.Should().Be(RuleErrorId.ConformsToEuNoteNotFound);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuNoteNotFound);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuNoteNotFound);
             });
     }
 
@@ -117,8 +117,8 @@ public class ConformsToRegulatoryRequirementsRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ConformsToEuNoteInvalidValue);
-                x.Id.Should().Be(RuleErrorId.ConformsToEuNoteInvalidValue);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuNoteInvalidValue);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuNoteInvalidValue);
             });
     }
 }

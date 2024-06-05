@@ -236,9 +236,9 @@ public class ScientificNameAndEppoCodeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, 1));
-                x.Id.Should().Be(RuleErrorId.ScientificNameOrEppoCodeMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, 1));
+                x.ErrorId.Should().Be(RuleErrorId.ScientificNameOrEppoCodeMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -292,9 +292,9 @@ public class ScientificNameAndEppoCodeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, 1));
-                x.Id.Should().Be(RuleErrorId.ScientificNameOrEppoCodeMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.ScientificNameOrEppoCodeMissing, 1));
+                x.ErrorId.Should().Be(RuleErrorId.ScientificNameOrEppoCodeMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 }

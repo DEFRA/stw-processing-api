@@ -165,8 +165,8 @@ public class TranshipmentRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.MissingImportSpsCountry);
-                x.Id.Should().Be(RuleErrorId.MissingImportSpsCountry);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingImportSpsCountry);
+                x.ErrorId.Should().Be(RuleErrorId.MissingImportSpsCountry);
             });
     }
 
@@ -212,8 +212,8 @@ public class TranshipmentRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.MissingFinalBip);
-                x.Id.Should().Be(RuleErrorId.MissingFinalBip);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingFinalBip);
+                x.ErrorId.Should().Be(RuleErrorId.MissingFinalBip);
             });
     }
 }

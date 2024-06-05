@@ -88,13 +88,13 @@ public class ValidationServiceTests
         result.Should().SatisfyRespectively(
             first =>
             {
-                first.Message.Should().Be(ruleErrorMessage);
-                first.Id.Should().Be(ruleErrorId);
+                first.ErrorMessage.Should().Be(ruleErrorMessage);
+                first.ErrorId.Should().Be(ruleErrorId);
             },
             second =>
             {
-                second.Message.Should().Be(asyncRuleErrorMessage);
-                second.Id.Should().Be(asyncRuleErrorId);
+                second.ErrorMessage.Should().Be(asyncRuleErrorMessage);
+                second.ErrorId.Should().Be(asyncRuleErrorId);
             });
     }
 }

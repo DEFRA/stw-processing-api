@@ -187,8 +187,8 @@ public class CustomsWarehouseRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NonConformingGoodsCannotConformToEu);
-                x.Id.Should().Be(RuleErrorId.NonConformingGoodsCannotConformToEu);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingGoodsCannotConformToEu);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingGoodsCannotConformToEu);
             });
     }
 
@@ -225,8 +225,8 @@ public class CustomsWarehouseRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.RegisteredNumberMissingCustomsWarehouseNumber);
-                x.Id.Should().Be(RuleErrorId.RegisteredNumberMissingCustomsWarehouseNumber);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.RegisteredNumberMissingCustomsWarehouseNumber);
+                x.ErrorId.Should().Be(RuleErrorId.RegisteredNumberMissingCustomsWarehouseNumber);
             });
     }
 }

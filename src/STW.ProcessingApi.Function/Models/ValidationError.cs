@@ -2,22 +2,22 @@ namespace STW.ProcessingApi.Function.Models;
 
 public class ValidationError
 {
-    public ValidationError(string message, int id, int? tradeLineItem = default)
+    public ValidationError(string errorMessage, int errorId, int? errorTradeLineItem = default)
     {
-        Message = message;
-        Id = id;
-        TradeLineItem = tradeLineItem;
+        ErrorMessage = errorMessage;
+        ErrorId = errorId;
+        ErrorTradeLineItem = errorTradeLineItem;
     }
 
-    public string Message { get; }
+    public string ErrorMessage { get; }
 
-    public int? Id { get; }
+    public int? ErrorId { get; }
 
-    public int? TradeLineItem { get; }
+    public int? ErrorTradeLineItem { get; }
 
     public override string ToString()
     {
-        return $"{Message}";
+        return $"{ErrorMessage}";
     }
 
     public override bool Equals(object? obj)
@@ -42,11 +42,11 @@ public class ValidationError
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Message, Id, TradeLineItem);
+        return HashCode.Combine(ErrorMessage, ErrorId, ErrorTradeLineItem);
     }
 
     private bool Equals(ValidationError other)
     {
-        return Message == other.Message && Id == other.Id && TradeLineItem == other.TradeLineItem;
+        return ErrorMessage == other.ErrorMessage && ErrorId == other.ErrorId && ErrorTradeLineItem == other.ErrorTradeLineItem;
     }
 }

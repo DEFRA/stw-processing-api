@@ -109,9 +109,9 @@ public class SupplementaryDataRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.VarietyMissing);
-                x.Id.Should().Be(RuleErrorId.VarietyMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.VarietyMissing);
+                x.ErrorId.Should().Be(RuleErrorId.VarietyMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -140,9 +140,9 @@ public class SupplementaryDataRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ClassMissing);
-                x.Id.Should().Be(RuleErrorId.ClassMissing);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ClassMissing);
+                x.ErrorId.Should().Be(RuleErrorId.ClassMissing);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -172,9 +172,9 @@ public class SupplementaryDataRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.VarietyEmpty);
-                x.Id.Should().Be(RuleErrorId.VarietyEmpty);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.VarietyEmpty);
+                x.ErrorId.Should().Be(RuleErrorId.VarietyEmpty);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -204,9 +204,9 @@ public class SupplementaryDataRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ClassEmpty);
-                x.Id.Should().Be(RuleErrorId.ClassEmpty);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ClassEmpty);
+                x.ErrorId.Should().Be(RuleErrorId.ClassEmpty);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 }

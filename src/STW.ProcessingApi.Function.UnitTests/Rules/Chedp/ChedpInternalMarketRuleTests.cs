@@ -157,8 +157,8 @@ public class ChedpInternalMarketRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ConformsToEuRequiredForInternalMarket);
-                x.Id.Should().Be(RuleErrorId.ConformsToEuRequiredForInternalMarket);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuRequiredForInternalMarket);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuRequiredForInternalMarket);
             });
     }
 
@@ -195,8 +195,8 @@ public class ChedpInternalMarketRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.GoodsCertifiedAsValueIsInvalid);
-                x.Id.Should().Be(RuleErrorId.GoodsCertifiedAsValueIsInvalid);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.GoodsCertifiedAsValueIsInvalid);
+                x.ErrorId.Should().Be(RuleErrorId.GoodsCertifiedAsValueIsInvalid);
             });
     }
 }

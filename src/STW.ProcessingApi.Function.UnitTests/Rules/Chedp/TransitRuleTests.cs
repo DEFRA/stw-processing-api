@@ -198,8 +198,8 @@ public class TransitRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.MissingExitBcp);
-                x.Id.Should().Be(RuleErrorId.MissingExitBcp);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingExitBcp);
+                x.ErrorId.Should().Be(RuleErrorId.MissingExitBcp);
             });
     }
 
@@ -241,8 +241,8 @@ public class TransitRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.DuplicateTransitingCountries);
-                x.Id.Should().Be(RuleErrorId.DuplicateTransitingCountries);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.DuplicateTransitingCountries);
+                x.ErrorId.Should().Be(RuleErrorId.DuplicateTransitingCountries);
             });
     }
 
@@ -295,8 +295,8 @@ public class TransitRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.TransitingCountriesMax, 12));
-                x.Id.Should().Be(RuleErrorId.TransitingCountriesMax);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.TransitingCountriesMax, 12));
+                x.ErrorId.Should().Be(RuleErrorId.TransitingCountriesMax);
             });
     }
 
@@ -336,8 +336,8 @@ public class TransitRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ThirdCountryMissing);
-                x.Id.Should().Be(RuleErrorId.ThirdCountryMissing);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ThirdCountryMissing);
+                x.ErrorId.Should().Be(RuleErrorId.ThirdCountryMissing);
             });
     }
 }

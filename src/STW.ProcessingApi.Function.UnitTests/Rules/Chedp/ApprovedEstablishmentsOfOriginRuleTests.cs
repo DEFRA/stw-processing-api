@@ -126,38 +126,38 @@ public class ApprovedEstablishmentsOfOriginRuleTests
         _validationErrors.Should().HaveCount(7).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryCode);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingCountryCode);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryCode);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingCountryCode);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryName);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingCountryName);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingCountryName);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingCountryName);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingApprovalNumber);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingApprovalNumber);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingApprovalNumber);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingApprovalNumber);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingOperatorName);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingOperatorName);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingOperatorName);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingOperatorName);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingSection);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingSection);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingSection);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingSection);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityName);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingActivityName);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityName);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingActivityName);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityCode);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentMissingActivityCode);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentMissingActivityCode);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentMissingActivityCode);
             });
     }
 
@@ -195,8 +195,8 @@ public class ApprovedEstablishmentsOfOriginRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ApprovedEstablishmentIncorrectRoleCode);
-                x.Id.Should().Be(RuleErrorId.ApprovedEstablishmentIncorrectRoleCode);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ApprovedEstablishmentIncorrectRoleCode);
+                x.ErrorId.Should().Be(RuleErrorId.ApprovedEstablishmentIncorrectRoleCode);
             });
     }
 }

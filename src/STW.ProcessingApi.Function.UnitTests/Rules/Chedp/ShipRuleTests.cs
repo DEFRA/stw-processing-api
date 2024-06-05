@@ -185,8 +185,8 @@ public class ShipRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NonConformingGoodsCannotConformToEu);
-                x.Id.Should().Be(RuleErrorId.NonConformingGoodsCannotConformToEu);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingGoodsCannotConformToEu);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingGoodsCannotConformToEu);
             });
     }
 
@@ -224,8 +224,8 @@ public class ShipRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NonConformingGoodsShipNameMissing);
-                x.Id.Should().Be(RuleErrorId.NonConformingGoodsShipNameMissing);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingGoodsShipNameMissing);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingGoodsShipNameMissing);
             });
     }
 
@@ -263,8 +263,8 @@ public class ShipRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.NonConformingGoodsShipPortMissing);
-                x.Id.Should().Be(RuleErrorId.NonConformingGoodsShipPortMissing);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.NonConformingGoodsShipPortMissing);
+                x.ErrorId.Should().Be(RuleErrorId.NonConformingGoodsShipPortMissing);
             });
     }
 }

@@ -83,15 +83,15 @@ public class TradeLineItemSequenceRuleTests
         _validationErrors.Should().HaveCount(2).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.SequenceNumericOrder);
-                x.Id.Should().Be(RuleErrorId.SequenceNumericOrder);
-                x.TradeLineItem.Should().Be(2);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.SequenceNumericOrder);
+                x.ErrorId.Should().Be(RuleErrorId.SequenceNumericOrder);
+                x.ErrorTradeLineItem.Should().Be(2);
             },
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.SequenceNumericOrder);
-                x.Id.Should().Be(RuleErrorId.SequenceNumericOrder);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.SequenceNumericOrder);
+                x.ErrorId.Should().Be(RuleErrorId.SequenceNumericOrder);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -120,9 +120,9 @@ public class TradeLineItemSequenceRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.SequenceNumericOrder);
-                x.Id.Should().Be(RuleErrorId.SequenceNumericOrder);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.SequenceNumericOrder);
+                x.ErrorId.Should().Be(RuleErrorId.SequenceNumericOrder);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 

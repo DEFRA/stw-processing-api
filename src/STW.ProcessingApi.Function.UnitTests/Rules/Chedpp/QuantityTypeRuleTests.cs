@@ -115,9 +115,9 @@ public class QuantityTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.QuantityMustBeOneOrMore);
-                x.Id.Should().Be(RuleErrorId.QuantityMustBeOneOrMore);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.QuantityMustBeOneOrMore);
+                x.ErrorId.Should().Be(RuleErrorId.QuantityMustBeOneOrMore);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -146,9 +146,9 @@ public class QuantityTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.InvalidQuantityType);
-                x.Id.Should().Be(RuleErrorId.InvalidQuantityType);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.InvalidQuantityType);
+                x.ErrorId.Should().Be(RuleErrorId.InvalidQuantityType);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -177,9 +177,9 @@ public class QuantityTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.QuantityMustBeOneOrMore);
-                x.Id.Should().Be(RuleErrorId.QuantityMustBeOneOrMore);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.QuantityMustBeOneOrMore);
+                x.ErrorId.Should().Be(RuleErrorId.QuantityMustBeOneOrMore);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -215,9 +215,9 @@ public class QuantityTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.InvalidQuantityType);
-                x.Id.Should().Be(RuleErrorId.InvalidQuantityType);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.InvalidQuantityType);
+                x.ErrorId.Should().Be(RuleErrorId.InvalidQuantityType);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -253,9 +253,9 @@ public class QuantityTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.InvalidQuantityType);
-                x.Id.Should().Be(RuleErrorId.InvalidQuantityType);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.InvalidQuantityType);
+                x.ErrorId.Should().Be(RuleErrorId.InvalidQuantityType);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 
@@ -287,9 +287,9 @@ public class QuantityTypeRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.MissingQuantityType);
-                x.Id.Should().Be(RuleErrorId.MissingQuantityType);
-                x.TradeLineItem.Should().Be(1);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingQuantityType);
+                x.ErrorId.Should().Be(RuleErrorId.MissingQuantityType);
+                x.ErrorTradeLineItem.Should().Be(1);
             });
     }
 }

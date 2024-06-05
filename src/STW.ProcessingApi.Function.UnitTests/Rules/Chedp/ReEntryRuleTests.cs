@@ -157,8 +157,8 @@ public class ReEntryRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry);
-                x.Id.Should().Be(RuleErrorId.ConformsToEuMustBeTrueForReEntry);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuMustBeTrueForReEntry);
             });
     }
 
@@ -190,8 +190,8 @@ public class ReEntryRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry);
-                x.Id.Should().Be(RuleErrorId.ConformsToEuMustBeTrueForReEntry);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.ConformsToEuMustBeTrueForReEntry);
+                x.ErrorId.Should().Be(RuleErrorId.ConformsToEuMustBeTrueForReEntry);
             });
     }
 }

@@ -76,8 +76,8 @@ public class CountryRegionOfOriginRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(RuleErrorMessage.CountryOfOriginMissing);
-                x.Id.Should().Be(RuleErrorId.CountryOfOriginMissing);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.CountryOfOriginMissing);
+                x.ErrorId.Should().Be(RuleErrorId.CountryOfOriginMissing);
             });
     }
 
@@ -112,8 +112,8 @@ public class CountryRegionOfOriginRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, "AF, AL"));
-                x.Id.Should().Be(RuleErrorId.MoreThanOneCountryOfOrigin);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, "AF, AL"));
+                x.ErrorId.Should().Be(RuleErrorId.MoreThanOneCountryOfOrigin);
             });
     }
 
@@ -144,8 +144,8 @@ public class CountryRegionOfOriginRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInTradeLineItem, "GB-SCO, GB-WLS"));
-                x.Id.Should().Be(RuleErrorId.MoreThanOneRegionOfOriginInTradeLineItem);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInTradeLineItem, "GB-SCO, GB-WLS"));
+                x.ErrorId.Should().Be(RuleErrorId.MoreThanOneRegionOfOriginInTradeLineItem);
             });
     }
 
@@ -180,8 +180,8 @@ public class CountryRegionOfOriginRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, "GB-SCO, GB-WLS"));
-                x.Id.Should().Be(RuleErrorId.MoreThanOneRegionOfOriginInConsignment);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, "GB-SCO, GB-WLS"));
+                x.ErrorId.Should().Be(RuleErrorId.MoreThanOneRegionOfOriginInConsignment);
             });
     }
 
@@ -209,8 +209,8 @@ public class CountryRegionOfOriginRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.Message.Should().Be(string.Format(RuleErrorMessage.InvalidRegionOfOrigin, TestConstants.Invalid));
-                x.Id.Should().Be(RuleErrorId.InvalidRegionOfOrigin);
+                x.ErrorMessage.Should().Be(string.Format(RuleErrorMessage.InvalidRegionOfOrigin, TestConstants.Invalid));
+                x.ErrorId.Should().Be(RuleErrorId.InvalidRegionOfOrigin);
             });
     }
 
