@@ -6,5 +6,5 @@ public interface IAsyncRule
 {
     bool ShouldInvoke(SpsCertificate spsCertificate);
 
-    Task InvokeAsync(SpsCertificate certificate, IList<ValidationError> errors);
+    Task InvokeAsync(SpsCertificate spsCertificate, IList<ValidationError> validationErrors);
 }
