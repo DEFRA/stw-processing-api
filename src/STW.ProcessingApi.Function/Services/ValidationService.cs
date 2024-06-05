@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.Services;
 
+using Interfaces;
 using Microsoft.Extensions.Logging;
 using Models;
 using Rules.Interfaces;
@@ -28,7 +29,7 @@ public class ValidationService : IValidationService
 
         foreach (var rule in _asyncRules.Where(x => x.ShouldInvoke(spsCertificate)))
         {
-            await rule.Invoke(spsCertificate, validationErrors);
+            await rule.InvokeAsync(spsCertificate, validationErrors);
         }
 
         return validationErrors;

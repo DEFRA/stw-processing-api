@@ -5,7 +5,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Models;
 using Newtonsoft.Json;
-using Services;
+using Services.Interfaces;
 
 public class ProcessingApiTrigger
 {
@@ -19,7 +19,8 @@ public class ProcessingApiTrigger
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
+    public async Task Run(
+        [ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
         ServiceBusReceivedMessage message)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
@@ -30,13 +31,7 @@ public class ProcessingApiTrigger
         {
             var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(messageBody);
 
-            if (spsCertificate == null)
-            {
-                _logger.LogWarning("SPSCertificate is null");
-                return;
-            }
-
-            var errors = await _validationService.InvokeRulesAsync(spsCertificate);
+            var errors = await _validationService.InvokeRulesAsync(spsCertificate!);
 
             if (errors.Count == 0)
             {

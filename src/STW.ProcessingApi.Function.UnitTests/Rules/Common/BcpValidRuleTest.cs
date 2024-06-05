@@ -51,7 +51,7 @@ public class BcpValidRuleTest
         ]);
 
         // Act
-        await _rule.Invoke(spsCertificate!, errors);
+        await _rule.InvokeAsync(spsCertificate!, errors);
 
         // Assert
         errors.Should().BeEmpty();
@@ -68,10 +68,15 @@ public class BcpValidRuleTest
         _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync([]);
 
         // Act
-        await _rule.Invoke(spsCertificate!, errors);
+        await _rule.InvokeAsync(spsCertificate!, errors);
 
         // Assert
-        errors.Should().Equal(new ValidationError("Invalid BCP with code BCPCODE for CHED type CHEDP"));
+        errors.Should().SatisfyRespectively(
+            x =>
+            {
+                x.Message.Should().Be("Invalid BCP with code BCPCODE for CHED type CHEDP");
+                x.Id.Should().Be(89);
+            });
     }
 
     [TestMethod]
@@ -88,9 +93,14 @@ public class BcpValidRuleTest
         ]);
 
         // Act
-        await _rule.Invoke(spsCertificate!, errors);
+        await _rule.InvokeAsync(spsCertificate!, errors);
 
         // Assert
-        errors.Should().Equal(new ValidationError("BCP with code BCPCODE for CHED type CHEDP is suspended"));
+        errors.Should().SatisfyRespectively(
+            x =>
+            {
+                x.Message.Should().Be("BCP with code BCPCODE for CHED type CHEDP is suspended");
+                x.Id.Should().Be(90);
+            });
     }
 }

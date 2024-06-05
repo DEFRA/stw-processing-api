@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.Function.Services;
+namespace STW.ProcessingApi.Function.Services.Interfaces;
 
 using Models;
 

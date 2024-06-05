@@ -6,5 +6,5 @@ public interface IRule
 {
     bool ShouldInvoke(SpsCertificate spsCertificate);
 
-    void Invoke(SpsCertificate spsCertificate, IList<ValidationError> errors);
+    void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors);
 }
