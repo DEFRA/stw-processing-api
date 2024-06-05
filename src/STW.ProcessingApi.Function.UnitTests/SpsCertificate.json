@@ -1,0 +1,330 @@
+{
+  "spsConsignment": {
+    "availabilityDueDateTime": {
+      "dateTime": {
+        "value": "2020-10-21T14:30:00Z"
+      }
+    },
+    "carrierSpsParty": {
+      "id": {
+        "value": "NS123"
+      },
+      "name": {
+        "value": "Transporter name"
+      },
+      "specifiedSpsAddress": {
+        "cityName": {
+          "value": "Ashashire"
+        },
+        "countryID": {
+          "value": "GB"
+        },
+        "lineOne": {
+          "value": "82760 Stoltenberg Oval"
+        },
+        "lineThree": {
+          "value": "Georgia"
+        },
+        "lineTwo": {
+          "value": "Apt. 890"
+        },
+        "postcodeCode": {
+          "value": "81731"
+        }
+      }
+    },
+    "consigneeSpsParty": {
+      "id": {
+        "value": "GB00092121"
+      },
+      "name": {
+        "value": "Oakfield (Foods) Ltd"
+      },
+      "specifiedSpsAddress": {
+        "cityName": {
+          "value": "Ashashire"
+        },
+        "countryID": {
+          "value": "GB"
+        },
+        "lineOne": {
+          "value": "82760 Stoltenberg Oval"
+        },
+        "lineThree": {
+          "value": "Georgia"
+        },
+        "lineTwo": {
+          "value": "Apt. 890"
+        },
+        "postcodeCode": {
+          "value": "81731"
+        }
+      }
+    },
+    "consignorSpsParty": {
+      "id": {
+        "value": "GB00092121"
+      },
+      "name": {
+        "value": "Oakfield (Foods) Ltd"
+      },
+      "specifiedSpsAddress": {
+        "cityName": {
+          "value": "Lake Marcellus"
+        },
+        "countryID": {
+          "value": "BR"
+        },
+        "lineOne": {
+          "value": "5953 Francisco Plain"
+        },
+        "lineThree": {
+          "value": "Vermont"
+        },
+        "lineTwo": {
+          "value": "Suite 175"
+        },
+        "postcodeCode": {
+          "value": "43348"
+        }
+      }
+    },
+    "deliverySpsParty": {
+      "id": {
+        "value": "GB00092121"
+      },
+      "name": {
+        "value": "Oakfield (Foods) Ltd"
+      },
+      "specifiedSpsAddress": {
+        "cityName": {
+          "value": "Lake Marcellus"
+        },
+        "countryID": {
+          "value": "BR"
+        },
+        "lineOne": {
+          "value": "5953 Francisco Plain"
+        },
+        "lineThree": {
+          "value": "Vermont"
+        },
+        "lineTwo": {
+          "value": "Suite 175"
+        },
+        "postcodeCode": {
+          "value": "43348"
+        }
+      }
+    },
+    "examinationSpsEvent": {
+      "occurrenceSpsLocation": {
+        "name": [
+          {
+            "value": ""
+          }
+        ]
+      }
+    },
+    "exportSpsCountry": {
+      "id": {
+        "value": "NZ"
+      },
+      "name": [
+        {
+          "value": "New Zealand"
+        }
+      ]
+    },
+    "importSpsCountry": {
+      "id": {
+        "value": ""
+      },
+      "name": [
+        {
+          "value": ""
+        }
+      ]
+    },
+    "includedSpsConsignmentItem": [
+      {
+        "includedSpsTradeLineItem": [
+          {
+            "additionalInformationSpsNote": [
+              {
+                "content": [
+                  {
+                    "value": "TRUE"
+                  }
+                ],
+                "subjectCode": {
+                  "value": "container"
+                }
+              }
+            ],
+            "applicableSpsClassification": [
+              {
+                "classCode": {
+                  "value": "07099990"
+                },
+                "className": [
+                  {
+                    "value": "Other"
+                  }
+                ],
+                "systemID": {
+                  "value": "CN"
+                },
+                "systemName": [
+                  {
+                    "value": "CN Code (Combined Nomenclature)"
+                  }
+                ]
+              }
+            ],
+            "description": [
+              {
+                "value": ""
+              }
+            ],
+            "netWeightMeasure": {
+              "value": 1,
+              "unitCode": "KGM"
+            },
+            "originSpsCountry": [
+              {
+                "id": {
+                  "value": "NZ"
+                },
+                "name": [
+                  {
+                    "value": "New Zealand"
+                  }
+                ]
+              }
+            ],
+            "physicalSpsPackage": [
+              {
+                "itemQuantity": {
+                  "value": 2
+                },
+                "levelCode": {
+                  "value": "4"
+                },
+                "typeCode": {
+                  "value": "BG"
+                }
+              }
+            ],
+            "scientificName": [
+              {
+                "value": "Name"
+              }
+            ],
+            "sequenceNumeric": {
+              "value": 1
+            }
+          }
+        ]
+      },
+    ],
+    "mainCarriageSpsTransportMovement": [
+      {
+        "id": {
+          "schemeAgencyID": "GB",
+          "schemeID": "ship_imo_number_before_bcp",
+          "value": "035N"
+        },
+        "modeCode": {
+          "value": "1"
+        }
+      }
+    ],
+    "unloadingBaseportSpsLocation": {
+      "id": {
+        "schemeID": "un_locode",
+        "value": "GBLHR1P"
+      },
+      "name": [
+        {
+          "value": "GB"
+        }
+      ]
+    },
+    "utilizedSpsTransportEquipment": [
+      {
+        "affixedSpsSeal": [
+          {
+            "id": {
+              "schemeID": "seal_number",
+              "value": "S12345"
+            }
+          }
+        ],
+        "id": {
+          "schemeID": "container_number",
+          "value": "C12345"
+        }
+      }
+    ]
+  },
+  "spsExchangedDocument": {
+    "includedSpsNote": [
+      {
+        "subjectCode": {
+          "value": "PRODUCT_TEMPERATURE"
+        },
+        "content": [
+          {
+            "value": "AMBIENT"
+          }
+        ]
+      }
+    ],
+    "id": {
+      "value": "NZL2020/PPCS2/121580"
+    },
+    "issueDateTime": {
+      "dateTime": {
+        "value": "2020-10-11T21:20:46Z"
+      }
+    },
+    "name": [
+      {
+        "value": ""
+      }
+    ],
+    "signatorySpsAuthentication": [
+      {
+        "actualDateTime": {
+          "dateTime": {
+            "value": "2020-10-21T14:30:00Z"
+          }
+        },
+        "includedSpsClause": [
+          {
+            "content": [
+              {
+                "value": "wibble"
+              }
+            ],
+            "id": {
+              "value": "GOODS_CERTIFIED_AS"
+            }
+          }
+        ],
+        "providerSpsParty": {
+          "name": {
+            "value": ""
+          }
+        }
+      }
+    ],
+    "statusCode": {
+      "value": "47"
+    },
+    "typeCode": {
+      "value": "636"
+    }
+  }
+}
