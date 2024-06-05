@@ -27,7 +27,6 @@ resharper_csharp_place_constructor_initializer_on_same_line = false
 resharper_csharp_wrap_after_declaration_lpar = true
 resharper_csharp_wrap_after_invocation_lpar = true
 resharper_csharp_wrap_parameters_style = chop_if_long
-resharper_instance_members_qualify_declared_in =
 resharper_place_expr_method_on_single_line = false
 resharper_place_expr_property_on_single_line = true
 resharper_wrap_object_and_collection_initializer_style = chop_always
