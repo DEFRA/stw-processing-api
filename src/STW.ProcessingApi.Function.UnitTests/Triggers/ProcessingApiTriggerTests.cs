@@ -24,17 +24,42 @@ public class ProcessingApiTriggerTests
     }
 
     [TestMethod]
-    public async Task Run_DeserializesServiceBusMessageAndCallsValidationService_WhenCalled()
+    public async Task Run_LogsSuccess_WhenNoErrors()
     {
         // Arrange
         var spsCertificateAsBinaryData = BinaryData.FromObjectAsJson(new SpsCertificate());
         var serviceBusReceivedMessage = ServiceBusModelFactory.ServiceBusReceivedMessage(spsCertificateAsBinaryData);
+        _validationServiceMock.Setup(x => x.InvokeRulesAsync(It.IsAny<SpsCertificate>())).ReturnsAsync([]);
 
         // Act
         await _systemUnderTest.Run(serviceBusReceivedMessage);
 
         // Assert
         _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
+        _loggerMock.VerifyLog(x => x.LogInformation("Validation passed"), Times.Once());
+        _validationServiceMock.Verify(x => x.InvokeRulesAsync(It.IsAny<SpsCertificate>()), Times.Once);
+    }
+
+    [TestMethod]
+    public async Task Run_LogsErrors_WhenErrors()
+    {
+        // Arrange
+        var spsCertificateAsBinaryData = BinaryData.FromObjectAsJson(new SpsCertificate());
+        var serviceBusReceivedMessage = ServiceBusModelFactory.ServiceBusReceivedMessage(spsCertificateAsBinaryData);
+        _validationServiceMock.Setup(x => x.InvokeRulesAsync(It.IsAny<SpsCertificate>()))
+            .ReturnsAsync(
+            [
+                new ValidationError("Message 1", 1),
+                new ValidationError("Message 2", 2)
+            ]);
+
+        // Act
+        await _systemUnderTest.Run(serviceBusReceivedMessage);
+
+        // Assert
+        _loggerMock.VerifyLog(x => x.LogInformation("ProcessingApiTrigger function was invoked."), Times.Once);
+        _loggerMock.VerifyLog(x => x.LogWarning("Validation failed"), Times.Once());
+        _loggerMock.VerifyLog(x => x.LogWarning("Message 1, Message 2"), Times.Once());
         _validationServiceMock.Verify(x => x.InvokeRulesAsync(It.IsAny<SpsCertificate>()), Times.Once);
     }
 }

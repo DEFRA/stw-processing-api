@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Services;
 
+using FluentAssertions;
 using Function.Rules.Interfaces;
 using Function.Services;
 using Microsoft.Extensions.Logging;
@@ -34,11 +35,12 @@ public class ValidationServiceTests
         _asyncRuleMock.Setup(x => x.ShouldInvoke(It.IsAny<SpsCertificate>())).Returns(true);
 
         // Act
-        await _systemUnderTest.InvokeRulesAsync(spsCertificate);
+        var result = await _systemUnderTest.InvokeRulesAsync(spsCertificate);
 
         // Assert
         _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
         _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
+        result.Should().BeEmpty();
     }
 
     [TestMethod]
@@ -51,15 +53,16 @@ public class ValidationServiceTests
         _asyncRuleMock.Setup(x => x.ShouldInvoke(It.IsAny<SpsCertificate>())).Returns(false);
 
         // Act
-        await _systemUnderTest.InvokeRulesAsync(spsCertificate);
+        var result = await _systemUnderTest.InvokeRulesAsync(spsCertificate);
 
         // Assert
         _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Never);
         _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Never);
+        result.Should().BeEmpty();
     }
 
     [TestMethod]
-    public async Task InvokeRulesAsync_LogsErrorFromRules_WhenErrorsExist()
+    public async Task InvokeRulesAsync_ReturnsErrorFromRules_WhenErrorsExist()
     {
         // Arrange
         var spsCertificate = new SpsCertificate();
@@ -79,10 +82,19 @@ public class ValidationServiceTests
             .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(asyncRuleErrorMessage, asyncRuleErrorId)));
 
         // Act
-        await _systemUnderTest.InvokeRulesAsync(spsCertificate);
+        var result = await _systemUnderTest.InvokeRulesAsync(spsCertificate);
 
         // Assert
-        _loggerMock.VerifyLog(x => x.LogInformation(ruleErrorMessage));
-        _loggerMock.VerifyLog(x => x.LogInformation(asyncRuleErrorMessage));
+        result.Should().SatisfyRespectively(
+            first =>
+            {
+                first.Message.Should().Be(ruleErrorMessage);
+                first.Id.Should().Be(ruleErrorId);
+            },
+            second =>
+            {
+                second.Message.Should().Be(asyncRuleErrorMessage);
+                second.Id.Should().Be(asyncRuleErrorId);
+            });
     }
 }
