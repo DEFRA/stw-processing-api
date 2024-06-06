@@ -17,7 +17,8 @@ public class BcpValidRule : IAsyncRule
 
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {
-        return SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote) is not null;
+        return ChedType.Values.Contains(
+            SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote)!);
     }
 
     public async Task InvokeAsync(SpsCertificate spsCertificate, IList<ValidationError> errors)
