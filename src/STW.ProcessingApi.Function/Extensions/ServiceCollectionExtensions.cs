@@ -48,6 +48,7 @@ public static class ServiceCollectionExtensions
             {
                 var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
                 httpClient.BaseAddress = new Uri(options.BcpServiceBaseUrl);
+                httpClient.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
     }
 }
