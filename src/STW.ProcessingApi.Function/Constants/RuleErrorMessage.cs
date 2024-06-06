@@ -46,8 +46,8 @@ public static class RuleErrorMessage
     public const string InvalidRegionOfOrigin = "Invalid Region of origin for the consignment: {0}";
     public const string MoreThanOneCountryOfOrigin = "More than one Region of origin found across trade lines: {0}";
     public const string MoreThanOneRegionOfOriginInConsignment = "More than one Region of origin found across trade lines: {0}";
-    public const string ChedTypeMissing = "\"CHED_TYPE\" is missing, enter either \"CHED-P\" or \"CHED-PP\"";
-    public const string ChedTypeInvalid = "\"ched_type\" must be one of \"CHED-P\", \"CHED-P\", \"CHED-D\", or \"CHED-PP\"";
+    public const string ChedTypeMissing = "\"CHED_TYPE\" is missing, must be one of \"CHED-A\", \"CHED-P\", \"CHED-D\", or \"CHED-PP\"";
+    public const string ChedTypeInvalid = "\"CHED_TYPE\" must be one of \"CHED-A\", \"CHED-P\", \"CHED-D\", or \"CHED-PP\"";
     public const string InvalidBcpCode = "Invalid BCP with code {0} for CHED type {1}";
     public const string BcpSuspended = "BCP with code {0} for CHED type {1} is suspended";
     public const string BcpServiceError = "Unable to check BCP validity: {0}";

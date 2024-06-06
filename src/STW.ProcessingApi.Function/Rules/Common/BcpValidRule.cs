@@ -17,13 +17,12 @@ public class BcpValidRule : IAsyncRule
 
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {
-        return true;
+        return SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote) is not null;
     }
 
     public async Task InvokeAsync(SpsCertificate spsCertificate, IList<ValidationError> errors)
     {
-        var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote) ??
-                       string.Empty;
+        var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote)!;
         var bcpCode = GetBcpCode(spsCertificate);
 
         try

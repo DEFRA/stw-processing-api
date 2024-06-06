@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Rules.Common;
 
+using Constants;
 using FluentAssertions;
 using Function.Rules.Common;
 using Function.Services;
@@ -7,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Moq;
 using Newtonsoft.Json;
+using TestHelpers;
 
 [TestClass]
 public class BcpValidRuleTest
@@ -35,6 +37,35 @@ public class BcpValidRuleTest
     {
         _bcpServiceMock = new Mock<IBcpService>();
         _rule = new BcpValidRule(_bcpServiceMock.Object);
+    }
+
+    [TestMethod]
+    public void ShouldInvoke_ReturnsTrue_WhenChedTypeNotNull()
+    {
+        // Arrange
+        var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithIncludedSpsNotes(
+        [
+            SpsCertificateTestHelper.BuildSpsNoteTypeWithSubjectCodeAndContent(SubjectCode.ChedType, ChedType.Cheda)
+        ]);
+
+        // Act
+        var result = _rule.ShouldInvoke(spsCertificate);
+
+        // Assert
+        result.Should().BeTrue();
+    }
+
+    [TestMethod]
+    public void ShouldInvoke_ReturnsTrue_WhenChedTypeNull()
+    {
+        // Arrange
+        var spsCertificate = SpsCertificateTestHelper.BuildSpsCertificateWithIncludedSpsNotes([]);
+
+        // Act
+        var result = _rule.ShouldInvoke(spsCertificate);
+
+        // Assert
+        result.Should().BeFalse();
     }
 
     [TestMethod]
