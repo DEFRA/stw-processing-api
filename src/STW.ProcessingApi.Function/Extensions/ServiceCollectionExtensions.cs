@@ -22,7 +22,6 @@ public static class ServiceCollectionExtensions
     public static void RegisterServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped<IValidationService, ValidationService>();
-        serviceCollection.AddScoped<IApprovedEstablishmentService, ApprovedEstablishmentService>();
     }
 
     public static void RegisterHttpClients(this IServiceCollection serviceCollection)
