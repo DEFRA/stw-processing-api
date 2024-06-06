@@ -1,11 +1,9 @@
 # SWT Processing API
 
-The Processing API is an Azure Function that uses a Service Bus Queue Trigger to process messages placed on the queue by the Submission API.
+The Processing API is an Azure Function that uses a Service Bus Queue Trigger to process messages placed on the queue by
+the Submission API.
 
 The function will perform validation, mapping, payload enhancement and routing on the incoming payload.
-
-> ***Important:*** At present, the Azure Function is using a HTTP Trigger which is temporary and will be changed soon.
-
 
 ## Running the Application
 
@@ -30,6 +28,7 @@ The environment variables can be set by creating `local.settings.json` in `src/S
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "ServiceBusConnectionString": "<service-bus-connection-string>",
     "ServiceBusQueueName": "<queue-name>",
+    "ApiConfig:Timeout": 100,
     "ApiConfig:BcpServiceBaseUrl": "http://localhost:5295"
   }
 }
@@ -63,8 +62,8 @@ If not already installed, you will need:
 1. Open terminal and `cd` into the `src/STW.ProcessingApi.Function` directory
 2. Run `func start`
 
-Following the completion of the steps above, the application should now be running on the port specified in the console output.
-
+Following the completion of the steps above, the application should now be running on the port specified in the console
+output.
 
 ## Licence
 
@@ -78,6 +77,8 @@ The following attribution statement MUST be cited in your products and applicati
 
 ### About the licence
 
-The Open Government Licence (OGL) was developed by the Controller of Her Majesty's Stationery Office (HMSO) to enable information providers in the public sector to license the use and re-use of their information under a common open licence.
+The Open Government Licence (OGL) was developed by the Controller of Her Majesty's Stationery Office (HMSO) to enable
+information providers in the public sector to license the use and re-use of their information under a common open
+licence.
 
 It is designed to encourage use and re-use of information freely and flexibly, with only a few conditions.
