@@ -18,7 +18,7 @@ public class ValidationService : IValidationService
         _logger = logger;
     }
 
-    public async Task<List<ValidationError>> InvokeRulesAsync(SpsCertificate spsCertificate)
+    public async Task InvokeRulesAsync(SpsCertificate spsCertificate)
     {
         var validationErrors = new List<ValidationError>();
 
@@ -32,6 +32,6 @@ public class ValidationService : IValidationService
             await rule.InvokeAsync(spsCertificate, validationErrors);
         }
 
-        return validationErrors;
+        validationErrors.ForEach(x => _logger.LogInformation(x.ErrorMessage));
     }
 }

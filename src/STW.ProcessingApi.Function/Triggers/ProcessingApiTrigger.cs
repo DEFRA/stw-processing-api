@@ -25,23 +25,7 @@ public class ProcessingApiTrigger
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
-        try
-        {
-            var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(message.Body);
-
-            var errors = await _validationService.InvokeRulesAsync(spsCertificate!);
-
-            if (errors.Count == 0)
-            {
-                _logger.LogInformation("Validation passed");
-            }
-
-            _logger.LogWarning("Validation failed");
-            _logger.LogWarning(string.Join(", ", errors.Select(error => error.ToString())));
-        }
-        catch (JsonException exception)
-        {
-            _logger.LogError(exception.Message);
-        }
+        var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(message.Body);
+        await _validationService.InvokeRulesAsync(spsCertificate!);
     }
 }
