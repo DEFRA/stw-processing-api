@@ -8,8 +8,6 @@ using Models;
 
 public class TotalNetWeightRule : IRule
 {
-    private const double MinWeight = 0.001;
-    private const int MaxScale = 3;
     private const int MaxPrecision = 16;
     private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
 
@@ -35,17 +33,7 @@ public class TotalNetWeightRule : IRule
     {
         var validationErrors = new List<ValidationError>();
 
-        if (netWeight < MinWeight)
-        {
-            validationErrors.Add(new ValidationError(RuleErrorMessage.NetWeightLessThanMinWeight, RuleErrorId.NetWeightLessThanMinWeight, sequenceNumeric));
-        }
-
         var netWeightDecimal = (decimal)netWeight;
-
-        if (netWeightDecimal.RemoveTrailingZeros().Scale > MaxScale)
-        {
-            validationErrors.Add(new ValidationError(RuleErrorMessage.NetWeightTooManyDecimals, RuleErrorId.NetWeightTooManyDecimals, sequenceNumeric));
-        }
 
         if (netWeightDecimal.Precision() > MaxPrecision)
         {

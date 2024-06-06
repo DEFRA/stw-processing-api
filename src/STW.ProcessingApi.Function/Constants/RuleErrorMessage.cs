@@ -3,8 +3,6 @@ namespace STW.ProcessingApi.Function.Constants;
 public static class RuleErrorMessage
 {
     public const string SystemIdMissing = "Each trade line item must include \"applicableSpsClassification\" with a \"systemID\" of \"CN\"";
-    public const string NetWeightLessThanMinWeight = "\"value\" for \"netWeightMeasure\" must be 0.001 or more";
-    public const string NetWeightTooManyDecimals = "\"value\" for \"netWeightMeasure\" cannot have more than 3 decimals";
     public const string SequenceNumericOrder = "SequenceNumeric is out of order or contains duplicate values.";
     public const string NetWeightTooManyDigits = "\"value\" for \"netWeightMeasure\" cannot have more than 16 digits, including decimals";
     public const string ApprovedEstablishmentMissingActivityName = "Approved establishment of origin is missing an activity name";
@@ -48,4 +46,6 @@ public static class RuleErrorMessage
     public const string MoreThanOneRegionOfOriginInConsignment = "More than one Region of origin found across trade lines: {0}";
     public const string ChedTypeMissing = "\"CHED_TYPE\" is missing, enter either \"CHED-P\" or \"CHED-PP\"";
     public const string ChedTypeInvalid = "\"ched_type\" must either be \"CHED-P\" or \"CHED-PP\" - check the value is spelt correctly";
+    public const string ApprovedEstablishmentNotFound = "Something has gone wrong with approved establishment of origin - check the values for \"appliedSpsProcess\" with operatorSpsParty.id {0}";
+    public const string ApprovedEstablishmentClientError = "An error has occurred with approved establishment service";
 }

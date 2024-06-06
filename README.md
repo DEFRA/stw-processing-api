@@ -6,7 +6,6 @@ The function will perform validation, mapping, payload enhancement and routing o
 
 > ***Important:*** At present, the Azure Function is using a HTTP Trigger which is temporary and will be changed soon.
 
-
 ## Running the Application
 
 You can either run the application directly on your local machine or via Docker.
@@ -15,10 +14,12 @@ You can either run the application directly on your local machine or via Docker.
 
 The table below outlines the environment variables required for running the application along with a description.
 
-| Variable Name            | Description                                                                                          |
-|--------------------------|------------------------------------------------------------------------------------------------------|
-| AzureWebJobsStorage      | Connection string for an Azure Storage account that the Functions runtime uses for normal operations |
-| FUNCTIONS_WORKER_RUNTIME | Language or language stack of the worker runtime to load in the function app                         |
+| Variable Name                          | Description                                                                                          |
+|----------------------------------------|------------------------------------------------------------------------------------------------------|
+| AzureWebJobsStorage                    | Connection string for an Azure Storage account that the Functions runtime uses for normal operations |
+| FUNCTIONS_WORKER_RUNTIME               | Language or language stack of the worker runtime to load in the function app                         |
+| ApiConfig:ApprovedEstablishmentBaseUrl | Base URL for the IPAFFS Approved Establishment Microservice                                          |
+| ApiConfig:Timeout                      | Duration (in seconds) to wait before timing out HTTP Client requests                                 |
 
 ### Running via Docker
 
@@ -49,7 +50,6 @@ If not already installed, you will need:
 2. Run `func start`
 
 Following the completion of the steps above, the application should now be running on the port specified in the console output.
-
 
 ## Licence
 

@@ -45,4 +45,5 @@ public static class TestConstants
     public const string OperatorRoleCode = "Meat of domestic ungulates";
     public const string Slaughterhouses = "Slaughterhouses";
     public const string SlaughterhousesCode = "SH";
+    public const string HttpClientBaseAddress = "https://example.com";
 }

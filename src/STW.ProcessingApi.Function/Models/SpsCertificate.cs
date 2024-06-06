@@ -442,6 +442,7 @@ public class FunctionTypeCode
     public string Value { get; set; }
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum RoleCodeValue
 {
     [EnumMember(Value = "AA")]
@@ -1866,6 +1867,7 @@ public class AttachmentBinaryObject
     public IList<string> Value { get; set; } = new List<string>();
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum RelationshipTypeCodeValue
 {
     [EnumMember(Value = "AAA")]
@@ -3528,6 +3530,7 @@ public class SpsCountryType
     public IList<SpsCountrySubDivisionType> SubordinateSpsCountrySubDivision { get; set; } = new List<SpsCountrySubDivisionType>();
 }
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum MeasuredAttributeCodeTypeValue
 {
     [EnumMember(Value = "A")]
@@ -4361,7 +4364,7 @@ public class AppliedSpsProcess
     [JsonPropertyName("operationSpsCountry")]
     public SpsCountryType? OperationSpsCountry { get; set; }
 
-    [JsonPropertyName("peratorSpsParty")]
+    [JsonPropertyName("operatorSpsParty")]
     public SpsPartyType? OperatorSpsParty { get; set; }
 
     [JsonPropertyName("typeCode")]
