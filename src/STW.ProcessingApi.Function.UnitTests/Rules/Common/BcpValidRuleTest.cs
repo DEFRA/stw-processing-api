@@ -76,10 +76,9 @@ public class BcpValidRuleTest
         var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
-        _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync(
-        [
-            ValidBcp,
-        ]);
+        _bcpServiceMock
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .ReturnsAsync(Result<List<Bcp>>.Success([ValidBcp]));
 
         // Act
         await _rule.InvokeAsync(spsCertificate!, errors);
@@ -96,7 +95,9 @@ public class BcpValidRuleTest
         var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
-        _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync([]);
+        _bcpServiceMock
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .ReturnsAsync(Result<List<Bcp>>.Success([]));
 
         // Act
         await _rule.InvokeAsync(spsCertificate!, errors);
@@ -118,10 +119,9 @@ public class BcpValidRuleTest
         var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
-        _bcpServiceMock.Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP")).ReturnsAsync(
-        [
-            SuspendedBcp,
-        ]);
+        _bcpServiceMock
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .ReturnsAsync(Result<List<Bcp>>.Success([SuspendedBcp]));
 
         // Act
         await _rule.InvokeAsync(spsCertificate!, errors);
@@ -132,6 +132,30 @@ public class BcpValidRuleTest
             {
                 x.ErrorMessage.Should().Be("BCP with code BCPCODE for CHED type CHEDP is suspended");
                 x.ErrorId.Should().Be(90);
+            });
+    }
+
+    [TestMethod]
+    public async Task Validate_ReturnsError_WhenBcpServiceHasError()
+    {
+        // Arrange
+        var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
+        var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var errors = new List<ValidationError>();
+
+        _bcpServiceMock
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .ReturnsAsync(Result<List<Bcp>>.Failure(new HttpRequestException("Message")));
+
+        // Act
+        await _rule.InvokeAsync(spsCertificate!, errors);
+
+        // Assert
+        errors.Should().SatisfyRespectively(
+            x =>
+            {
+                x.ErrorMessage.Should().Be("Unable to check BCP validity: Message");
+                x.ErrorId.Should().Be(91);
             });
     }
 }

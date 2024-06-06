@@ -44,7 +44,8 @@ public class BcpServiceTest
         var result = await bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
 
         // Assert
-        result.Should().Equal(bcp);
+        result.IsSuccess.Should().BeTrue();
+        result.Value.Should().Equal(bcp);
     }
 
     [TestMethod]
@@ -72,6 +73,32 @@ public class BcpServiceTest
         var result = await bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
 
         // Assert
-        result.Should().BeEmpty();
+        result.IsSuccess.Should().BeTrue();
+        result.Value.Should().BeEmpty();
+    }
+
+    [TestMethod]
+    public async Task GetBcpsWithCodeAndType_ReturnsError_WhenError()
+    {
+        // Arrange
+        var httpMessageHandler = new Mock<HttpMessageHandler>();
+        httpMessageHandler
+            .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
+            .ReturnsHttpResponseAsync(null, HttpStatusCode.BadRequest);
+
+        var httpClient = new HttpClient(httpMessageHandler.Object)
+        {
+            BaseAddress = new Uri("https://bcp.service"),
+        };
+
+        var bcpService = new BcpService(httpClient);
+
+        // Act
+        var result = await bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
+
+        // Assert
+        result.IsSuccess.Should().BeFalse();
+        result.Error.Should().BeOfType<HttpRequestException>()
+            .Which.Message.Should().Be("Response status code does not indicate success: 400 (Bad Request).");
     }
 }

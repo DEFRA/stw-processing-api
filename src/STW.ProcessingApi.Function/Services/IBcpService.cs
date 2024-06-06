@@ -4,5 +4,5 @@ using Models;
 
 public interface IBcpService
 {
-    Task<List<Bcp>> GetBcpsWithCodeAndType(string code, string chedType);
+    Task<Result<List<Bcp>>> GetBcpsWithCodeAndType(string code, string chedType);
 }

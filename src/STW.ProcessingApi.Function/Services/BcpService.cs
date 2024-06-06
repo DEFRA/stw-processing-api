@@ -12,10 +12,17 @@ public class BcpService : IBcpService
         _httpClient = httpClient;
     }
 
-    public async Task<List<Bcp>> GetBcpsWithCodeAndType(string code, string chedType)
+    public async Task<Result<List<Bcp>>> GetBcpsWithCodeAndType(string code, string chedType)
     {
-        var response =
-            await _httpClient.GetFromJsonAsync<BcpSearchResponse>($"/bcps/search?code={code}&type={chedType}");
-        return response?.Bcps ?? [];
+        try
+        {
+            var response =
+                await _httpClient.GetFromJsonAsync<BcpSearchResponse>($"/bcps/search?code={code}&type={chedType}");
+            return Result<List<Bcp>>.Success(response?.Bcps ?? []);
+        }
+        catch (HttpRequestException exception)
+        {
+            return Result<List<Bcp>>.Failure(exception);
+        }
     }
 }

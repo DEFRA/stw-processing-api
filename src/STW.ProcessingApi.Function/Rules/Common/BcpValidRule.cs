@@ -25,18 +25,18 @@ public class BcpValidRule : IAsyncRule
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote)!;
         var bcpCode = GetBcpCode(spsCertificate);
 
-        try
-        {
-            var bcps = await _bcpService.GetBcpsWithCodeAndType(bcpCode, chedType);
+        var result = await _bcpService.GetBcpsWithCodeAndType(bcpCode, chedType);
 
-            if (bcps.Count == 0)
+        if (result.IsSuccess)
+        {
+            if (result.Value?.Count == 0)
             {
                 errors.Add(
                     new ValidationError(
                         string.Format(RuleErrorMessage.InvalidBcpCode, bcpCode, chedType),
                         RuleErrorId.InvalidBcpCode));
             }
-            else if (bcps[0].Suspended)
+            else if (result.Value![0].Suspended)
             {
                 errors.Add(
                     new ValidationError(
@@ -44,11 +44,11 @@ public class BcpValidRule : IAsyncRule
                         RuleErrorId.BcpSuspended));
             }
         }
-        catch (HttpRequestException exception)
+        else
         {
             errors.Add(
                 new ValidationError(
-                    string.Format(RuleErrorMessage.BcpServiceError, exception.Message),
+                    string.Format(RuleErrorMessage.BcpServiceError, result.Error.Message),
                     RuleErrorId.BcpServiceError));
         }
     }
