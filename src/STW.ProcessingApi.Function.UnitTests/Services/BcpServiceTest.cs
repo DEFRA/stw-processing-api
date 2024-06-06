@@ -11,6 +11,20 @@ using TestExtensions;
 [TestClass]
 public class BcpServiceTest
 {
+    private Mock<HttpMessageHandler> _httpMessageHandlerMock;
+    private BcpService _bcpService;
+
+    [TestInitialize]
+    public void TestInitialize()
+    {
+        _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+        var httpClient = new HttpClient(_httpMessageHandlerMock.Object)
+        {
+            BaseAddress = new Uri("https://bcp.service"),
+        };
+        _bcpService = new BcpService(httpClient);
+    }
+
     [TestMethod]
     public async Task GetBcpsWithCodeAndType_ReturnsBcps_WhenValues()
     {
@@ -23,8 +37,7 @@ public class BcpServiceTest
             Suspended = false,
         };
 
-        var httpMessageHandler = new Mock<HttpMessageHandler>();
-        httpMessageHandler
+        _httpMessageHandlerMock
             .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
             .ReturnsHttpResponseAsync(
                 new BcpSearchResponse
@@ -33,15 +46,8 @@ public class BcpServiceTest
                 },
                 HttpStatusCode.OK);
 
-        var httpClient = new HttpClient(httpMessageHandler.Object)
-        {
-            BaseAddress = new Uri("https://bcp.service"),
-        };
-
-        var bcpService = new BcpService(httpClient);
-
         // Act
-        var result = await bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
+        var result = await _bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
 
         // Assert
         result.IsSuccess.Should().BeTrue();
@@ -52,8 +58,7 @@ public class BcpServiceTest
     public async Task GetBcpsWithCodeAndType_ReturnsEmptyList_WhenNoValues()
     {
         // Arrange
-        var httpMessageHandler = new Mock<HttpMessageHandler>();
-        httpMessageHandler
+        _httpMessageHandlerMock
             .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
             .ReturnsHttpResponseAsync(
                 new BcpSearchResponse
@@ -62,15 +67,8 @@ public class BcpServiceTest
                 },
                 HttpStatusCode.OK);
 
-        var httpClient = new HttpClient(httpMessageHandler.Object)
-        {
-            BaseAddress = new Uri("https://bcp.service"),
-        };
-
-        var bcpService = new BcpService(httpClient);
-
         // Act
-        var result = await bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
+        var result = await _bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
 
         // Assert
         result.IsSuccess.Should().BeTrue();
@@ -81,20 +79,12 @@ public class BcpServiceTest
     public async Task GetBcpsWithCodeAndType_ReturnsError_WhenError()
     {
         // Arrange
-        var httpMessageHandler = new Mock<HttpMessageHandler>();
-        httpMessageHandler
+        _httpMessageHandlerMock
             .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
             .ReturnsHttpResponseAsync(null, HttpStatusCode.BadRequest);
 
-        var httpClient = new HttpClient(httpMessageHandler.Object)
-        {
-            BaseAddress = new Uri("https://bcp.service"),
-        };
-
-        var bcpService = new BcpService(httpClient);
-
         // Act
-        var result = await bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
+        var result = await _bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
 
         // Assert
         result.IsSuccess.Should().BeFalse();
