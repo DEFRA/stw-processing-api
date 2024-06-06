@@ -17,7 +17,7 @@ public class ChedTypeRuleTests
     public void TestInitialize()
     {
         _systemUnderTest = new ChedTypeRule();
-        _validationErrors = new List<ValidationError>();
+        _validationErrors = [];
     }
 
     [TestMethod]
@@ -34,7 +34,9 @@ public class ChedTypeRuleTests
     }
 
     [TestMethod]
+    [DataRow(ChedType.Cheda)]
     [DataRow(ChedType.Chedp)]
+    [DataRow(ChedType.Chedd)]
     [DataRow(ChedType.Chedpp)]
     public void Invoke_DoesNotAddError_WhenChedTypeIsPresentAndValid(string chedType)
     {
