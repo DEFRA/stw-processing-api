@@ -1,10 +1,10 @@
 namespace STW.ProcessingApi.Function.Triggers;
 
+using System.Text.Json;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Models;
-using Newtonsoft.Json;
 using Services.Interfaces;
 
 public class ProcessingApiTrigger
@@ -25,11 +25,9 @@ public class ProcessingApiTrigger
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
-        var messageBody = message.Body.ToString();
-
         try
         {
-            var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(messageBody);
+            var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(message.Body);
 
             var errors = await _validationService.InvokeRulesAsync(spsCertificate!);
 
