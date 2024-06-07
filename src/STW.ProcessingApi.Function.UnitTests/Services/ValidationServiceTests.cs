@@ -70,7 +70,8 @@ public class ValidationServiceTests
         const int ruleErrorId = 1;
 
         _ruleMock.Setup(x => x.Invoke(It.IsAny<SpsCertificate>(), It.IsAny<IList<ValidationError>>()))
-            .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(ruleErrorMessage, ruleErrorId)));
+            .Callback<SpsCertificate, IList<ValidationError>>(
+                (_, validationErrors) => validationErrors.Add(new ValidationError(ruleErrorMessage, ruleErrorId)));
 
         // Act
         await _systemUnderTest.InvokeRulesAsync(spsCertificate);
@@ -78,8 +79,8 @@ public class ValidationServiceTests
         // Assert
         _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
         _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Never);
-
-        _loggerMock.VerifyLog(x => x.LogInformation(ruleErrorMessage));
+        _loggerMock.VerifyLog(x => x.LogWarning("Validation failed"));
+        _loggerMock.VerifyLog(x => x.LogWarning(ruleErrorMessage));
     }
 
     [TestMethod]
@@ -97,5 +98,6 @@ public class ValidationServiceTests
         // Assert
         _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
         _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
+        _loggerMock.VerifyLog(x => x.LogInformation("Validation passed"));
     }
 }
