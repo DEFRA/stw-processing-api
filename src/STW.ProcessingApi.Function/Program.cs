@@ -9,6 +9,7 @@ var host = new HostBuilder()
         {
             serviceCollection.RegisterOptions();
             serviceCollection.AddHealthChecks();
+            serviceCollection.RegisterHttpClients();
             serviceCollection.RegisterServices();
             serviceCollection.RegisterRules();
             serviceCollection.RegisterHttpClients();

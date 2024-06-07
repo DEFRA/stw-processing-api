@@ -4,7 +4,9 @@ public class ApiConfigOptions
 {
     public const string Section = "ApiConfig";
 
-    public string BcpServiceBaseUrl { get; set; }
-
     public int Timeout { get; set; }
+
+    public string ApprovedEstablishmentBaseUrl { get; set; }
+
+    public string BcpServiceBaseUrl { get; set; }
 }

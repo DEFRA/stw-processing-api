@@ -24,6 +24,25 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddScoped<IValidationService, ValidationService>();
     }
 
+    public static void RegisterHttpClients(this IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddHttpClient<IApprovedEstablishmentService, ApprovedEstablishmentService>(
+            (serviceProvider, client) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+
+                client.BaseAddress = new Uri(options.ApprovedEstablishmentBaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
+        serviceCollection.AddHttpClient<IBcpService, BcpService>(
+            (serviceProvider, httpClient) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+                httpClient.BaseAddress = new Uri(options.BcpServiceBaseUrl);
+                httpClient.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
+    }
+
     public static void RegisterRules(this IServiceCollection serviceCollection)
     {
         var assemblyTypes = Assembly.GetExecutingAssembly().GetTypes();
@@ -39,16 +58,5 @@ public static class ServiceCollectionExtensions
         {
             serviceCollection.AddScoped(typeof(IAsyncRule), type);
         }
-    }
-
-    public static void RegisterHttpClients(this IServiceCollection serviceCollection)
-    {
-        serviceCollection.AddHttpClient<IBcpService, BcpService>(
-            (serviceProvider, httpClient) =>
-            {
-                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
-                httpClient.BaseAddress = new Uri(options.BcpServiceBaseUrl);
-                httpClient.Timeout = TimeSpan.FromSeconds(options.Timeout);
-            });
     }
 }

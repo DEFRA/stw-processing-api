@@ -107,7 +107,7 @@ public class BcpValidRuleTest
             x =>
             {
                 x.ErrorMessage.Should().Be("Invalid BCP with code BCPCODE for CHED type CHEDP");
-                x.ErrorId.Should().Be(89);
+                x.ErrorId.Should().Be(91);
             });
     }
 
@@ -131,7 +131,7 @@ public class BcpValidRuleTest
             x =>
             {
                 x.ErrorMessage.Should().Be("BCP with code BCPCODE for CHED type CHEDP is suspended");
-                x.ErrorId.Should().Be(90);
+                x.ErrorId.Should().Be(92);
             });
     }
 
@@ -155,7 +155,7 @@ public class BcpValidRuleTest
             x =>
             {
                 x.ErrorMessage.Should().Be("Unable to check BCP validity: Message");
-                x.ErrorId.Should().Be(91);
+                x.ErrorId.Should().Be(93);
             });
     }
 }

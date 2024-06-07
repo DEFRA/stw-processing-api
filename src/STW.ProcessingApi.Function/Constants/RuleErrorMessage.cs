@@ -3,8 +3,6 @@ namespace STW.ProcessingApi.Function.Constants;
 public static class RuleErrorMessage
 {
     public const string SystemIdMissing = "Each trade line item must include \"applicableSpsClassification\" with a \"systemID\" of \"CN\"";
-    public const string NetWeightLessThanMinWeight = "\"value\" for \"netWeightMeasure\" must be 0.001 or more";
-    public const string NetWeightTooManyDecimals = "\"value\" for \"netWeightMeasure\" cannot have more than 3 decimals";
     public const string SequenceNumericOrder = "SequenceNumeric is out of order or contains duplicate values.";
     public const string NetWeightTooManyDigits = "\"value\" for \"netWeightMeasure\" cannot have more than 16 digits, including decimals";
     public const string ApprovedEstablishmentMissingActivityName = "Approved establishment of origin is missing an activity name";
@@ -48,6 +46,8 @@ public static class RuleErrorMessage
     public const string MoreThanOneRegionOfOriginInConsignment = "More than one Region of origin found across trade lines: {0}";
     public const string ChedTypeMissing = "\"CHED_TYPE\" is missing, must be one of \"CHEDA\", \"CHEDP\", \"CHEDD\", or \"CHEDPP\"";
     public const string ChedTypeInvalid = "\"CHED_TYPE\" must be one of \"CHEDA\", \"CHEDP\", \"CHEDD\", or \"CHEDPP\"";
+    public const string ApprovedEstablishmentNotFound = "Something has gone wrong with approved establishment of origin - check the values for \"appliedSpsProcess\" with operatorSpsParty.id {0}";
+    public const string ApprovedEstablishmentClientError = "An error has occurred with approved establishment service";
     public const string InvalidBcpCode = "Invalid BCP with code {0} for CHED type {1}";
     public const string BcpSuspended = "BCP with code {0} for CHED type {1} is suspended";
     public const string BcpServiceError = "Unable to check BCP validity: {0}";

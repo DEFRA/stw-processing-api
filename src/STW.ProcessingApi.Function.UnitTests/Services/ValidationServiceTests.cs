@@ -60,7 +60,31 @@ public class ValidationServiceTests
     }
 
     [TestMethod]
-    public async Task InvokeRulesAsync_LogsErrorFromRules_WhenErrorsExist()
+    public async Task InvokeRulesAsync_DoesNotInvokeAsyncRules_WhenNonAsyncRulesProduceErrors()
+    {
+        // Arrange
+        var spsCertificate = new SpsCertificate();
+
+        _ruleMock.Setup(x => x.ShouldInvoke(It.IsAny<SpsCertificate>())).Returns(true);
+
+        const string ruleErrorMessage = "Error message from rule";
+        const int ruleErrorId = 1;
+
+        _ruleMock.Setup(x => x.Invoke(It.IsAny<SpsCertificate>(), It.IsAny<IList<ValidationError>>()))
+            .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(ruleErrorMessage, ruleErrorId)));
+
+        // Act
+        await _systemUnderTest.InvokeRulesAsync(spsCertificate);
+
+        // Assert
+        _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
+        _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Never);
+
+        _loggerMock.VerifyLog(x => x.LogInformation(ruleErrorMessage));
+    }
+
+    [TestMethod]
+    public async Task InvokeRulesAsync_InvokesAsyncRules_WhenNonAsyncRulesDoNotProduceErrors()
     {
         // Arrange
         var spsCertificate = new SpsCertificate();
@@ -68,22 +92,11 @@ public class ValidationServiceTests
         _ruleMock.Setup(x => x.ShouldInvoke(It.IsAny<SpsCertificate>())).Returns(true);
         _asyncRuleMock.Setup(x => x.ShouldInvoke(It.IsAny<SpsCertificate>())).Returns(true);
 
-        const string asyncRuleErrorMessage = "Error message from async rule";
-        const int asyncRuleErrorId = 1;
-        const string ruleErrorMessage = "Error message from rule";
-        const int ruleErrorId = 2;
-
-        _ruleMock.Setup(x => x.Invoke(It.IsAny<SpsCertificate>(), It.IsAny<IList<ValidationError>>()))
-            .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(ruleErrorMessage, ruleErrorId)));
-
-        _asyncRuleMock.Setup(x => x.InvokeAsync(It.IsAny<SpsCertificate>(), It.IsAny<IList<ValidationError>>()))
-            .Callback<SpsCertificate, IList<ValidationError>>((_, validationErrors) => validationErrors.Add(new ValidationError(asyncRuleErrorMessage, asyncRuleErrorId)));
-
         // Act
         await _systemUnderTest.InvokeRulesAsync(spsCertificate);
 
         // Assert
-        _loggerMock.VerifyLog(x => x.LogInformation(ruleErrorMessage));
-        _loggerMock.VerifyLog(x => x.LogInformation(asyncRuleErrorMessage));
+        _ruleMock.Verify(x => x.Invoke(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
+        _asyncRuleMock.Verify(x => x.InvokeAsync(spsCertificate, It.IsAny<List<ValidationError>>()), Times.Once);
     }
 }

@@ -11,9 +11,7 @@ public static class RuleErrorId
     public const int QuantityMustBeOneOrMore = 22;
     public const int InvalidQuantityType = 26;
     public const int MissingQuantityType = 27;
-    public const int NetWeightLessThanMinWeight = 29;
     public const int SequenceNumericOrder = 41;
-    public const int NetWeightTooManyDecimals = 53;
     public const int NetWeightTooManyDigits = 54;
     public const int GoodsCertifiedAsValueIsInvalid = 56;
     public const int ConformsToEuRequiredForInternalMarket = 57;
@@ -48,7 +46,9 @@ public static class RuleErrorId
     public const int InvalidRegionOfOrigin = 86;
     public const int MoreThanOneCountryOfOrigin = 87;
     public const int MoreThanOneRegionOfOriginInConsignment = 88;
-    public const int InvalidBcpCode = 89;
-    public const int BcpSuspended = 90;
-    public const int BcpServiceError = 91;
+    public const int ApprovedEstablishmentNotFound = 89;
+    public const int ApprovedEstablishmentClientError = 90;
+    public const int InvalidBcpCode = 91;
+    public const int BcpSuspended = 92;
+    public const int BcpServiceError = 93;
 }

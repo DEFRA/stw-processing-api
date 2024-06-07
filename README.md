@@ -13,10 +13,13 @@ You can either run the application directly on your local machine or via Docker.
 
 The table below outlines the environment variables required for running the application along with a description.
 
-| Variable Name            | Description                                                                                          |
-|--------------------------|------------------------------------------------------------------------------------------------------|
-| AzureWebJobsStorage      | Connection string for an Azure Storage account that the Functions runtime uses for normal operations |
-| FUNCTIONS_WORKER_RUNTIME | Language or language stack of the worker runtime to load in the function app                         |
+| Variable Name                          | Description                                                                                          |
+|----------------------------------------|------------------------------------------------------------------------------------------------------|
+| AzureWebJobsStorage                    | Connection string for an Azure Storage account that the Functions runtime uses for normal operations |
+| FUNCTIONS_WORKER_RUNTIME               | Language or language stack of the worker runtime to load in the function app                         |
+| ApiConfig:ApprovedEstablishmentBaseUrl | Base URL for the IPAFFS Approved Establishment Microservice                                          |
+| ApiConfig:BcpServiceBaseUrl            | Base URL for the IPAFFS BCP Microservice                                                             |
+| ApiConfig:Timeout                      | Duration (in seconds) to wait before timing out HTTP Client requests                                 |
 
 The environment variables can be set by creating `local.settings.json` in `src/STW.ProcessingApi.Function/`:
 
@@ -29,6 +32,7 @@ The environment variables can be set by creating `local.settings.json` in `src/S
     "ServiceBusConnectionString": "<service-bus-connection-string>",
     "ServiceBusQueueName": "<queue-name>",
     "ApiConfig:Timeout": 100,
+    "ApiConfig:ApprovedEstablishmentBaseUrl": "http://localhost:5295",
     "ApiConfig:BcpServiceBaseUrl": "http://localhost:5295"
   }
 }
