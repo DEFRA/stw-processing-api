@@ -12,7 +12,6 @@ var host = new HostBuilder()
             serviceCollection.RegisterHttpClients();
             serviceCollection.RegisterServices();
             serviceCollection.RegisterRules();
-            serviceCollection.RegisterHttpClients();
         })
     .Build();
 

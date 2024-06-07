@@ -14,9 +14,4 @@ public class ValidationError
     public int? ErrorId { get; }
 
     public int? ErrorTradeLineItem { get; }
-
-    public override string ToString()
-    {
-        return $"{ErrorMessage}";
-    }
 }

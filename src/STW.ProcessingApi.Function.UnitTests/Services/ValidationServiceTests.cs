@@ -1,6 +1,5 @@
 namespace STW.ProcessingApi.Function.UnitTests.Services;
 
-using FluentAssertions;
 using Function.Rules.Interfaces;
 using Function.Services;
 using Microsoft.Extensions.Logging;
