@@ -35,6 +35,14 @@ public class ValidationService : IValidationService
             }
         }
 
-        validationErrors.ForEach(x => _logger.LogInformation(x.ErrorMessage));
+        if (validationErrors.Count == 0)
+        {
+            _logger.LogInformation("Validation passed");
+        }
+        else
+        {
+            _logger.LogWarning("Validation failed");
+            validationErrors.ForEach(x => _logger.LogWarning(x.ErrorMessage));
+        }
     }
 }
