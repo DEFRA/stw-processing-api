@@ -28,29 +28,30 @@ public class BcpValidRule : IAsyncRule
 
         var result = await _bcpService.GetBcpsWithCodeAndType(bcpCode, chedType);
 
-        if (result.IsSuccess)
-        {
-            if (result.Value?.Count == 0)
-            {
-                errors.Add(
-                    new ValidationError(
-                        string.Format(RuleErrorMessage.InvalidBcpCode, bcpCode, chedType),
-                        RuleErrorId.InvalidBcpCode));
-            }
-            else if (result.Value![0].Suspended)
-            {
-                errors.Add(
-                    new ValidationError(
-                        string.Format(RuleErrorMessage.BcpSuspended, bcpCode, chedType),
-                        RuleErrorId.BcpSuspended));
-            }
-        }
-        else
+        if (!result.IsSuccess)
         {
             errors.Add(
                 new ValidationError(
                     string.Format(RuleErrorMessage.BcpServiceError, result.Error.Message),
                     RuleErrorId.BcpServiceError));
+            return;
+        }
+
+        if (result.Value?.Count == 0)
+        {
+            errors.Add(
+                new ValidationError(
+                    string.Format(RuleErrorMessage.InvalidBcpCode, bcpCode, chedType),
+                    RuleErrorId.InvalidBcpCode));
+            return;
+        }
+
+        if (result.Value![0].Suspended)
+        {
+            errors.Add(
+                new ValidationError(
+                    string.Format(RuleErrorMessage.BcpSuspended, bcpCode, chedType),
+                    RuleErrorId.BcpSuspended));
         }
     }
 

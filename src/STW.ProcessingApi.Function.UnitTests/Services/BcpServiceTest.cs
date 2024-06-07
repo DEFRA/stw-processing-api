@@ -6,7 +6,7 @@ using Function.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Moq;
-using TestExtensions;
+using TestHelpers;
 
 [TestClass]
 public class BcpServiceTest
@@ -37,14 +37,7 @@ public class BcpServiceTest
             Suspended = false,
         };
 
-        _httpMessageHandlerMock
-            .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
-            .ReturnsHttpResponseAsync(
-                new BcpSearchResponse
-                {
-                    Bcps = [bcp],
-                },
-                HttpStatusCode.OK);
+        _httpMessageHandlerMock.RespondWith(HttpStatusCode.OK, new BcpSearchResponse { Bcps = [bcp] });
 
         // Act
         var result = await _bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
@@ -58,14 +51,7 @@ public class BcpServiceTest
     public async Task GetBcpsWithCodeAndType_ReturnsEmptyList_WhenNoValues()
     {
         // Arrange
-        _httpMessageHandlerMock
-            .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
-            .ReturnsHttpResponseAsync(
-                new BcpSearchResponse
-                {
-                    Bcps = [],
-                },
-                HttpStatusCode.OK);
+        _httpMessageHandlerMock.RespondWith(HttpStatusCode.OK, new BcpSearchResponse { Bcps = [] });
 
         // Act
         var result = await _bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");
@@ -79,9 +65,7 @@ public class BcpServiceTest
     public async Task GetBcpsWithCodeAndType_ReturnsError_WhenError()
     {
         // Arrange
-        _httpMessageHandlerMock
-            .SetupSendAsync(HttpMethod.Get, "https://bcp.service/bcps/search?code=CODE&type=CHED_TYPE")
-            .ReturnsHttpResponseAsync(null, HttpStatusCode.BadRequest);
+        _httpMessageHandlerMock.RespondWith(HttpStatusCode.BadRequest, default);
 
         // Act
         var result = await _bcpService.GetBcpsWithCodeAndType("CODE", "CHED_TYPE");

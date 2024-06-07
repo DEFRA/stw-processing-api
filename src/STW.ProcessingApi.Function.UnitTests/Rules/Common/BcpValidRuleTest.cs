@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Rules.Common;
 
+using System.Text.Json;
 using Constants;
 using FluentAssertions;
 using Function.Rules.Common;
@@ -7,7 +8,6 @@ using Function.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Moq;
-using Newtonsoft.Json;
 using TestHelpers;
 
 [TestClass]
@@ -73,7 +73,7 @@ public class BcpValidRuleTest
     {
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
-        var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
@@ -92,7 +92,7 @@ public class BcpValidRuleTest
     {
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
-        var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
@@ -116,7 +116,7 @@ public class BcpValidRuleTest
     {
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
-        var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
@@ -140,7 +140,7 @@ public class BcpValidRuleTest
     {
         // Arrange
         var spsCertificateString = await File.ReadAllTextAsync("TestData/minimalSpsCertificate.json");
-        var spsCertificate = JsonConvert.DeserializeObject<SpsCertificate>(spsCertificateString);
+        var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(spsCertificateString);
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
