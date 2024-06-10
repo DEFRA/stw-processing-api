@@ -11,7 +11,7 @@ using Moq;
 using TestHelpers;
 
 [TestClass]
-public class BcpValidRuleTest
+public class BcpRuleTest
 {
     private static readonly Bcp ValidBcp = new()
     {
@@ -30,13 +30,13 @@ public class BcpValidRuleTest
     };
 
     private Mock<IBcpService> _bcpServiceMock;
-    private BcpValidRule _rule;
+    private BcpRule _rule;
 
     [TestInitialize]
     public void TestInitialize()
     {
         _bcpServiceMock = new Mock<IBcpService>();
-        _rule = new BcpValidRule(_bcpServiceMock.Object);
+        _rule = new BcpRule(_bcpServiceMock.Object);
     }
 
     [TestMethod]

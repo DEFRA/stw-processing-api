@@ -6,11 +6,11 @@ using Interfaces;
 using Models;
 using Services;
 
-public class BcpValidRule : IAsyncRule
+public class BcpRule : IAsyncRule
 {
     private readonly IBcpService _bcpService;
 
-    public BcpValidRule(IBcpService bcpService)
+    public BcpRule(IBcpService bcpService)
     {
         _bcpService = bcpService;
     }
