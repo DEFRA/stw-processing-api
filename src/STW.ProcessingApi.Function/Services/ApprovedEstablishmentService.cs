@@ -25,7 +25,7 @@ public class ApprovedEstablishmentService : IApprovedEstablishmentService
         {
             _logger.LogError($"Approved Establishment Search has received an unsuccessful status code: {(int)result.StatusCode}.");
 
-            return Result<PageImpl<ApprovedEstablishment>>.Failure;
+            return Result<PageImpl<ApprovedEstablishment>>.Failure();
         }
 
         var approvedEstablishmentPageImpl = await result.Content.ReadFromJsonAsync<PageImpl<ApprovedEstablishment>>();

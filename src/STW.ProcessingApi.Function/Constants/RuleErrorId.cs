@@ -48,4 +48,7 @@ public static class RuleErrorId
     public const int MoreThanOneRegionOfOriginInConsignment = 88;
     public const int ApprovedEstablishmentNotFound = 89;
     public const int ApprovedEstablishmentClientError = 90;
+    public const int InvalidBcpCode = 91;
+    public const int BcpSuspended = 92;
+    public const int BcpServiceError = 93;
 }

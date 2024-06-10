@@ -34,18 +34,27 @@ public static class ServiceCollectionExtensions
                 client.BaseAddress = new Uri(options.ApprovedEstablishmentBaseUrl);
                 client.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
+        serviceCollection.AddHttpClient<IBcpService, BcpService>(
+            (serviceProvider, httpClient) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+                httpClient.BaseAddress = new Uri(options.BcpServiceBaseUrl);
+                httpClient.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
     }
 
     public static void RegisterRules(this IServiceCollection serviceCollection)
     {
         var assemblyTypes = Assembly.GetExecutingAssembly().GetTypes();
 
-        foreach (var type in assemblyTypes.Where(x => typeof(IRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        foreach (var type in assemblyTypes.Where(
+                     x => typeof(IRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
         {
             serviceCollection.AddScoped(typeof(IRule), type);
         }
 
-        foreach (var type in assemblyTypes.Where(x => typeof(IAsyncRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
+        foreach (var type in assemblyTypes.Where(
+                     x => typeof(IAsyncRule).IsAssignableFrom(x) && x is { IsClass: true, IsAbstract: false }))
         {
             serviceCollection.AddScoped(typeof(IAsyncRule), type);
         }

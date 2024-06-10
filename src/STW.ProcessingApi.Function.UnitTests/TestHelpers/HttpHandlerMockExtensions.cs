@@ -18,6 +18,11 @@ public static class HttpHandlerMockExtensions
                 });
     }
 
+    public static void RespondWith(this Mock<HttpMessageHandler> mock, HttpStatusCode statusCode, object responseBody)
+    {
+        RespondWith(mock, statusCode, responseBody.ToJsonContent());
+    }
+
     public static void VerifyRequest(this Mock<HttpMessageHandler> mock, HttpMethod expectedMethod, Uri expectedUri, Times expectedInvocations)
     {
         mock.Protected()

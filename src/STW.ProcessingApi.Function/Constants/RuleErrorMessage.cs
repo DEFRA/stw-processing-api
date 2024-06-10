@@ -44,8 +44,11 @@ public static class RuleErrorMessage
     public const string InvalidRegionOfOrigin = "Invalid Region of origin for the consignment: {0}";
     public const string MoreThanOneCountryOfOrigin = "More than one Region of origin found across trade lines: {0}";
     public const string MoreThanOneRegionOfOriginInConsignment = "More than one Region of origin found across trade lines: {0}";
-    public const string ChedTypeMissing = "\"CHED_TYPE\" is missing, enter either \"CHED-P\" or \"CHED-PP\"";
-    public const string ChedTypeInvalid = "\"ched_type\" must either be \"CHED-P\" or \"CHED-PP\" - check the value is spelt correctly";
+    public const string ChedTypeMissing = "\"CHED_TYPE\" is missing, must be one of \"CHEDA\", \"CHEDP\", \"CHEDD\", or \"CHEDPP\"";
+    public const string ChedTypeInvalid = "\"CHED_TYPE\" must be one of \"CHEDA\", \"CHEDP\", \"CHEDD\", or \"CHEDPP\"";
     public const string ApprovedEstablishmentNotFound = "Something has gone wrong with approved establishment of origin - check the values for \"appliedSpsProcess\" with operatorSpsParty.id {0}";
     public const string ApprovedEstablishmentClientError = "An error has occurred with approved establishment service";
+    public const string InvalidBcpCode = "Invalid BCP with code {0} for CHED type {1}";
+    public const string BcpSuspended = "BCP with code {0} for CHED type {1} is suspended";
+    public const string BcpServiceError = "Unable to check BCP validity: {0}";
 }

@@ -19,12 +19,13 @@ public class ProcessingApiTrigger
     }
 
     [Function(nameof(ProcessingApiTrigger))]
-    public async Task Run([ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")] ServiceBusReceivedMessage message)
+    public async Task Run(
+        [ServiceBusTrigger("%ServiceBusQueueName%", Connection = "ServiceBusConnectionString")]
+        ServiceBusReceivedMessage message)
     {
         _logger.LogInformation($"{nameof(ProcessingApiTrigger)} function was invoked.");
 
         var spsCertificate = JsonSerializer.Deserialize<SpsCertificate>(message.Body);
-
         await _validationService.InvokeRulesAsync(spsCertificate!);
     }
 }

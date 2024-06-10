@@ -24,7 +24,7 @@ public class ProcessingApiTriggerTests
     }
 
     [TestMethod]
-    public async Task Run_DeserializesServiceBusMessageAndCallsValidationService_WhenCalled()
+    public async Task Run_CallsValidationService()
     {
         // Arrange
         var spsCertificateAsBinaryData = BinaryData.FromObjectAsJson(new SpsCertificate());

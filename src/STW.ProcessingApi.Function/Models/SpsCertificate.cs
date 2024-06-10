@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 #pragma warning disable SA1649
 #pragma warning disable SA1601
 #pragma warning disable SA1402
+#pragma warning disable SA1201
 
 public class AddressTypeCodeType
 {
