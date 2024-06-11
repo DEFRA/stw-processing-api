@@ -167,6 +167,22 @@ public class CommodityCodeServiceTests
     }
 
     [TestMethod]
+    public async Task GetCommodityCategories_ReturnsSuccessResult_WhenHttpClientRespondsWithSuccessfulStatusCodeWithNoContent()
+    {
+        // Arrange
+        _httpMessageHandlerMock.RespondWith(HttpStatusCode.OK, default);
+
+        // Act
+        var result = await _systemUnderTest.GetCommodityCategories(TestConstants.CommodityId, ChedType.Chedpp);
+
+        // Assert
+        result.IsSuccess.Should().BeTrue();
+        result.Value.CommodityCode.Should().BeNull();
+        result.Value.Data.Should().BeNull();
+        result.Value.CommodityCode.Should().BeNull();
+    }
+
+    [TestMethod]
     public async Task GetCommodityCategories_ReturnsFailureResult_WhenHttpClientRespondsWithUnsuccessfulStatusCode()
     {
         // Arrange

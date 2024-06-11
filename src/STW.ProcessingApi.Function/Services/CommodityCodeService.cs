@@ -80,8 +80,10 @@ public class CommodityCodeService : ICommodityCodeService
             return Result<CommodityCategory>.Failure();
         }
 
-        var commodityCategory = await result.Content.ReadFromJsonAsync<CommodityCategory>();
+        var commodityCategory = string.IsNullOrEmpty(await result.Content.ReadAsStringAsync())
+            ? new CommodityCategory()
+            : (await result.Content.ReadFromJsonAsync<CommodityCategory>())!;
 
-        return Result<CommodityCategory>.Success(commodityCategory!);
+        return Result<CommodityCategory>.Success(commodityCategory);
     }
 }
