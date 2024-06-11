@@ -4,7 +4,7 @@ using System.Text.Json;
 using Constants;
 using FluentAssertions;
 using Function.Rules.Common;
-using Function.Services;
+using Function.Services.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using Moq;

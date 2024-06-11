@@ -4,7 +4,7 @@ using Constants;
 using Helpers;
 using Interfaces;
 using Models;
-using Services;
+using Services.Interfaces;
 
 public class BcpRule : IAsyncRule
 {
