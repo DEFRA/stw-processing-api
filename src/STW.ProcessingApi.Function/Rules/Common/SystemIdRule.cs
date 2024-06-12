@@ -7,14 +7,11 @@ using Models;
 
 public class SystemIdRule : IRule
 {
-    private const string CnSystemId = "CN";
-    private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
-
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
 
-        return chedType is not null && _chedTypes.Contains(chedType);
+        return chedType is not null && ChedType.Values.Contains(chedType);
     }
 
     public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
@@ -32,6 +29,6 @@ public class SystemIdRule : IRule
 
     private static bool HasValidSystemId(ApplicableSpsClassification spsClassification)
     {
-        return spsClassification.SystemId?.Value == CnSystemId;
+        return spsClassification.SystemId?.Value == SystemId.Cn && !string.IsNullOrEmpty(spsClassification.ClassCode?.Value);
     }
 }

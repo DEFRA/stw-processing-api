@@ -19,6 +19,7 @@ The table below outlines the environment variables required for running the appl
 | FUNCTIONS_WORKER_RUNTIME               | Language or language stack of the worker runtime to load in the function app                         |
 | ApiConfig:ApprovedEstablishmentBaseUrl | Base URL for the IPAFFS Approved Establishment Microservice                                          |
 | ApiConfig:BcpServiceBaseUrl            | Base URL for the IPAFFS BCP Microservice                                                             |
+| ApiConfig:CommodityCodeBaseUrl         | Base URL for the IPAFFS Commodity Code Microservice                                                  |
 | ApiConfig:Timeout                      | Duration (in seconds) to wait before timing out HTTP Client requests                                 |
 
 The environment variables can be set by creating `local.settings.json` in `src/STW.ProcessingApi.Function/`:

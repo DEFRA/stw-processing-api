@@ -39,8 +39,10 @@ public class SystemIdRuleTests
     }
 
     [TestMethod]
-    [DataRow(ChedType.Chedpp)]
     [DataRow(ChedType.Chedp)]
+    [DataRow(ChedType.Chedpp)]
+    [DataRow(ChedType.Chedd)]
+    [DataRow(ChedType.Cheda)]
     public void ShouldInvoke_ReturnsTrue_WhenChedTypeIsChedppOrChedp(string chedType)
     {
         // Arrange
@@ -158,7 +160,7 @@ public class SystemIdRuleTests
     }
 
     [TestMethod]
-    public void Invoke_DoesNotAddError_WhenSystemIdValueIsCn()
+    public void Invoke_DoesNotAddError_WhenSystemIdValueIsCnAndClassCodeHasValue()
     {
         // Arrange
         var tradeLineItems = new List<IncludedSpsTradeLineItem>
@@ -170,7 +172,8 @@ public class SystemIdRuleTests
                 {
                     new ApplicableSpsClassification
                     {
-                        SystemId = SpsCertificateTestHelper.BuildIdTypeWithValue(TestConstants.SystemIdCn)
+                        SystemId = SpsCertificateTestHelper.BuildIdTypeWithValue(SystemId.Cn),
+                        ClassCode = SpsCertificateTestHelper.BuildCodeTypeWithValue(TestConstants.CommodityId)
                     }
                 }
             }

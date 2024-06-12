@@ -11,7 +11,11 @@ public static class RuleErrorId
     public const int QuantityMustBeOneOrMore = 22;
     public const int InvalidQuantityType = 26;
     public const int MissingQuantityType = 27;
+    public const int InvalidEppoCode = 32;
+    public const int InvalidScientificName = 33;
+    public const int MissingFinishedOrPropagated = 38;
     public const int SequenceNumericOrder = 41;
+    public const int FinishedOrPropagatedNotRequired = 52;
     public const int NetWeightTooManyDigits = 54;
     public const int GoodsCertifiedAsValueIsInvalid = 56;
     public const int ConformsToEuRequiredForInternalMarket = 57;
@@ -51,4 +55,10 @@ public static class RuleErrorId
     public const int InvalidBcpCode = 91;
     public const int BcpSuspended = 92;
     public const int BcpServiceError = 93;
+    public const int SpeciesClassNameNotRecognised = 94;
+    public const int SpeciesFamilyNameNotRecognised = 95;
+    public const int SpeciesNameNotRecognised = 96;
+    public const int CommodityCodeClientError = 97;
+    public const int CommodityCategoryDataNotFound = 98;
+    public const int SpeciesTypeNameNotRecognised = 99;
 }

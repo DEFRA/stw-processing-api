@@ -9,4 +9,6 @@ public class ApiConfigOptions
     public string ApprovedEstablishmentBaseUrl { get; set; }
 
     public string BcpServiceBaseUrl { get; set; }
+
+    public string CommodityCodeBaseUrl { get; set; }
 }

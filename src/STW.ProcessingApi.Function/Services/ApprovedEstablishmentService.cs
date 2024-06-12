@@ -23,7 +23,7 @@ public class ApprovedEstablishmentService : IApprovedEstablishmentService
 
         if (!result.IsSuccessStatusCode)
         {
-            _logger.LogError($"Approved Establishment Search has received an unsuccessful status code: {(int)result.StatusCode}.");
+            _logger.LogError($"{nameof(Search)} has received an unsuccessful status code: {(int)result.StatusCode}");
 
             return Result<PageImpl<ApprovedEstablishment>>.Failure();
         }

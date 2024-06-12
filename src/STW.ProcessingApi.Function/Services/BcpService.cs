@@ -1,6 +1,7 @@
 namespace STW.ProcessingApi.Function.Services;
 
 using System.Net.Http.Json;
+using Interfaces;
 using Models;
 
 public class BcpService : IBcpService

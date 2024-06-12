@@ -20,7 +20,7 @@ public class ChedpInternalMarketRule : IRule
     {
         var goodsCertifiedAs = PurposeHelper.GetGoodsCertifiedAs(spsCertificate.SpsExchangedDocument.SignatorySpsAuthentication);
 
-        if (GoodsCertifiedAs.Values().All(x => goodsCertifiedAs != x))
+        if (GoodsCertifiedAs.Values.All(x => goodsCertifiedAs != x))
         {
             validationErrors.Add(new ValidationError(RuleErrorMessage.GoodsCertifiedAsValueIsInvalid, RuleErrorId.GoodsCertifiedAsValueIsInvalid));
         }

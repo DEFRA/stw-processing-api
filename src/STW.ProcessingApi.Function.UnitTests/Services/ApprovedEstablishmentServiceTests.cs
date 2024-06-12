@@ -65,6 +65,6 @@ public class ApprovedEstablishmentServiceTests
         result.IsSuccess.Should().BeFalse();
         result.Value.Should().BeNull();
 
-        _loggerMock.VerifyLog(x => x.LogError("Approved Establishment Search has received an unsuccessful status code: 500."));
+        _loggerMock.VerifyLog(x => x.LogError("Search has received an unsuccessful status code: 500"));
     }
 }

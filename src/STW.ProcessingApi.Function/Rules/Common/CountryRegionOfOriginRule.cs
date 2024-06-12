@@ -7,13 +7,11 @@ using Models;
 
 public class CountryRegionOfOriginRule : IRule
 {
-    private readonly string[] _chedTypes = new string[] { ChedType.Chedp, ChedType.Chedpp };
-
     public bool ShouldInvoke(SpsCertificate spsCertificate)
     {
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote);
 
-        return chedType is not null && _chedTypes.Contains(chedType);
+        return chedType is not null && ChedType.Values.Contains(chedType);
     }
 
     public void Invoke(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)

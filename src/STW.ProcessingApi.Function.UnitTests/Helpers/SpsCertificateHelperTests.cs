@@ -11,7 +11,7 @@ using TestHelpers;
 public class SpsCertificateHelperTests
 {
     [TestMethod]
-    public void GetSpsNoteTypeBySubjectCode_ReturnsCorrectSpsNote_WhenCalledWithSubjectCodeConformsToEu()
+    public void GetSpsNoteTypeBySubjectCode_ReturnsCorrectSpsNoteType_WhenCalledWithSubjectCodeConformsToEu()
     {
         // Arrange
         var spsNoteTypes = new List<SpsNoteType>
@@ -69,7 +69,7 @@ public class SpsCertificateHelperTests
     }
 
     [TestMethod]
-    public void GetChedType_ReturnsCorrectValue_WhenCalledWithSubjectCodeChedType()
+    public void GetChedType_ReturnsCorrectSpsNoteTypeValue_WhenCalledWithSubjectCodeChedType()
     {
         // Arrange
         var spsNoteTypes = new List<SpsNoteType>
@@ -92,6 +92,78 @@ public class SpsCertificateHelperTests
 
         // Act
         var result = SpsCertificateHelper.GetSpsNoteTypeContentValueBySubjectCode(spsNoteTypes, SubjectCode.ChedType);
+
+        // Assert
+        result.Should().BeNull();
+    }
+
+    [TestMethod]
+    public void GetApplicableSpsClassificationBySystemId_ReturnsCorrectApplicableSpsClassification_WhenMatchingSystemIdIsFound()
+    {
+        // Arrange
+        var applicableSpsClassifications = new List<ApplicableSpsClassification>
+        {
+            new ApplicableSpsClassification
+            {
+                SystemId = SpsCertificateTestHelper.BuildIdTypeWithValue(SystemId.Cn),
+                ClassCode = SpsCertificateTestHelper.BuildCodeTypeWithValue(TestConstants.CommodityId)
+            }
+        };
+
+        // Act
+        var result = SpsCertificateHelper.GetApplicableSpsClassificationBySystemId(applicableSpsClassifications, SystemId.Cn);
+
+        // Assert
+        result.Should().Be(applicableSpsClassifications[0]);
+    }
+
+    [TestMethod]
+    public void GetApplicableSpsClassificationBySystemId_ReturnsNull_WhenNoMatchingSystemIdIsFound()
+    {
+        // Arrange
+        var applicableSpsClassifications = new List<ApplicableSpsClassification>();
+
+        // Act
+        var result = SpsCertificateHelper.GetApplicableSpsClassificationBySystemId(applicableSpsClassifications, SystemId.Cn);
+
+        // Assert
+        result.Should().BeNull();
+    }
+
+    [TestMethod]
+    public void GetApplicableSpsClassificationBySystemName_ReturnsCorrectApplicableSpsClassification_WhenMatchingSystemNameIsFound()
+    {
+        // Arrange
+        var applicableSpsClassifications = new List<ApplicableSpsClassification>
+        {
+            new ApplicableSpsClassification
+            {
+                SystemName = new List<TextType>
+                {
+                    SpsCertificateTestHelper.BuildTextTypeWithValue(SystemName.IpaffsCcc),
+                },
+                ClassName = new List<TextType>
+                {
+                    SpsCertificateTestHelper.BuildTextTypeWithValue(TestConstants.SpeciesClassName)
+                }
+            }
+        };
+
+        // Act
+        var result = SpsCertificateHelper.GetApplicableSpsClassificationBySystemName(applicableSpsClassifications, SystemName.IpaffsCcc);
+
+        // Assert
+        result.Should().Be(applicableSpsClassifications[0]);
+    }
+
+    [TestMethod]
+    public void GetApplicableSpsClassificationBySystemName_ReturnsNull_WhenNoMatchingSystemNameIsFound()
+    {
+        // Arrange
+        var applicableSpsClassifications = new List<ApplicableSpsClassification>();
+
+        // Act
+        var result = SpsCertificateHelper.GetApplicableSpsClassificationBySystemName(applicableSpsClassifications, SystemName.IpaffsCcc);
 
         // Assert
         result.Should().BeNull();
