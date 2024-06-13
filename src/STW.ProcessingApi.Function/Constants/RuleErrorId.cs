@@ -37,7 +37,7 @@ public static class RuleErrorId
     public const int RegisteredNumberMissingCustomsWarehouseNumber = 73;
     public const int NonConformingConsignmentMissingDestinationType = 74;
     public const int MissingImportSpsCountry = 75;
-    public const int MissingFinalBip = 76;
+    public const int MissingFinalBcp = 76;
     public const int TransitingCountriesMax = 77;
     public const int DuplicateTransitingCountries = 78;
     public const int ThirdCountryMissing = 79;
@@ -61,4 +61,8 @@ public static class RuleErrorId
     public const int CommodityCodeClientError = 97;
     public const int CommodityCategoryDataNotFound = 98;
     public const int SpeciesTypeNameNotRecognised = 99;
+    public const int CountriesClientError = 100;
+    public const int ThirdCountryNotFound = 101;
+    public const int TransitingCountryNotFound = 102;
+    public const int ExitBcpNotFound = 103;
 }

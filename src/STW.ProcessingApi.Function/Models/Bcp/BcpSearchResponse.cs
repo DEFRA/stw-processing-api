@@ -1,4 +1,4 @@
-namespace STW.ProcessingApi.Function.Models;
+namespace STW.ProcessingApi.Function.Models.Bcp;
 
 public class BcpSearchResponse
 {

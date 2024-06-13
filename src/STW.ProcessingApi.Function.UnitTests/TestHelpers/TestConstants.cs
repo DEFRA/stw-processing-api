@@ -8,7 +8,8 @@ public static class TestConstants
     public const string Invalid = "invalid";
     public const string ShipName = "SS STW";
     public const string ShipPort = "Felixstowe";
-    public const string BcpCode = "GBFXT1PP";
+    public const string UkBcpCode = "GBFXT1PP";
+    public const string NonUkBcpCode = "ISHAF1";
     public const string NewZealand = "New Zealand";
     public const string GreatBritainIsoCode = "GB";
     public const string NewZealandIsoCode = "NZ";

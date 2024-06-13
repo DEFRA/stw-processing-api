@@ -36,6 +36,15 @@ public static class ServiceCollectionExtensions
                 client.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
 
+        serviceCollection.AddHttpClient<ICommodityCodeService, CommodityCodeService>(
+            (serviceProvider, client) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+
+                client.BaseAddress = new Uri(options.CommodityCodeBaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
+
         serviceCollection.AddHttpClient<IBcpService, BcpService>(
             (serviceProvider, httpClient) =>
             {
@@ -50,6 +59,15 @@ public static class ServiceCollectionExtensions
                 var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
 
                 client.BaseAddress = new Uri(options.CommodityCodeBaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
+
+        serviceCollection.AddHttpClient<ICountriesService, CountriesService>(
+            (serviceProvider, client) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+
+                client.BaseAddress = new Uri(options.CountriesBaseUrl);
                 client.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
     }

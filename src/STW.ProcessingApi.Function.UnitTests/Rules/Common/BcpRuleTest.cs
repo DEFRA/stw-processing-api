@@ -7,6 +7,7 @@ using Function.Rules.Common;
 using Function.Services.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.Bcp;
 using Moq;
 using TestHelpers;
 
@@ -77,7 +78,7 @@ public class BcpRuleTest
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
-            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHED-P"))
             .ReturnsAsync(Result<List<Bcp>>.Success([ValidBcp]));
 
         // Act
@@ -96,7 +97,7 @@ public class BcpRuleTest
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
-            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHED-P"))
             .ReturnsAsync(Result<List<Bcp>>.Success([]));
 
         // Act
@@ -120,7 +121,7 @@ public class BcpRuleTest
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
-            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHED-P"))
             .ReturnsAsync(Result<List<Bcp>>.Success([SuspendedBcp]));
 
         // Act
@@ -144,7 +145,7 @@ public class BcpRuleTest
         var errors = new List<ValidationError>();
 
         _bcpServiceMock
-            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHEDP"))
+            .Setup(m => m.GetBcpsWithCodeAndType("BCPCODE", "CHED-P"))
             .ReturnsAsync(Result<List<Bcp>>.Failure(new HttpRequestException("Message")));
 
         // Act

@@ -26,7 +26,7 @@ public class CommodityCodeService : ICommodityCodeService
         {
             _logger.LogError($"{nameof(GetCommodityInfoBySpeciesName)} has received an unsuccessful status code: {(int)result.StatusCode}");
 
-            return Result<CommodityInfo>.Failure();
+            return Result<CommodityInfo>.Failure(result.StatusCode);
         }
 
         var commodityInfo = await result.Content.ReadFromJsonAsync<CommodityInfo>();
@@ -43,7 +43,7 @@ public class CommodityCodeService : ICommodityCodeService
         {
             _logger.LogError($"{nameof(GetCommodityInfoByEppoCode)} has received an unsuccessful status code: {(int)result.StatusCode}");
 
-            return Result<CommodityInfo>.Failure();
+            return Result<CommodityInfo>.Failure(result.StatusCode);
         }
 
         var commodityInfo = await result.Content.ReadFromJsonAsync<CommodityInfo>();
@@ -60,7 +60,7 @@ public class CommodityCodeService : ICommodityCodeService
         {
             _logger.LogError($"{nameof(GetCommodityConfigurations)} has received an unsuccessful status code: {(int)result.StatusCode}");
 
-            return Result<IList<CommodityConfiguration>>.Failure();
+            return Result<IList<CommodityConfiguration>>.Failure(result.StatusCode);
         }
 
         var commodityConfigurations = await result.Content.ReadFromJsonAsync<List<CommodityConfiguration>>();
@@ -77,7 +77,7 @@ public class CommodityCodeService : ICommodityCodeService
         {
             _logger.LogError($"{nameof(GetCommodityCategories)} has received an unsuccessful status code: {(int)result.StatusCode}");
 
-            return Result<CommodityCategory>.Failure();
+            return Result<CommodityCategory>.Failure(result.StatusCode);
         }
 
         var commodityCategory = string.IsNullOrEmpty(await result.Content.ReadAsStringAsync())

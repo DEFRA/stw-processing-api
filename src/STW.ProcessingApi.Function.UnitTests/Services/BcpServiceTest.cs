@@ -5,6 +5,7 @@ using FluentAssertions;
 using Function.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.Bcp;
 using Moq;
 using TestHelpers;
 

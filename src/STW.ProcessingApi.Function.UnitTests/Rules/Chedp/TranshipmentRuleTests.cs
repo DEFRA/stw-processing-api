@@ -94,7 +94,7 @@ public class TranshipmentRuleTests
     }
 
     [TestMethod]
-    public void Invoke_DoesNotAddError_WhenImportSpsCountryIsPresentAndFinalBipIsValid()
+    public void Invoke_DoesNotAddError_WhenImportSpsCountryIsPresentAndFinalBcpIsValid()
     {
         // Arrange
         var spsCertificate = new SpsCertificate
@@ -104,7 +104,7 @@ public class TranshipmentRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(TestConstants.NewZealandIsoCode),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.UkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument
@@ -140,7 +140,7 @@ public class TranshipmentRuleTests
                 ImportSpsCountry = SpsCertificateTestHelper.BuildSpsCountryTypeWithId(string.Empty),
                 TransitSpsCountry = new List<SpsCountryType>
                 {
-                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.BcpCode)
+                    SpsCertificateTestHelper.BuildSpsCountryTypeWithIdAndActivityAuthorizedSpsPartyId(TestConstants.GreatBritainIsoCode, TestConstants.UkBcpCode)
                 }
             },
             SpsExchangedDocument = new SpsExchangedDocument
@@ -212,8 +212,8 @@ public class TranshipmentRuleTests
         _validationErrors.Should().HaveCount(1).And.SatisfyRespectively(
             x =>
             {
-                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingFinalBip);
-                x.ErrorId.Should().Be(RuleErrorId.MissingFinalBip);
+                x.ErrorMessage.Should().Be(RuleErrorMessage.MissingFinalBcp);
+                x.ErrorId.Should().Be(RuleErrorId.MissingFinalBcp);
             });
     }
 }

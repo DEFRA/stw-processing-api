@@ -1,5 +1,6 @@
 namespace STW.ProcessingApi.Function.UnitTests.Rules.Chedp;
 
+using System.Net;
 using System.Text.Json;
 using Constants;
 using FluentAssertions;
@@ -90,7 +91,7 @@ public class CommodityIdSpeciesNameVerificationRuleTests
 
         _commodityCodeServiceMock
             .Setup(x => x.GetCommodityCategories(It.IsAny<string>(), It.IsAny<string>()))
-            .ReturnsAsync(Result<CommodityCategory>.Failure);
+            .ReturnsAsync(Result<CommodityCategory>.Failure(HttpStatusCode.InternalServerError));
 
         // Act
         await _systemUnderTest.InvokeAsync(spsCertificate, _validationErrors);

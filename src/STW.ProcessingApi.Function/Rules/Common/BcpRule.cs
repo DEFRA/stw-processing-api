@@ -26,7 +26,7 @@ public class BcpRule : IAsyncRule
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote)!;
         var bcpCode = GetBcpCode(spsCertificate);
 
-        var result = await _bcpService.GetBcpsWithCodeAndType(bcpCode, chedType);
+        var result = await _bcpService.GetBcpsWithCodeAndType(bcpCode, ChedType.ToDashed(chedType));
 
         if (!result.IsSuccess)
         {

@@ -24,6 +24,8 @@ public class CommodityIdSpeciesNameVerificationRule : IAsyncRule
 
     public async Task InvokeAsync(SpsCertificate spsCertificate, IList<ValidationError> validationErrors)
     {
+        var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote)!;
+
         var tradeLineItems = spsCertificate.SpsConsignment
             .IncludedSpsConsignmentItem
             .First()
@@ -33,7 +35,7 @@ public class CommodityIdSpeciesNameVerificationRule : IAsyncRule
         {
             var commodityId = CommodityHelper.GetCommodityId(tradeLineItem.ApplicableSpsClassification)!;
 
-            var result = await _commodityCodeService.GetCommodityCategories(commodityId, OldChedType.Cvedp);
+            var result = await _commodityCodeService.GetCommodityCategories(commodityId, ChedType.ToOldType(chedType));
 
             if (!result.IsSuccess)
             {
