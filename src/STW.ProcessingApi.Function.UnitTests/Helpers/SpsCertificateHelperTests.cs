@@ -168,4 +168,66 @@ public class SpsCertificateHelperTests
         // Assert
         result.Should().BeNull();
     }
+
+    [TestMethod]
+    public void GetApplicableSpsClassifications_ReturnsApplicableSpsClassifications_WhenTheyExist()
+    {
+        // Arrange
+        var spsCertificate = new SpsCertificate
+        {
+            SpsConsignment = new SpsConsignment
+            {
+                IncludedSpsConsignmentItem = new List<IncludedSpsConsignmentItem>
+                {
+                    new IncludedSpsConsignmentItem
+                    {
+                        IncludedSpsTradeLineItem = new List<IncludedSpsTradeLineItem>
+                        {
+                            new IncludedSpsTradeLineItem
+                            {
+                                ApplicableSpsClassification = new List<ApplicableSpsClassification>
+                                {
+                                    new ApplicableSpsClassification()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Act
+        var result = SpsCertificateHelper.GetApplicableSpsClassifications(spsCertificate);
+
+        // Assert
+        result.Should().BeSameAs(spsCertificate.SpsConsignment.IncludedSpsConsignmentItem[0].IncludedSpsTradeLineItem[0].ApplicableSpsClassification);
+    }
+
+    [TestMethod]
+    public void GetApplicableSpsClassifications_ReturnsEmptyList_WhenNoApplicableSpsClassificationsExist()
+    {
+        // Arrange
+        var spsCertificate = new SpsCertificate
+        {
+            SpsConsignment = new SpsConsignment
+            {
+                IncludedSpsConsignmentItem = new List<IncludedSpsConsignmentItem>
+                {
+                    new IncludedSpsConsignmentItem
+                    {
+                        IncludedSpsTradeLineItem = new List<IncludedSpsTradeLineItem>
+                        {
+                            new IncludedSpsTradeLineItem()
+                        }
+                    }
+                }
+            }
+        };
+
+        // Act
+        var result = SpsCertificateHelper.GetApplicableSpsClassifications(spsCertificate);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
 }

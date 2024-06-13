@@ -65,4 +65,6 @@ public static class RuleErrorMessage
     public const string TransitingCountryNotFound = "The ISO code \"{0}\" is not recognised - check the country code used for \"transitSpsCountry\"";
     public const string CountriesClientError = "An error has occurred with countries service";
     public const string ExitBcpNotFound = "TRACES code for BCP in \"activityAuthorizedSpsParty\" is incorrect – check it is in the right format";
+    public const string InvalidInternalMarketPurposeError = "{0} is not a valid \"GOODS_CERTIFIED_AS\" value for the first trade line item - check the value provided";
+    public const string FieldConfigServiceError = "Unable to check Field Config: {0}";
 }

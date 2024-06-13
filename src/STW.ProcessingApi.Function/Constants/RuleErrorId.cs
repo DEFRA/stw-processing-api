@@ -65,4 +65,6 @@ public static class RuleErrorId
     public const int ThirdCountryNotFound = 101;
     public const int TransitingCountryNotFound = 102;
     public const int ExitBcpNotFound = 103;
+    public const int InvalidInternalMarketPurposeError = 94;
+    public const int FieldConfigServiceError = 95;
 }

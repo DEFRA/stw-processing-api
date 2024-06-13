@@ -52,7 +52,8 @@ public class CountryRegionOfOriginRule : IRule
 
         if (countries.Count > 1)
         {
-            validationErrors.Add(new ValidationError(
+            validationErrors.Add(
+                new ValidationError(
                 string.Format(RuleErrorMessage.MoreThanOneCountryOfOrigin, string.Join(", ", countries)),
                 RuleErrorId.MoreThanOneCountryOfOrigin));
         }
@@ -68,14 +69,16 @@ public class CountryRegionOfOriginRule : IRule
 
         if (regions.Count > 1)
         {
-            validationErrors.Add(new ValidationError(
+            validationErrors.Add(
+                new ValidationError(
                 string.Format(RuleErrorMessage.MoreThanOneRegionOfOriginInConsignment, string.Join(", ", regions)),
                 RuleErrorId.MoreThanOneRegionOfOriginInConsignment));
         }
 
         if (!regionName.StartsWith($"{spsCountryType.Id.Value}-"))
         {
-            validationErrors.Add(new ValidationError(
+            validationErrors.Add(
+                new ValidationError(
                 string.Format(RuleErrorMessage.InvalidRegionOfOrigin, regionName),
                 RuleErrorId.InvalidRegionOfOrigin));
         }

@@ -30,4 +30,14 @@ public static class SpsCertificateHelper
     {
         return applicableSpsClassifications.FirstOrDefault(x => x.SystemName.Any(z => z.Value == systemName));
     }
+
+    public static IList<ApplicableSpsClassification> GetApplicableSpsClassifications(SpsCertificate spsCertificate)
+    {
+        return spsCertificate.SpsConsignment
+            .IncludedSpsConsignmentItem
+            .First()
+            .IncludedSpsTradeLineItem
+            .First()
+            .ApplicableSpsClassification;
+    }
 }
