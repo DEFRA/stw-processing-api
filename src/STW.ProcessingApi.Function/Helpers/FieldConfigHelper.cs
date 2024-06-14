@@ -7,17 +7,17 @@ public static class FieldConfigHelper
 {
     public static List<string> GetValidPurposes(string fieldConfigData, string? speciesTypeName)
     {
-        var internalMarketKey = string.IsNullOrEmpty(speciesTypeName) ? "internalMarket" : $"internalMarket-{speciesTypeName}";
+        var internalMarketKey = string.IsNullOrEmpty(speciesTypeName)
+            ? "internalMarket"
+            : $"internalMarket-{speciesTypeName}";
         var expression = $"$..['Purpose']..[?(@.id=='{internalMarketKey}' || @.name=='{internalMarketKey}')]..values";
-        var array = (JArray)JToken.Parse(fieldConfigData).SelectTokens(expression).FirstOrDefault() ?? [];
-        var internalMarketPurposes = new List<string>();
-        if (array.Count > 0)
-        {
-            internalMarketPurposes = array
-                .Select(element => ((JObject)element).GetValue("label")!.ToString())
-                .ToList();
-        }
 
-        return internalMarketPurposes;
+        var internalMarketPurposes = JToken.Parse(fieldConfigData)
+            .SelectTokens(expression)
+            .FirstOrDefault()?
+            .Select(x => ((JObject)x).GetValue("label")!.ToString())
+            .ToList();
+
+        return internalMarketPurposes ?? [];
     }
 }

@@ -26,6 +26,7 @@ public class InternalMarketFieldConfigRule : IAsyncRule
     public async Task InvokeAsync(SpsCertificate spsCertificate, IList<ValidationError> errors)
     {
         var result = await FetchFieldConfig(spsCertificate);
+
         if (!result.IsSuccess)
         {
                 errors.Add(
@@ -38,6 +39,7 @@ public class InternalMarketFieldConfigRule : IAsyncRule
         var speciesTypeName = ComplementHelper.GetSpeciesTypeName(SpsCertificateHelper.GetApplicableSpsClassifications(spsCertificate));
         var goodsCertifiedAs = PurposeHelper.GetGoodsCertifiedAs(spsCertificate.SpsExchangedDocument.SignatorySpsAuthentication)!;
         var validPurposes = FieldConfigHelper.GetValidPurposes(result.Value!.Data, speciesTypeName);
+
         if (!validPurposes.Contains(goodsCertifiedAs))
         {
             errors.Add(
@@ -52,6 +54,7 @@ public class InternalMarketFieldConfigRule : IAsyncRule
         var chedType = SpsCertificateHelper.GetChedType(spsCertificate.SpsExchangedDocument.IncludedSpsNote)!;
         var applicableSpsClassification = SpsCertificateHelper.GetApplicableSpsClassifications(spsCertificate);
         var commodityCode = CommodityHelper.GetCommodityId(applicableSpsClassification)!;
+
         return await _fieldConfigService.GetByCertTypeAndCommodityCode(chedType, commodityCode);
     }
 }
