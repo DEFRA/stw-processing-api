@@ -17,7 +17,7 @@ public class FieldConfigService : IFieldConfigService
     {
         try
         {
-            var response = await _httpClient.GetFromJsonAsync<FieldConfigDto>($"/configurations/v2/{certType}-{commodityCode}");
+            var response = await _httpClient.GetFromJsonAsync<FieldConfigDto>($"configurations/v2/{certType}-{commodityCode}");
             return Result<FieldConfigDto>.Success(response!);
         }
         catch (HttpRequestException exception)
