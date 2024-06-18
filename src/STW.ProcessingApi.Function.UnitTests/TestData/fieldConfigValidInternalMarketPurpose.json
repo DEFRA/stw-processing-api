@@ -1,0 +1,2221 @@
+{
+  "id": 374,
+  "certificateType": "cvedp",
+  "commodityCode": "03061699",
+  "data": {
+    "commodity_code": "03061699",
+    "document_type": "cvedp",
+    "pages": [
+      {
+        "Commodity": {
+          "sections": [
+            [
+              {
+                "components": [
+                  {
+                    "component_type": "text",
+                    "editable": true,
+                    "id": "",
+                    "label": "Subtotal Net Weight",
+                    "name": "subtotalNetWeights[0]",
+                    "value": "",
+                    "visible": true
+                  },
+                  {
+                    "component_type": "text",
+                    "editable": true,
+                    "id": "p_progrowei",
+                    "label": "Total Gross Weight (kg):",
+                    "name": "productGrossWeight",
+                    "value": "",
+                    "visible": true
+                  },
+                  {
+                    "component_type": "text",
+                    "editable": true,
+                    "id": "p_numpa",
+                    "label": "12. Total Number of packages:",
+                    "name": "numberPackages",
+                    "value": "0",
+                    "visible": true
+                  },
+                  {
+                    "component_type": "text",
+                    "editable": false,
+                    "id": "p_pronewei",
+                    "label": "Total Net Weight (kg):",
+                    "name": "productNetWeight",
+                    "value": "",
+                    "visible": true
+                  },
+                  {
+                    "component_type": "species_picker",
+                    "id": "selectSpecies-157983",
+                    "name": "Product description",
+                    "values": [
+                      {
+                        "description": "0306 Crustaceans, whether in shell or not, live, fresh, chilled, frozen, dried, salted or in brine; crustaceans, in shell, cooked by steaming or by boiling in water, whether or not chilled, frozen, dried, salted or in brine; flours, meals and pellets of crustaceans, fit for human consumptionFrozen0306 16 Cold-water shrimps and prawns (Pandalus spp., Crangon crangon)0306 16 99 Other",
+                        "species": "Farmed stockPandalus spp"
+                      }
+                    ]
+                  }
+                ],
+                "name": "12. Nature of goods, Number and type of packages"
+              },
+              {
+                "components": [
+                  {
+                    "component_type": "select",
+                    "editable": true,
+                    "id": "countryOrigin",
+                    "label": "6. Country of Origin:",
+                    "name": "countryOrigin",
+                    "options": [],
+                    "value": "notset",
+                    "visible": true
+                  },
+                  {
+                    "component_type": "select",
+                    "editable": true,
+                    "id": "countryConsigned",
+                    "label": "7. Country from where consigned:",
+                    "name": "regionOrigin",
+                    "options": [],
+                    "value": "notset",
+                    "visible": true
+                  }
+                ],
+                "name": "Country and Region of Origin"
+              },
+              {
+                "components": [
+                  {
+                    "component_type": "radio_buttons",
+                    "name": "productTemperature",
+                    "values": [
+                      {
+                        "editable": true,
+                        "id": "productTemperaturefrozen",
+                        "label": "Frozen",
+                        "name": "productTemperature",
+                        "selected": false,
+                        "value": "frozen",
+                        "visible": true
+                      }
+                    ],
+                    "label": "Temperature"
+                  }
+                ],
+                "name": "unnamed"
+              },
+              {
+                "components": [
+                  {
+                    "component_type": "org_picker",
+                    "element_id": "p_selvedo",
+                    "select_link_id": "return selectBusiness('originEstablishment');"
+                  }
+                ],
+                "name": "10. Veterinary documents"
+              },
+              {
+                "components": [
+                  {
+                    "component_type": "line item weights",
+                    "editable": true,
+                    "id": "identificationCommodity",
+                    "label": "",
+                    "name": "",
+                    "values": [
+                      {
+                        "component_type": "select",
+                        "editable": true,
+                        "label": "Commodity Code",
+                        "name": "identification[0].complement",
+                        "selected": "1. 03061699",
+                        "values": [
+                          "notset",
+                          "1. 03061699"
+                        ]
+                      },
+                      {
+                        "component_type": "select",
+                        "editable": true,
+                        "label": "Species",
+                        "name": "identification[0].species",
+                        "selected": "1. Pandalus spp",
+                        "values": [
+                          "notset",
+                          "1. Pandalus spp"
+                        ]
+                      },
+                      {
+                        "component_type": "text",
+                        "editable": true,
+                        "label": "Net Weight (kg)",
+                        "name": "identification[0].netweight",
+                        "value": ""
+                      },
+                      {
+                        "component_type": "text",
+                        "editable": true,
+                        "label": "Number of packages",
+                        "name": "identification[0].number_package",
+                        "value": ""
+                      },
+                      {
+                        "component_type": "select",
+                        "editable": true,
+                        "label": "Type of packages",
+                        "name": "identification[0].type_package",
+                        "selected": "notset",
+                        "values": [
+                          "notset",
+                          "Bag",
+                          "Bale",
+                          "Block",
+                          "Box",
+                          "Can",
+                          "Carton",
+                          "Case",
+                          "Cask",
+                          "Coffer",
+                          "Container, not otherwise specified as transport equipment",
+                          "Crate",
+                          "Drum",
+                          "In Bulk",
+                          "Jar",
+                          "Package",
+                          "Pail",
+                          "Pallet",
+                          "Polystyrene Box",
+                          "Tank",
+                          "Tote",
+                          "Tray",
+                          "Tube",
+                          "Vial"
+                        ]
+                      }
+                    ],
+                    "visible": true
+                  }
+                ],
+                "name": "Identification of the commodity"
+              },
+              {
+                "components": [
+                  {
+                    "component_type": "text",
+                    "editable": true,
+                    "label": "Catch certificate number",
+                    "name": "catchCertificateNumber",
+                    "value": ""
+                  },
+                  {
+                    "component_type": "text",
+                    "editable": true,
+                    "label": "Weight (kg)",
+                    "name": "catchCertificateWeight",
+                    "value": ""
+                  }
+                ],
+                "name": "Catch certificate"
+              }
+            ]
+          ],
+          "part": "one"
+        }
+      },
+      {
+        "Purpose": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "conformEuRequirement",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "conformEuRequirementTrue",
+                      "label": "Conforms",
+                      "name": "conformEuRequirement",
+                      "selected": true,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "conformEuRequirementFalse",
+                      "label": "Does NOT conform",
+                      "name": "conformEuRequirement",
+                      "selected": false,
+                      "value": "0",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "19. Conform to EU Requirements"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "purpose",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "purposeinternalmarket",
+                      "label": "21. For Internal Market",
+                      "name": "purpose",
+                      "selected": false,
+                      "value": "internalmarket",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "internalMarket-Farmed stock",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "internalMarketanimal",
+                      "label": "Animal feedingstuff",
+                      "name": "internalMarket",
+                      "selected": false,
+                      "value": "animal",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "internalMarkethuman",
+                      "label": "HUMAN_CONSUMPTION",
+                      "name": "internalMarket",
+                      "selected": false,
+                      "value": "human",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "internalMarketother",
+                      "label": "Other",
+                      "name": "internalMarket",
+                      "selected": false,
+                      "value": "other",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "internalMarket-Wild stock",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "internalMarketanimal",
+                      "label": "Animal feedingstuff",
+                      "name": "internalMarket",
+                      "selected": false,
+                      "value": "animal",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "internalMarkethuman",
+                      "label": "Human consumption",
+                      "name": "internalMarket",
+                      "selected": false,
+                      "value": "human",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "internalMarketother",
+                      "label": "Other",
+                      "name": "internalMarket",
+                      "selected": false,
+                      "value": "other",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "21. For Internal Market"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_renu1",
+                  "label": "Registered No.:",
+                  "name": "registerNumber1",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_renu2",
+                  "label": "Registered No.:",
+                  "name": "registerNumber2",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_renu3",
+                  "label": "Registered No.:",
+                  "name": "registerNumber3",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_shina",
+                  "label": "Name:",
+                  "name": "shipName",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_shipo",
+                  "label": "Port:",
+                  "name": "shipPort",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "purpose",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "purposenonconforming",
+                      "label": "22. For NON-Conforming Consignments",
+                      "name": "purpose",
+                      "selected": false,
+                      "value": "nonconforming",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "nonConformingConsignment",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "nonConformingConsignmentcustoms",
+                      "label": "Customs Warehouse",
+                      "name": "nonConformingConsignment",
+                      "selected": false,
+                      "value": "customs",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "nonConformingConsignmentfree",
+                      "label": "Free Zone or Free Warehouse",
+                      "name": "nonConformingConsignment",
+                      "selected": false,
+                      "value": "free",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "nonConformingConsignmentsupplier",
+                      "label": "Ship Supplier",
+                      "name": "nonConformingConsignment",
+                      "selected": false,
+                      "value": "supplier",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "nonConformingConsignmentship",
+                      "label": "Ship",
+                      "name": "nonConformingConsignment",
+                      "selected": false,
+                      "value": "ship",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "22. For NON-Conforming Consignments"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "purpose",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "purposetranship",
+                      "label": "17. For Transhipment to",
+                      "name": "purpose",
+                      "selected": false,
+                      "value": "tranship",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_trashcoco",
+                  "label": "3rd country:",
+                  "name": "transhipBIP.countryCode",
+                  "options": [],
+                  "value": "notset",
+                  "visible": true
+                },
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_seltrau",
+                  "select_link_id": "return selectAuthority('tranship');"
+                }
+              ],
+              "name": "17. For Transhipment to"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "purpose",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "purposetransit",
+                      "label": "18. For Transit to 3rd Country",
+                      "name": "purpose",
+                      "selected": false,
+                      "value": "transit",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_tracou0",
+                  "label": "Transit third countries:",
+                  "name": "thirdCountryTransit[0]",
+                  "options": [],
+                  "value": "notset",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_taexbicoco",
+                  "label": "3rd country:",
+                  "name": "transitExitBIP.countryCode",
+                  "options": [],
+                  "value": "notset",
+                  "visible": true
+                },
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_seltrasau",
+                  "select_link_id": "return selectAuthority('transit');"
+                }
+              ],
+              "name": "18. For Transit to 3rd Country"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "purpose",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "purposeimport",
+                      "label": "20. For Re-Import",
+                      "name": "purpose",
+                      "selected": false,
+                      "value": "import",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "20. For Re-Import"
+            }
+          ],
+          "part": "one"
+        }
+      },
+      {
+        "References": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_locref",
+                  "label": "Local reference number:",
+                  "name": "localReferenceNumber",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "unnamed"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_selau1",
+                  "select_link_id": "return selectAuthority('reference');"
+                }
+              ],
+              "name": "Border Inspection Post"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_selresp",
+                  "select_link_id": "return selectBusiness('responsible');"
+                }
+              ],
+              "name": "4. Person responsible for load"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_vedonu",
+                  "label": "Veterinary Document Number:",
+                  "name": "vetDocNumber",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_vedodais",
+                  "label": "Date of Issue (dd/mm/yyyy):",
+                  "name": "vetDocDateIssue",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "10. Veterinary documents"
+            },
+            {
+              "components": [],
+              "name": "Attachments"
+            }
+          ],
+          "part": "one"
+        }
+      },
+      {
+        "Traders": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_selcor",
+                  "select_link_id": "return selectBusiness('consignor');"
+                }
+              ],
+              "name": "1. Consignor / Exporter"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_selcoe",
+                  "select_link_id": "return selectBusiness('consignee');"
+                }
+              ],
+              "name": "3. Consignee"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_seldel",
+                  "select_link_id": "return selectBusiness('delivery');"
+                }
+              ],
+              "name": "8. Delivery address"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_selimp",
+                  "select_link_id": "return selectBusiness('importer');"
+                }
+              ],
+              "name": "5. Importer"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_motid",
+                  "label": "Identification:",
+                  "name": "meansOfTransport.identification",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_motdoc",
+                  "label": "Document:",
+                  "name": "meansOfTransport.document",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_motcod",
+                  "label": "Type:",
+                  "name": "meansOfTransport.code",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "notset"
+                    },
+                    {
+                      "text": "Aeroplane",
+                      "value": "plane"
+                    },
+                    {
+                      "text": "Other",
+                      "value": "other"
+                    },
+                    {
+                      "text": "Railway wagon",
+                      "value": "rail"
+                    },
+                    {
+                      "text": "Road vehicle",
+                      "value": "road"
+                    },
+                    {
+                      "text": "Road vehicle/Aeroplane",
+                      "value": "c_road_plane"
+                    },
+                    {
+                      "text": "Ship",
+                      "value": "ship"
+                    },
+                    {
+                      "text": "Ship/Railway wagon",
+                      "value": "c_ship_rail"
+                    },
+                    {
+                      "text": "Ship/Road vehicle",
+                      "value": "c_ship_road"
+                    }
+                  ],
+                  "value": "notset",
+                  "visible": true
+                }
+              ],
+              "name": "11. Means of Transport"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_arrdat",
+                  "label": "Date (dd/mm/yyyy):",
+                  "name": "arrivalDate",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_arrtim",
+                  "label": "Time (hh:mm):",
+                  "name": "arrivalTime",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "9. Estimated Arrival at BIP"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_seanum0",
+                  "label": "Seal Number",
+                  "name": "sealContainer[0].sealNumber",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_connum0",
+                  "label": "Container Number",
+                  "name": "sealContainer[0].containerNumber",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "16. Seal number and Container number"
+            }
+          ],
+          "part": "one"
+        }
+      },
+      {
+        "Transport": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_seltra",
+                  "select_link_id": "return selectBusiness('transporter');"
+                }
+              ],
+              "name": "Transporter"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_depda",
+                  "label": "Date of Departure (dd/mm/yyyy):",
+                  "name": "departDate",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_deptim",
+                  "label": "Time of Departure (hh:mm):",
+                  "name": "departTime",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "unnamed"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_motabcid",
+                  "label": "Identification:",
+                  "name": "meansOfTransportABC.identification",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_motabcdoc",
+                  "label": "Document:",
+                  "name": "meansOfTransportABC.document",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_motabcco",
+                  "label": "Type:",
+                  "name": "meansOfTransportABC.code",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "notset"
+                    },
+                    {
+                      "text": "Aeroplane",
+                      "value": "plane"
+                    },
+                    {
+                      "text": "Other",
+                      "value": "other"
+                    },
+                    {
+                      "text": "Railway wagon",
+                      "value": "rail"
+                    },
+                    {
+                      "text": "Road vehicle",
+                      "value": "road"
+                    },
+                    {
+                      "text": "Road vehicle/Aeroplane",
+                      "value": "c_road_plane"
+                    },
+                    {
+                      "text": "Ship",
+                      "value": "ship"
+                    },
+                    {
+                      "text": "Ship/Railway wagon",
+                      "value": "c_ship_rail"
+                    },
+                    {
+                      "text": "Ship/Road vehicle",
+                      "value": "c_ship_road"
+                    }
+                  ],
+                  "value": "notset",
+                  "visible": true
+                }
+              ],
+              "name": "Means of transport after border inspection post"
+            }
+          ],
+          "part": "one"
+        }
+      },
+      {
+        "Consignment": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_coty",
+                  "label": "Type",
+                  "name": "comboType",
+                  "options": [
+                    {
+                      "text": "Farmed stock",
+                      "value": "157983"
+                    },
+                    {
+                      "text": "Wild stock",
+                      "value": "157984"
+                    }
+                  ],
+                  "value": "157983",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": false,
+                  "id": "p_cocla",
+                  "label": "Class",
+                  "name": "comboClass",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "157983"
+                    }
+                  ],
+                  "value": "157983",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": false,
+                  "id": "p_cofa",
+                  "label": "Family",
+                  "name": "comboFamily",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "157983"
+                    }
+                  ],
+                  "value": "157983",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": false,
+                  "id": "p_como",
+                  "label": "",
+                  "name": "comboModel",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "157983"
+                    }
+                  ],
+                  "value": "157983",
+                  "visible": false
+                },
+                {
+                  "component_type": "checkbox",
+                  "name": "checkbox1",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "checkbox1",
+                      "label": "Pandalus spp",
+                      "name": "checkbox1",
+                      "selected": true,
+                      "value": "10230844",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "unnamed"
+            }
+          ],
+          "part": "one"
+        }
+      },
+      {
+        "Acceptance": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "acceptability-refused",
+                      "label": "NOT Acceptable",
+                      "name": "acceptability",
+                      "selected": false,
+                      "value": "refused",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "NOT Acceptable"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": false,
+                      "id": "acceptability-transhipment",
+                      "label": "30. ACCEPTABLE for Transhipment",
+                      "name": "acceptability",
+                      "selected": false,
+                      "value": "tranship",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "30. ACCEPTABLE for Transhipment"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": false,
+                      "id": "acceptability-transit",
+                      "label": "31. ACCEPTABLE for Transit Procedure",
+                      "name": "acceptability",
+                      "selected": false,
+                      "value": "transit",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "31. ACCEPTABLE for Transit Procedure"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "acceptability-channeled",
+                      "label": "33. ACCEPTABLE if channelled",
+                      "name": "acceptability",
+                      "selected": false,
+                      "value": "channelled",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptChannelledAction",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "p_accchaarticle8",
+                      "label": "Article 8 procedure",
+                      "name": "acceptChannelledAction",
+                      "selected": false,
+                      "value": "article8",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "p_accchaarticle15",
+                      "label": "Re-import of EU products (Article 15)",
+                      "name": "acceptChannelledAction",
+                      "selected": false,
+                      "value": "article15",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_selacca",
+                  "select_link_id": "return selectBusiness('acceptChannelled');"
+                }
+              ],
+              "name": "33. ACCEPTABLE if channelled"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "acceptability-internalmarket",
+                      "label": "32. ACCEPTABLE for Internal Market",
+                      "name": "acceptability",
+                      "selected": true,
+                      "value": "internalmarket",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptMarketFreeCirculation",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "p_acfmcanimal",
+                      "label": "Animal feedingstuff",
+                      "name": "acceptMarketFreeCirculation",
+                      "selected": true,
+                      "value": "animal",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "p_acfmchuman",
+                      "label": "Human consumption",
+                      "name": "acceptMarketFreeCirculation",
+                      "selected": false,
+                      "value": "human",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "p_acfmcother",
+                      "label": "Other",
+                      "name": "acceptMarketFreeCirculation",
+                      "selected": false,
+                      "value": "other",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "p_acfmcpharma",
+                      "label": "Pharmaceutical use",
+                      "name": "acceptMarketFreeCirculation",
+                      "selected": false,
+                      "value": "pharma",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "p_acfmctechnical",
+                      "label": "Technical use",
+                      "name": "acceptMarketFreeCirculation",
+                      "selected": false,
+                      "value": "technical",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "32. ACCEPTABLE for Internal Market"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": false,
+                      "id": "acceptability-nonconforming",
+                      "label": "34. ACCEPTABLE for Specific Warehouse Procedure (Art. 12.4 and 13)",
+                      "name": "acceptability",
+                      "selected": false,
+                      "value": "nonconforming",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptSpecificWarehouse",
+                  "values": [
+                    {
+                      "editable": false,
+                      "id": "p_aswcustoms",
+                      "label": "Customs warehouse",
+                      "name": "acceptSpecificWarehouse",
+                      "selected": false,
+                      "value": "customs",
+                      "visible": true
+                    },
+                    {
+                      "editable": false,
+                      "id": "p_aswship",
+                      "label": "Direct to a ship",
+                      "name": "acceptSpecificWarehouse",
+                      "selected": false,
+                      "value": "ship",
+                      "visible": true
+                    },
+                    {
+                      "editable": false,
+                      "id": "p_aswfree",
+                      "label": "Free zone or Free warehouse",
+                      "name": "acceptSpecificWarehouse",
+                      "selected": false,
+                      "value": "free",
+                      "visible": true
+                    },
+                    {
+                      "editable": false,
+                      "id": "p_aswsupplier",
+                      "label": "Ship supplier",
+                      "name": "acceptSpecificWarehouse",
+                      "selected": false,
+                      "value": "supplier",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "34. ACCEPTABLE for Specific Warehouse Procedure (Art. 12.4 and 13)"
+            }
+          ],
+          "part": "two"
+        }
+      },
+      {
+        "Checks": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "radio_buttons",
+                  "name": "documentaryCheck",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "documentaryCheck1",
+                      "label": "Satisfactory",
+                      "name": "documentaryCheck",
+                      "selected": true,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "documentaryCheck2",
+                      "label": "Not satisfactory",
+                      "name": "documentaryCheck",
+                      "selected": false,
+                      "value": "2",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "identyCheckFull",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "identyCheckFull5",
+                      "label": "Seal Check",
+                      "name": "identyCheckFull",
+                      "selected": false,
+                      "value": "5",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "identyCheckFull6",
+                      "label": "Full Identity Check",
+                      "name": "identyCheckFull",
+                      "selected": true,
+                      "value": "6",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "identyCheckFull7",
+                      "label": "Not Done",
+                      "name": "identyCheckFull",
+                      "selected": false,
+                      "value": "7",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "identyCheck",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "identyCheck1",
+                      "label": "Satisfactory",
+                      "name": "identyCheck",
+                      "selected": true,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "identyCheck2",
+                      "label": "Not satisfactory",
+                      "name": "identyCheck",
+                      "selected": false,
+                      "value": "2",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "physicalCheck",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "physicalCheck7",
+                      "label": "Not Done",
+                      "name": "physicalCheck",
+                      "selected": false,
+                      "value": "7",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "physicalCheck1",
+                      "label": "Satisfactory",
+                      "name": "physicalCheck",
+                      "selected": true,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "physicalCheck2",
+                      "label": "Not satisfactory",
+                      "name": "physicalCheck",
+                      "selected": false,
+                      "value": "2",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "physicalChecknotDone",
+                  "values": [
+                    {
+                      "editable": false,
+                      "id": "physicalChecknotDone8",
+                      "label": "Reduced checks regime",
+                      "name": "physicalChecknotDone",
+                      "selected": false,
+                      "value": "8",
+                      "visible": true
+                    },
+                    {
+                      "editable": false,
+                      "id": "physicalChecknotDone9",
+                      "label": "Other",
+                      "name": "physicalChecknotDone",
+                      "selected": false,
+                      "value": "9",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "identyChecknotDone",
+                  "values": [
+                    {
+                      "editable": false,
+                      "id": "identyChecknotDone8",
+                      "label": "Reduced checks regime",
+                      "name": "identyChecknotDone",
+                      "selected": false,
+                      "value": "8",
+                      "visible": true
+                    },
+                    {
+                      "editable": false,
+                      "id": "identyChecknotDone9",
+                      "label": "Not required",
+                      "name": "identyChecknotDone",
+                      "selected": false,
+                      "value": "9",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "Checklists"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_tedat",
+                  "label": "Date:",
+                  "name": "testExecutedDate",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "testExecuted",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "testExecuted-1",
+                      "label": "Yes",
+                      "name": "testExecuted",
+                      "selected": true,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "testExecuted-0",
+                      "label": "No",
+                      "name": "testExecuted",
+                      "selected": false,
+                      "value": "0",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "testMotivation",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "testMotivation-random",
+                      "label": "Random",
+                      "name": "testMotivation",
+                      "selected": false,
+                      "value": "random",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "testMotivation-suspicion",
+                      "label": "Suspicion",
+                      "name": "testMotivation",
+                      "selected": false,
+                      "value": "suspicion",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "laboratoryTest",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "laboratoryTest-0-4",
+                      "label": "Pending",
+                      "name": "laboratoryTest[0].conclusion",
+                      "selected": false,
+                      "value": "4",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "laboratoryTest-0-1",
+                      "label": "Satisfactory",
+                      "name": "laboratoryTest[0].conclusion",
+                      "selected": false,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "laboratoryTest-0-2",
+                      "label": "Not satisfactory",
+                      "name": "laboratoryTest[0].conclusion",
+                      "selected": false,
+                      "value": "2",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "",
+                  "label": "",
+                  "name": "laboratoryTest[0].complementSpeciesId",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "notset"
+                    },
+                    {
+                      "text": "1. 0306 16 99 Pandalus spp",
+                      "value": "157983-10230844"
+                    }
+                  ],
+                  "value": "157983-10230844",
+                  "visible": true
+                },
+                {
+                  "component_type": "additional_guarantees",
+                  "element_id": "p_ltsel0",
+                  "select_link_id": "return selectLaboratoryTest(\"testedFor0\");"
+                }
+              ],
+              "name": "29. Laboratory Tests"
+            }
+          ],
+          "part": "two"
+        }
+      },
+      {
+        "Control Authority": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_cudore",
+                  "label": "42. Customs Document Reference:",
+                  "name": "customDocRef",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "unnamed"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_rsn0",
+                  "label": "New seal no:",
+                  "name": "resealedNumber[0]",
+                  "value": "",
+                  "visible": true
+                }
+              ],
+              "name": "38. Consignment Resealed"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_shwusr2",
+                  "select_link_id": "return showUser();"
+                }
+              ],
+              "name": "40. Official Veterinarian"
+            }
+          ],
+          "part": "two"
+        }
+      },
+      {
+        "Laboratory Tests": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "lr_t2_sc0",
+                  "label": "Number of samples:",
+                  "name": "laboratoryTest[0].sampleCount",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "lr_t2_sbn0",
+                  "label": "Sample Batch Nr.:",
+                  "name": "laboratoryTest[0].sampleBatchNumber",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "lr_t2_usd0",
+                  "label": "Sample Use By Date:",
+                  "name": "laboratoryTest[0].sampleUseByDate",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "",
+                  "label": "Released date:",
+                  "name": "laboratoryTest[0].resultDate",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "lr_t2_ltm0",
+                  "label": "Laboratory Test Method:",
+                  "name": "laboratoryTest[0].laboratoryTestMethod",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "lr_t2_res0",
+                  "label": "Results:",
+                  "name": "laboratoryTest[0].result",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "laboratoryTest",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "complementSpeciesId-0-157983-10230844",
+                      "label": "1. 0306 16 99 Pandalus spp",
+                      "name": "laboratoryTest[0].complementSpeciesId",
+                      "selected": true,
+                      "value": "157983-10230844",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "lr_t2_c10",
+                      "label": "Satisfactory",
+                      "name": "laboratoryTest[0].laboratoryConclusion",
+                      "selected": false,
+                      "value": "1",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "lr_t2_c20",
+                      "label": "Not satisfactory",
+                      "name": "laboratoryTest[0].laboratoryConclusion",
+                      "selected": false,
+                      "value": "2",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "lr_t2_c30",
+                      "label": "Not interpretable",
+                      "name": "laboratoryTest[0].laboratoryConclusion",
+                      "selected": false,
+                      "value": "10",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "lr_t2_st0",
+                  "label": "Sample Type:",
+                  "name": "laboratoryTest[0].sampleType",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "notset"
+                    },
+                    {
+                      "text": "Aborted matter",
+                      "value": "Aborted matter"
+                    },
+                    {
+                      "text": "Adult",
+                      "value": "Adult"
+                    },
+                    {
+                      "text": "Barks",
+                      "value": "barks"
+                    },
+                    {
+                      "text": "beekeeping products",
+                      "value": "beekeeping prod"
+                    },
+                    {
+                      "text": "Blood",
+                      "value": "Blood"
+                    },
+                    {
+                      "text": "Blood sampling",
+                      "value": "Blood sampling"
+                    },
+                    {
+                      "text": "Bones/feathers",
+                      "value": "Bones/feathers"
+                    },
+                    {
+                      "text": "Branches, stems with leaves",
+                      "value": "branches"
+                    },
+                    {
+                      "text": "Bud",
+                      "value": "bud"
+                    },
+                    {
+                      "text": "Bulbs",
+                      "value": "bulbs"
+                    },
+                    {
+                      "text": "Can",
+                      "value": "Can"
+                    },
+                    {
+                      "text": "Casing",
+                      "value": "Casing"
+                    },
+                    {
+                      "text": "Cereals",
+                      "value": "cereals"
+                    },
+                    {
+                      "text": "Corpse",
+                      "value": "Corpse"
+                    },
+                    {
+                      "text": "Crustacean",
+                      "value": "Crustacean"
+                    },
+                    {
+                      "text": "Cuttings",
+                      "value": "cuttings"
+                    },
+                    {
+                      "text": "Different liquids",
+                      "value": "Liquid divers"
+                    },
+                    {
+                      "text": "Eggs",
+                      "value": "Eggs"
+                    },
+                    {
+                      "text": "Embryo",
+                      "value": "Embryo"
+                    },
+                    {
+                      "text": "Feed",
+                      "value": "Feed"
+                    },
+                    {
+                      "text": "Fish",
+                      "value": "Fish"
+                    },
+                    {
+                      "text": "fish meat",
+                      "value": "fish meat"
+                    },
+                    {
+                      "text": "Flowers",
+                      "value": "flowers"
+                    },
+                    {
+                      "text": "Food contact material",
+                      "value": "foodcontact"
+                    },
+                    {
+                      "text": "Food other",
+                      "value": "Food other"
+                    },
+                    {
+                      "text": "Fresh herbs",
+                      "value": "freshherbs"
+                    },
+                    {
+                      "text": "Fruit",
+                      "value": "fruits"
+                    },
+                    {
+                      "text": "Genital sampling",
+                      "value": "Genital samplin"
+                    },
+                    {
+                      "text": "Grafts",
+                      "value": "grafts"
+                    },
+                    {
+                      "text": "Ground",
+                      "value": "ground"
+                    },
+                    {
+                      "text": "Hair",
+                      "value": "hair"
+                    },
+                    {
+                      "text": "Hide/skin/wool",
+                      "value": "Hide/skin/wool"
+                    },
+                    {
+                      "text": "Larva",
+                      "value": "Larva"
+                    },
+                    {
+                      "text": "Leaves",
+                      "value": "leaves"
+                    },
+                    {
+                      "text": "Live pollen",
+                      "value": "livepollen"
+                    },
+                    {
+                      "text": "Milk/Milk product",
+                      "value": "Milk"
+                    },
+                    {
+                      "text": "Molluscs",
+                      "value": "Molluscs"
+                    },
+                    {
+                      "text": "Muscle",
+                      "value": "Muscle"
+                    },
+                    {
+                      "text": "Needles",
+                      "value": "needles"
+                    },
+                    {
+                      "text": "Ocular sampling",
+                      "value": "Ocular sampling"
+                    },
+                    {
+                      "text": "Offal",
+                      "value": "Offal"
+                    },
+                    {
+                      "text": "Oil/fat",
+                      "value": "Oil/fat"
+                    },
+                    {
+                      "text": "Oilseeds",
+                      "value": "oilseeds"
+                    },
+                    {
+                      "text": "Pharmaceutical products",
+                      "value": "Pharmaceutical "
+                    },
+                    {
+                      "text": "Plants",
+                      "value": "plants"
+                    },
+                    {
+                      "text": "Rhizomes",
+                      "value": "rhizomes"
+                    },
+                    {
+                      "text": "Roots",
+                      "value": "roots"
+                    },
+                    {
+                      "text": "Rootstock",
+                      "value": "rootstock"
+                    },
+                    {
+                      "text": "Seeds",
+                      "value": "seeds"
+                    },
+                    {
+                      "text": "sperme",
+                      "value": "sperme"
+                    },
+                    {
+                      "text": "Spices",
+                      "value": "spices"
+                    },
+                    {
+                      "text": "Stolons",
+                      "value": "stolons"
+                    },
+                    {
+                      "text": "Stools",
+                      "value": "Stools"
+                    },
+                    {
+                      "text": "Suckers",
+                      "value": "suckers"
+                    },
+                    {
+                      "text": "Tea",
+                      "value": "tea"
+                    },
+                    {
+                      "text": "Tissue culture",
+                      "value": "tissueculture"
+                    },
+                    {
+                      "text": "Tissue sampling",
+                      "value": "Tissue sampling"
+                    },
+                    {
+                      "text": "Tubers",
+                      "value": "tubers"
+                    },
+                    {
+                      "text": "urine",
+                      "value": "urine"
+                    },
+                    {
+                      "text": "Vegetable oils",
+                      "value": "vegetableoils"
+                    },
+                    {
+                      "text": "Vegetables",
+                      "value": "vegetables"
+                    },
+                    {
+                      "text": "Wood",
+                      "value": "wood"
+                    },
+                    {
+                      "text": "Wood packaging material",
+                      "value": "woodpckgmat"
+                    },
+                    {
+                      "text": "Wood transport material",
+                      "value": "woodtranspmat"
+                    }
+                  ],
+                  "value": "notset",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "lr_t2_sc0",
+                  "label": "Conservation of sample:",
+                  "name": "laboratoryTest[0].sampleConservation",
+                  "options": [
+                    {
+                      "text": "",
+                      "value": "notset"
+                    },
+                    {
+                      "text": "Ambient",
+                      "value": "ambient"
+                    },
+                    {
+                      "text": "Chilled",
+                      "value": "chilled"
+                    },
+                    {
+                      "text": "Frozen",
+                      "value": "frozen"
+                    }
+                  ],
+                  "value": "notset",
+                  "visible": true
+                },
+                {
+                  "component_type": "additional_guarantees",
+                  "element_id": "lt_t2_sl0",
+                  "select_link_id": "return selectLaboratory(\"testedFor0\");"
+                },
+                {
+                  "component_type": "additional_guarantees",
+                  "element_id": "lt_t2_slt0",
+                  "select_link_id": "return selectLaboratoryTest(\"testedFor0\");"
+                },
+                {
+                  "component_type": "additional_guarantees",
+                  "element_id": "lr_t2_sltm0",
+                  "select_link_id": "return selectLaboratoryTestMethod(\"testedFor0\");"
+                }
+              ],
+              "name": "Laboratory Test"
+            }
+          ],
+          "part": "two"
+        }
+      },
+      {
+        "Refusal": {
+          "sections": [
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "p_nadat",
+                  "label": "By Date:",
+                  "name": "notAcceptDate",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "acceptability",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "acceptabilityrefused",
+                      "label": "35. NOT ACCEPTABLE",
+                      "name": "acceptability",
+                      "selected": false,
+                      "value": "refused",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "radio_buttons",
+                  "name": "notAcceptAction",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "notAcceptAction-reexport",
+                      "label": "1. Re-export",
+                      "name": "notAcceptAction",
+                      "selected": false,
+                      "value": "reexport",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "notAcceptAction-destruction",
+                      "label": "2. Destruction",
+                      "name": "notAcceptAction",
+                      "selected": false,
+                      "value": "destruction",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "notAcceptAction-transformation",
+                      "label": "3. Transformation",
+                      "name": "notAcceptAction",
+                      "selected": false,
+                      "value": "transformation",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "notAcceptAction-other",
+                      "label": "4. Other",
+                      "name": "notAcceptAction",
+                      "selected": false,
+                      "value": "other",
+                      "visible": true
+                    }
+                  ]
+                },
+                {
+                  "component_type": "org_picker",
+                  "element_id": "p_nasel",
+                  "select_link_id": "return selectBusiness('notAcceptDestination');"
+                }
+              ],
+              "name": "35. NOT ACCEPTABLE"
+            },
+            {
+              "components": [
+                {
+                  "component_type": "text",
+                  "editable": true,
+                  "id": "",
+                  "label": "3. Non approved establishment",
+                  "name": "refusalEstablishment",
+                  "value": "",
+                  "visible": true
+                },
+                {
+                  "component_type": "select",
+                  "editable": true,
+                  "id": "p_rereco",
+                  "label": "Country:",
+                  "name": "refusalCountry",
+                  "options": [],
+                  "value": "notset",
+                  "visible": true
+                },
+                {
+                  "component_type": "checkbox",
+                  "name": "refusalReason",
+                  "values": [
+                    {
+                      "editable": true,
+                      "id": "AbsenceInvalidCertificate",
+                      "label": "Absence/Invalid Certificate",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "AbsenceInvalidCertificate",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "NonApprovedCountry",
+                      "label": "Non Approved Country",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "NonApprovedCountry",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "NonApprovedEstablishment",
+                      "label": "Non Approved Establishment",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "NonApprovedEstablishment",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "ProhibitedProduct",
+                      "label": "Prohibited",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "ProhibitedProduct",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "InvasiveAlienSpecies",
+                      "label": "Invasive Alien Species",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "InvasiveAlienSpecies",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "IdMismatchWithDocuments",
+                      "label": "ID: Mis-match With Documents",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "IdMismatchWithDocuments",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "IdHealthMarkError",
+                      "label": "ID: Health Mark Error",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "IdHealthMarkError",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "PhysicalHygieneFailure",
+                      "label": "Physical Hygiene Failure",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "PhysicalHygieneFailure",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "ChemicalContamination",
+                      "label": "Chemical Contamination",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "ChemicalContamination",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "MicrobiologicalContamination",
+                      "label": "Microbiological Contamination",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "MicrobiologicalContamination",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "Other",
+                      "label": "Other",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "Other",
+                      "visible": true
+                    },
+                    {
+                      "editable": true,
+                      "id": "OtherRasff",
+                      "label": "Other, Create Border Notification",
+                      "name": "refusal-reason",
+                      "selected": false,
+                      "value": "OtherRasff",
+                      "visible": true
+                    }
+                  ]
+                }
+              ],
+              "name": "36. Reason for Refusal"
+            }
+          ],
+          "part": "two"
+        }
+      }
+    ]
+  }
+}

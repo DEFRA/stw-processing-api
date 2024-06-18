@@ -12,5 +12,7 @@ public class ApiConfigOptions
 
     public string CountriesBaseUrl { get; set; }
 
+    public string FieldConfigServiceBaseUrl { get; set; }
+
     public int Timeout { get; set; }
 }

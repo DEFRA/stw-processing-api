@@ -70,6 +70,14 @@ public static class ServiceCollectionExtensions
                 client.BaseAddress = new Uri(options.CountriesBaseUrl);
                 client.Timeout = TimeSpan.FromSeconds(options.Timeout);
             });
+
+        serviceCollection.AddHttpClient<IFieldConfigService, FieldConfigService>(
+            (serviceProvider, client) =>
+            {
+                var options = serviceProvider.GetRequiredService<IOptions<ApiConfigOptions>>().Value;
+                client.BaseAddress = new Uri(options.FieldConfigServiceBaseUrl);
+                client.Timeout = TimeSpan.FromSeconds(options.Timeout);
+            });
     }
 
     public static void RegisterRules(this IServiceCollection serviceCollection)

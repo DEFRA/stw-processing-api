@@ -21,6 +21,7 @@ The table below outlines the environment variables required for running the appl
 | ApiConfig:BcpServiceBaseUrl            | Base URL for the IPAFFS BCP Microservice                                                             |
 | ApiConfig:CommodityCodeBaseUrl         | Base URL for the IPAFFS Commodity Code Microservice                                                  |
 | ApiConfig:CountriesBaseUrl             | Base URL for the IPAFFS Countries Microservice                                                       |
+| ApiConfig:FieldConfigServiceBaseUrl    | Base URL for the IPAFFS Field Config Microservice                                                    |
 | ApiConfig:Timeout                      | Duration (in seconds) to wait before timing out HTTP Client requests                                 |
 
 The environment variables can be set by creating `local.settings.json` in `src/STW.ProcessingApi.Function/`:
